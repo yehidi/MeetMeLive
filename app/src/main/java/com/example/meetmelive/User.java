@@ -15,7 +15,7 @@ public class User  {
     public String id = "";
     public String name = "";
     public String description="";
-    public Date birthDay;
+    public Date birthday;
     public String gender="";
     public String currentLocation="";
     public String email = "";
@@ -34,7 +34,7 @@ public class User  {
         city = null;
         id = null;
         description=null;
-        birthDay=null;
+        birthday=null;
         gender=null;
         currentLocation=null;
     }
