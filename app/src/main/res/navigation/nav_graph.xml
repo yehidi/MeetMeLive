@@ -24,4 +24,24 @@
         android:name="com.example.meetmelive.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.meetmelive.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/matchProfileFragment"
+        android:name="com.example.meetmelive.MatchProfileFragment"
+        android:label="fragment_match_profile"
+        tools:layout="@layout/fragment_match_profile" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.meetmelive.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/deleteProfileFragment"
+        android:name="com.example.meetmelive.DeleteProfileFragment"
+        android:label="fragment_delete_profile"
+        tools:layout="@layout/fragment_delete_profile" />
 </navigation>

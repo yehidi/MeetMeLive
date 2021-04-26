@@ -25,7 +25,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Spinner
-            android:id="@+id/planets_spinner"
+            android:id="@+id/list_row_notification_planets_spinner"
             android:layout_width="247dp"
             android:layout_height="45dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +34,7 @@
             tools:layout_editor_absoluteY="16dp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/list_row_notification_seeAllRequests"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="see all requests"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
 
         <TextView
-            android:id="@+id/list_row_connections_username"
+            android:id="@+id/list_row_chats_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="36dp"
@@ -67,7 +67,7 @@
             tools:layout_editor_absoluteX="65dp" />
 
         <ImageView
-            android:id="@+id/list_row_connections_image_view"
+            android:id="@+id/list_row_chats_image_view"
             android:layout_width="65dp"
             android:layout_height="70dp"
             android:layout_marginTop="5dp"
@@ -79,7 +79,7 @@
             tools:srcCompat="@drawable/notification" />
 
         <TextView
-            android:id="@+id/list_row_connections_age"
+            android:id="@+id/list_row_chats_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -88,12 +88,12 @@
             android:textColor="#070606"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/list_row_connections_btn_view_profile"
+            app:layout_constraintEnd_toStartOf="@+id/list_row_chats_btn_view_profile"
             app:layout_constraintHorizontal_bias="0.086"
-            app:layout_constraintStart_toEndOf="@+id/list_row_connections_username" />
+            app:layout_constraintStart_toEndOf="@+id/list_row_chats_username" />
 
         <Button
-            android:id="@+id/list_row_connections_btn_view_profile"
+            android:id="@+id/list_row_chats_btn_view_profile"
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
