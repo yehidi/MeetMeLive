@@ -10,7 +10,7 @@
     <Button
         android:id="@+id/login_activity_register_btn"
         android:layout_width="207dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#F5F5F5"
         android:text="Register"
@@ -19,23 +19,23 @@
         app:backgroundTint="#AE9E83CD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.387"
+        app:layout_constraintHorizontal_bias="0.455"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_activity_join_us"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.525" />
 
     <TextView
         android:id="@+id/login_activity_text_view1"
         android:layout_width="174dp"
         android:layout_height="32dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="48dp"
         android:fontFamily="serif"
         android:text="Don't Have An Account? "
         android:textColor="#121111"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.202"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
@@ -99,14 +99,14 @@
         android:id="@+id/login_activity_join_us"
         android:layout_width="93dp"
         android:layout_height="29dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="serif"
         android:text="Join Us!"
         android:textColor="#0E0E0E"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_activity_text_view1" />
 

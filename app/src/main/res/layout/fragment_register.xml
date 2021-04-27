@@ -6,23 +6,6 @@
     android:layout_height="match_parent">
     <!--    android:background="@drawable/back3">-->
 
-    <Button
-        android:id="@+id/register_activity_register_btn"
-        android:layout_width="207dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="50dp"
-        android:background="#F5F5F5"
-        android:text="SIGM UP"
-        android:textSize="18sp"
-        app:backgroundTint="#AE9E83CD"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
     <EditText
         android:id="@+id/register_activity_password"
         android:layout_width="350dp"
@@ -73,17 +56,17 @@
 
     <TextView
         android:id="@+id/register_activity_text_view"
-        android:layout_width="141dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Register "
         android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/register_frag_city"
         android:layout_width="350dp"
         android:layout_height="42dp"
         android:layout_marginStart="5dp"
@@ -97,38 +80,85 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_activity_password" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="350dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Gender"
+    <RadioGroup
+        android:id="@+id/register_radiogroupGender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/register_radiogroupLookingFor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.215"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/register_gender_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gender:"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/register_male_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4sp"
+            android:text="Male"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/register_female_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4sp"
+            android:text="Female"
+            android:textSize="12sp" />
+
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/register_radiogroupLookingFor"
+        android:layout_width="0dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="46dp"
+        android:layout_marginRight="46dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintTop_toBottomOf="@+id/register_radiogroupGender">
+
+        <TextView
+            android:id="@+id/register_lookingfor_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Looking For:"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/register_lookingfor_male_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4sp"
+            android:text="Male"
+            android:textSize="12sp" />
+
+        <RadioButton
+            android:id="@+id/register_lookingfor_female_radiobutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4sp"
+            android:text="Female"
+            android:textSize="12sp" />
+    </RadioGroup>
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
-        android:layout_width="350dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Loking for:"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.215"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/register_birthdate"
         android:layout_width="350dp"
         android:layout_height="42dp"
         android:layout_marginStart="5dp"
@@ -140,10 +170,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.215"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/register_radiogroupLookingFor" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/register_about"
         android:layout_width="350dp"
         android:layout_height="42dp"
         android:layout_marginStart="5dp"
@@ -155,7 +185,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.215"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName4" />
+        app:layout_constraintTop_toBottomOf="@+id/register_birthdate" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -167,7 +197,7 @@
         android:src="@drawable/pic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/register_about" />
 
     <Button
         android:id="@+id/button"
@@ -180,5 +210,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <Button
+        android:id="@+id/register_activity_register_btn"
+        android:layout_width="207dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="50dp"
+        android:background="#F5F5F5"
+        android:text="SIGN UP"
+        android:textSize="18sp"
+        app:backgroundTint="#AE9E83CD"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
