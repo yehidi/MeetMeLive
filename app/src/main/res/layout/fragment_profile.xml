@@ -4,140 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
-
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="412dp"
-        android:layout_height="445dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageButton
-            android:id="@+id/matchProfile_img1"
-            android:layout_width="134dp"
-            android:layout_height="118dp"
-            android:src="@drawable/ic_baseline_account_circle_24" />
-
-        <ImageButton
-            android:id="@+id/matchProfile_img2"
-            android:layout_width="134dp"
-            android:layout_height="118dp"
-            android:src="@drawable/ic_baseline_account_circle_24" />
-
-        <ImageButton
-            android:id="@+id/matchProfile_img3"
-            android:layout_width="134dp"
-            android:layout_height="118dp"
-            android:src="@drawable/ic_baseline_account_circle_24" />
-
-    </androidx.gridlayout.widget.GridLayout>
+    tools:context=".Profile">
 
     <TextView
-        android:id="@+id/matchProfile_first_name"
+        android:id="@+id/matchProfile_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="125dp"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="84dp"
-        android:text="First Name"
-        app:layout_constraintEnd_toEndOf="@+id/matchProfile_unmatch_btn"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/matchProfile_user_img"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/matchProfile_last_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="84dp"
-        android:text="Last Name"
-        app:layout_constraintEnd_toStartOf="@+id/matchProfile_gender_img"
-        app:layout_constraintHorizontal_bias="0.526"
-        app:layout_constraintStart_toEndOf="@+id/matchProfile_first_name"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="48dp"
+        android:hint="UserName"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/matchprofile_profile_im"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/matchProfile_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="125dp"
-        android:layout_marginLeft="125dp"
-        android:layout_marginTop="108dp"
-        android:text="Age"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/matchProfile_user_img"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        android:hint="Age"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/matchprofile_profile_im"
+        app:layout_constraintTop_toBottomOf="@+id/matchProfile_username" />
 
     <TextView
         android:id="@+id/matchProfile_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="29dp"
-        android:layout_marginBottom="44dp"
-        android:text="City"
-        app:layout_constraintBottom_toTopOf="@+id/matchProfile_about"
-        app:layout_constraintStart_toEndOf="@+id/matchProfile_user_img"
-        app:layout_constraintTop_toTopOf="@+id/matchProfile_age" />
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="16dp"
+        android:hint="CIty"
+        app:layout_constraintStart_toEndOf="@+id/matchprofile_profile_im"
+        app:layout_constraintTop_toBottomOf="@+id/matchProfile_age" />
 
     <Button
         android:id="@+id/matchProfile_unmatch_btn"
         android:layout_width="91dp"
         android:layout_height="32dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="46dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:text="connections"
         android:textSize="8sp"
+        app:cornerRadius="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/matchProfile_about_img"
-        android:layout_width="39dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="128dp"
-        android:layout_marginBottom="47dp"
+        android:layout_width="22dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/about"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/matchProfile_user_img" />
+        app:layout_constraintTop_toBottomOf="@+id/matchProfile_city" />
 
-    <EditText
-        android:id="@+id/matchProfile_about"
-        android:layout_width="209dp"
-        android:layout_height="39dp"
-        android:layout_marginBottom="56dp"
+    <TextView
+        android:id="@+id/matchProfile_aboutMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="hello"
         android:inputType="textPersonName"
-        android:text="About:"
-        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
-        app:layout_constraintStart_toEndOf="@+id/matchProfile_about_img" />
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/matchProfile_aboutMe_PlanTxt"
+        app:layout_constraintTop_toBottomOf="@+id/matchProfile_city" />
 
     <ImageView
         android:id="@+id/matchProfile_gender_img"
-        android:layout_width="26dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
+        android:layout_width="21dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="48dp"
         android:src="@drawable/genders"
-        app:layout_constraintEnd_toStartOf="@+id/matchProfile_unmatch_btn"
+        app:layout_constraintStart_toEndOf="@+id/matchProfile_username"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/matchProfile_user_img"
-        android:layout_width="111dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="304dp"
-        android:layout_marginRight="304dp"
-        android:src="@drawable/user"
-        app:layout_constraintEnd_toEndOf="parent"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/matchprofile_profile_im"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_round_person_grey"
+        app:civ_border_color="#FF000000"
+        app:civ_border_width="2dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/matchProfile_aboutMe_PlanTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:text="About Me: "
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/matchProfile_about_img"
+        app:layout_constraintTop_toBottomOf="@+id/matchProfile_city" />
+
+
+    <com.denzcoskun.imageslider.ImageSlider
+        android:id="@+id/matchProfile_slider"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:auto_cycle="true"
+        app:corner_radius="5"
+        app:delay="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+
+
+        app:layout_constraintTop_toBottomOf="@+id/matchProfile_aboutMe"
+        app:layout_constraintVertical_bias="0.0"
+        app:period="1000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

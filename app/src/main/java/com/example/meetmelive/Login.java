@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class LoginFragment extends Fragment {
+public class Login extends Fragment {
 
     Button btnRegister;
 
@@ -26,7 +26,7 @@ public class LoginFragment extends Fragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LoginFragment.class);
+                Intent intent = new Intent(getContext(), Login.class);
                 Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment);
             }
         });

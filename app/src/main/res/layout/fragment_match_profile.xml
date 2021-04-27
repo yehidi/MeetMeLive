@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MatchProfileFragment">
+    tools:context=".MatchProfile">
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/gridLayout"
@@ -80,7 +80,7 @@
         android:layout_marginTop="29dp"
         android:layout_marginBottom="44dp"
         android:text="City"
-        app:layout_constraintBottom_toTopOf="@+id/matchProfile_about"
+        app:layout_constraintBottom_toTopOf="@+id/matchProfile_aboutMe"
         app:layout_constraintStart_toEndOf="@+id/matchProfile_user_img"
         app:layout_constraintTop_toTopOf="@+id/matchProfile_age" />
 
@@ -106,7 +106,7 @@
         app:layout_constraintTop_toTopOf="@+id/matchProfile_user_img" />
 
     <EditText
-        android:id="@+id/matchProfile_about"
+        android:id="@+id/matchProfile_aboutMe"
         android:layout_width="209dp"
         android:layout_height="39dp"
         android:layout_marginBottom="56dp"

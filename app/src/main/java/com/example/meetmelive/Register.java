@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class RegisterFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
+public class Register extends Fragment implements RadioGroup.OnCheckedChangeListener {
 
     EditText username;
     EditText email;

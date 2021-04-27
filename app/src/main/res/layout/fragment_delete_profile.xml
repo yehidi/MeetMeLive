@@ -4,37 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DeleteProfileFragment">
+    tools:context=".DeleteProfile">
 
-    <androidx.gridlayout.widget.GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="412dp"
-        android:layout_height="445dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageButton
-            android:id="@+id/matchProfile_img1"
-            android:layout_width="134dp"
-            android:layout_height="118dp"
-            android:src="@drawable/ic_baseline_account_circle_24" />
-
-        <ImageButton
-            android:id="@+id/matchProfile_img2"
-            android:layout_width="134dp"
-            android:layout_height="118dp"
-            android:src="@drawable/ic_baseline_account_circle_24"
-            app:layout_column="2"
-            app:layout_row="0" />
-
-        <ImageButton
-            android:id="@+id/matchProfile_img3"
-            android:layout_width="134dp"
-            android:layout_height="118dp"
-            android:src="@drawable/ic_baseline_account_circle_24" />
-
-    </androidx.gridlayout.widget.GridLayout>
 
     <TextView
         android:id="@+id/matchProfile_first_name"
@@ -82,7 +53,7 @@
         android:layout_marginTop="29dp"
         android:layout_marginBottom="44dp"
         android:text="City"
-        app:layout_constraintBottom_toTopOf="@+id/matchProfile_about"
+        app:layout_constraintBottom_toTopOf="@+id/matchProfile_aboutMe"
         app:layout_constraintStart_toEndOf="@+id/matchProfile_user_img"
         app:layout_constraintTop_toTopOf="@+id/matchProfile_age" />
 
@@ -108,7 +79,7 @@
         app:layout_constraintTop_toTopOf="@+id/matchProfile_user_img" />
 
     <EditText
-        android:id="@+id/matchProfile_about"
+        android:id="@+id/matchProfile_aboutMe"
         android:layout_width="209dp"
         android:layout_height="39dp"
         android:layout_marginBottom="56dp"
