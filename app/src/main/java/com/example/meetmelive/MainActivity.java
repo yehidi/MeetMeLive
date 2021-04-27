@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity<OnOption> extends AppCompatActivity {
 
     NavController navController;
@@ -23,7 +25,9 @@ public class MainActivity<OnOption> extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this,navController);
 
-
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        NavigationUI.setupWithNavController(bottomNav,navController);
+        //Navigation bar End
     }
 
     @Override

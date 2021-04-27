@@ -40,7 +40,7 @@
 
     <EditText
         android:id="@+id/register_activity_username"
-        android:layout_width="350dp"
+        android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="50dp"
