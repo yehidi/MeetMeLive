@@ -8,9 +8,9 @@
     <!--    android:background="@drawable/back3">-->
 
     <Button
-        android:id="@+id/login_register_btn"
+        android:id="@+id/login_activity_register_btn"
         android:layout_width="207dp"
-        android:layout_height="38dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="#F5F5F5"
         android:text="Register"
@@ -19,31 +19,30 @@
         app:backgroundTint="#AE9E83CD"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.387"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_join_us"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_join_us"
+        app:layout_constraintVertical_bias="0.133" />
 
     <TextView
-        android:id="@+id/login_donthave"
+        android:id="@+id/login_activity_text_view1"
         android:layout_width="174dp"
         android:layout_height="32dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="serif"
         android:text="Don't Have An Account? "
         android:textColor="#121111"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.202"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_google_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <Button
-        android:id="@+id/login_login_btn"
+        android:id="@+id/login_activity_login_btn"
         android:layout_width="207dp"
         android:layout_height="42dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="32dp"
         android:background="#FFFCFC"
         android:fontFamily="sans-serif-medium"
         android:text="Login"
@@ -52,10 +51,10 @@
         app:backgroundTint="#AE9E83CD"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_password" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_password" />
 
     <EditText
-        android:id="@+id/login_password"
+        android:id="@+id/login_activity_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -66,10 +65,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.394"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_email" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_email" />
 
     <TextView
-        android:id="@+id/login_title"
+        android:id="@+id/login_activity_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -82,7 +81,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/login_email"
+        android:id="@+id/login_activity_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
@@ -93,10 +92,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.394"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_title" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_text_view" />
 
     <TextView
-        android:id="@+id/login_join_us"
+        android:id="@+id/login_activity_join_us"
         android:layout_width="93dp"
         android:layout_height="29dp"
         android:layout_marginTop="8dp"
@@ -106,12 +105,12 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_donthave" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_text_view1" />
 
     <Button
-        android:id="@+id/login_facebook_btn"
+        android:id="@+id/button3"
         android:layout_width="359dp"
         android:layout_height="43dp"
         android:layout_marginStart="5dp"
@@ -120,19 +119,19 @@
         android:text="LOGIN WITH FACEBOOK"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_login_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/login_activity_login_btn" />
 
     <Button
-        android:id="@+id/login_google_btn"
+        android:id="@+id/button2"
         android:layout_width="360dp"
         android:layout_height="41dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="5dp"
         android:text="LOGIN WITH GOOGLE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.512"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_facebook_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/button3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "642485063982",
+    "project_id": "meetmelive-c7fa0",
+    "storage_bucket": "meetmelive-c7fa0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642485063982:android:f584a5224fef6f40ea2abf",
+        "android_client_info": {
+          "package_name": "com.example.meetmelive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642485063982-8tcfhpkr3uhmeide1hv4eqi63fl59pet.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRJcfRIv9oIMnL2b5nXjHRc1GElghLJI4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642485063982-8tcfhpkr3uhmeide1hv4eqi63fl59pet.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
