@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class LoginFragment extends Fragment {
 
     Button btnRegister;
@@ -20,6 +22,11 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
+
+        BottomNavigationView bnv = view.findViewById(R.id.bottom_navigation);
+        navBar.setVisibility(View.GONE);
 
         btnRegister = view.findViewById(R.id.login_activity_register_btn);
 

@@ -17,6 +17,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:backgroundTint="#AE9E83CD"
+        app:cornerRadius="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
