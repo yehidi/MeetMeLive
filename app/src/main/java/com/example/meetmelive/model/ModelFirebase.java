@@ -38,8 +38,6 @@ public class ModelFirebase {
 
     public static void loginUser(final String email, String password, final Listener<Boolean> listener){
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-
         if (email != null && !email.equals("") && password != null && !password.equals("")){
             if (firebaseAuth.getCurrentUser() != null) {
                 firebaseAuth.signOut();
@@ -64,9 +62,9 @@ public class ModelFirebase {
         }
     }
 
-    public static void registerUserAccount(final String username, String password, final String email, final Uri imageUri, final Listener<Boolean> listener){
-
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    // Add *final Uri imageUri* as param
+    public static void registerUserAccount(final String username, String password, final String email,
+                                           final String gender, final Uri imageUri, final Listener<Boolean> listener){
 
         if (firebaseAuth.getCurrentUser() != null){
             firebaseAuth.signOut();
@@ -74,13 +72,12 @@ public class ModelFirebase {
         if (firebaseAuth.getCurrentUser() == null &&
                 username != null && !username.equals("") &&
                 password != null && !password.equals("") &&
-                email != null && !email.equals("") &&
-                imageUri != null){
+                email != null && !email.equals("")) {
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
-                    uploadUserData(username, email, imageUri);
+                    uploadUserData(username, email, gender, imageUri);
                     listener.onComplete();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -97,10 +94,8 @@ public class ModelFirebase {
         }
     }
 
-    private static void uploadUserData(final String username, final String email, Uri imageUri){
+    private static void uploadUserData(final String username, final String email, final String gender, Uri imageUri){
 
-        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
         if (imageUri != null){
@@ -125,8 +120,11 @@ public class ModelFirebase {
                         data.put("profileImageUrl", task.getResult().toString());
                         data.put("username", username);
                         data.put("email", email);
+                        data.put("imageUri", imageUri);
+                        data.put("gender", gender);
+
                         data.put("info", "NA");
-                        firebaseFirestore.collection("userProfileData").document(email).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        db.collection("userProfileData").document(email).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 if (firebaseAuth.getCurrentUser() != null){
@@ -162,6 +160,7 @@ public class ModelFirebase {
                     User.getInstance().profileImageUrl = (String) task.getResult().get("profileImageUrl");
                     User.getInstance().userInfo = (String) task.getResult().get("info");
                     User.getInstance().userEmail = email;
+                    User.getInstance().gender = (String) task.getResult().get("gender");
                     User.getInstance().userId = firebaseAuth.getUid();
                 }
             }

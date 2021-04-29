@@ -155,7 +155,7 @@
                 android:inputType="textPersonName"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextDate3" />
+                app:layout_constraintTop_toBottomOf="@+id/register_birthDate" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -172,7 +172,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/register_about" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/register_btnChoosePhoto"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="100dp"
@@ -197,10 +197,10 @@
                 app:backgroundTint="#AE9E83CD"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button" />
+                app:layout_constraintTop_toBottomOf="@+id/register_btnChoosePhoto" />
 
             <EditText
-                android:id="@+id/editTextDate3"
+                android:id="@+id/register_birthDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
