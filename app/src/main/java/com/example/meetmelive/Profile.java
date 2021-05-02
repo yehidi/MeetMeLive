@@ -18,8 +18,6 @@ import android.widget.TextView;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +39,7 @@ public class Profile<OnOption> extends Fragment {
         setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
-        profilePic=view.findViewById(R.id.matchprofile_profile_im);
+        profilePic=view.findViewById(R.id.EditProfile_profile_im);
 
         username=view.findViewById(R.id.matchProfile_username);
         //username.setText(FirebaseAuth.getInstance().getCurretnuser().getDisplayNamr);

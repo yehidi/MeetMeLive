@@ -35,7 +35,7 @@ public class MatchProfile extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_match_profile, container, false);
 
-        profilePic=view.findViewById(R.id.matchprofile_profile_im);
+        profilePic=view.findViewById(R.id.EditProfile_profile_im);
 
         username=view.findViewById(R.id.matchProfile_username);
         //username.setText(FirebaseAuth.getInstance().getCurretnuser().getDisplayNamr);
