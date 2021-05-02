@@ -22,6 +22,8 @@ import com.google.firebase.firestore.util.Listener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -62,9 +64,8 @@ public class ModelFirebase {
         }
     }
 
-    // Add *final Uri imageUri* as param
     public static void registerUserAccount(final String username, String password, final String email,
-                                           final String gender, final Uri imageUri, final Listener<Boolean> listener){
+                                           final String gender, final String lookingForGender, final Uri imageUri, final Listener<Boolean> listener){
 
         if (firebaseAuth.getCurrentUser() != null){
             firebaseAuth.signOut();
@@ -77,7 +78,7 @@ public class ModelFirebase {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
-                    uploadUserData(username, email, gender, imageUri);
+                    uploadUserData(username, email, gender, lookingForGender, imageUri);
                     listener.onComplete();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -94,7 +95,7 @@ public class ModelFirebase {
         }
     }
 
-    private static void uploadUserData(final String username, final String email, final String gender, Uri imageUri){
+    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender, Uri imageUri){
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
@@ -120,8 +121,8 @@ public class ModelFirebase {
                         data.put("profileImageUrl", task.getResult().toString());
                         data.put("username", username);
                         data.put("email", email);
-                        data.put("imageUri", imageUri);
                         data.put("gender", gender);
+                        data.put("looking for", lookingForGender);
 
                         data.put("info", "NA");
                         db.collection("userProfileData").document(email).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -177,6 +178,11 @@ public class ModelFirebase {
             Toast.makeText(MyApplication.context, "Register page: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             return null;
         }
+    }
+
+    public static void signOut(){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
     }
 
 }

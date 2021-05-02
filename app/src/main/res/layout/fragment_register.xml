@@ -158,7 +158,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/register_birthDate" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/register_profileImageView"
                 android:layout_width="99dp"
                 android:layout_height="57dp"
                 android:layout_marginStart="156dp"
@@ -167,6 +167,7 @@
                 android:layout_marginEnd="156dp"
                 android:layout_marginRight="156dp"
                 android:src="@drawable/pic"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_about" />
@@ -182,7 +183,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.488"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+                app:layout_constraintTop_toBottomOf="@+id/register_profileImageView" />
 
             <Button
                 android:id="@+id/register_activity_register_btn"
