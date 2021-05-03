@@ -162,7 +162,7 @@ public class ModelFirebase {
                     User.getInstance().description = (String) task.getResult().get("info");
                     User.getInstance().email = email;
                     User.getInstance().gender = (String) task.getResult().get("gender");
-                    User.getInstance().interestedIn = (String) task.getResult().get("interestedIn");
+                    User.getInstance().lookingForGender = (String) task.getResult().get("lookingForGender");
 
                     User.getInstance().id = firebaseAuth.getUid();
                 }

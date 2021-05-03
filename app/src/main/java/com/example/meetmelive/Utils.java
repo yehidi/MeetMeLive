@@ -14,7 +14,7 @@ public class Utils {
         background.animate().scaleX((float) 1.5).scaleY((float) 1.5).setDuration(duration).start();
     }
 
-    public static void chooseImageFromGallery(Register activity) {
+    public static void chooseImageFromGallery(register activity) {
 
         try {
             Intent openGalleryIntent = new Intent(Intent.ACTION_GET_CONTENT);

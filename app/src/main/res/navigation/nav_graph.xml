@@ -28,7 +28,7 @@
         android:id="@+id/Register"
         android:name="com.example.meetmelive.Register"
         android:label="Register"
-        tools:layout="@layout/fragment_register" />
+        tools:layout="@layout/activity_register" />
     <fragment
         android:id="@+id/Profile"
         android:name="com.example.meetmelive.Profile"

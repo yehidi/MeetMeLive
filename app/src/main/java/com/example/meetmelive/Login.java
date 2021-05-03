@@ -64,7 +64,7 @@ public class Login extends Fragment {
                 ModelFirebase.loginUser(email.getText().toString(), password.getText().toString(), new ModelFirebase.Listener<Boolean>() {
                     @Override
                     public void onComplete() {
-                        startActivity(new Intent(getActivity(), HomeActivity.class));
+                        startActivity(new Intent(getActivity(), MainActivity.class));
                         getActivity().finish();
 
                     }
@@ -142,7 +142,7 @@ public class Login extends Fragment {
 
     public void updateUI(FirebaseUser user) {
         if (user != null) {
-            startActivity(new Intent(getActivity(), HomeActivity.class));
+            startActivity(new Intent(getActivity(), MainActivity.class));
             getActivity().finish();
         } else {
             Toast.makeText(getActivity(), "Please Log in to continue.", Toast.LENGTH_SHORT).show();
