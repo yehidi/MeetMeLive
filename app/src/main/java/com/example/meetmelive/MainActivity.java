@@ -22,7 +22,7 @@ public class MainActivity<OnOption> extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Navigation menu
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.mainactivity_navhost);
         NavigationUI.setupActionBarWithNavController(this,navController);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
