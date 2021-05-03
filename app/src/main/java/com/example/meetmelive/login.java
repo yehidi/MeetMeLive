@@ -1,33 +1,28 @@
 package com.example.meetmelive;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.meetmelive.model.ModelFirebase;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-
-import com.example.meetmelive.model.ModelFirebase;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
@@ -36,9 +31,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.concurrent.Executor;
 
+import static com.example.meetmelive.model.ModelFirebase.firebaseAuth;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
-public class LoginFragment extends Fragment {
+public class login extends AppCompatActivity {
 
     EditText email, password;
     Button btnRegister, btnLogin;
@@ -47,16 +43,21 @@ public class LoginFragment extends Fragment {
     FirebaseAuth mAuth;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_login, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
 
-        BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_navigation);
-        email = view.findViewById(R.id.login_activity_email);
-        password = view.findViewById(R.id.login_activity_password);
-        btnRegister = view.findViewById(R.id.login_activity_register_btn);
-        btnLogin = view.findViewById(R.id.login_activity_login_btn);
+        email = findViewById(R.id.login_activity_email);
+        password = findViewById(R.id.login_activity_password);
+        btnRegister = findViewById(R.id.login_activity_register_btn);
+        btnLogin = findViewById(R.id.login_activity_login_btn);
+
+//        firebaseAuth = FirebaseAuth.getInstance();
+//        if (firebaseAuth.getCurrentUser() != null) {
+//            ModelFirebase.setUserAppData(firebaseAuth.getCurrentUser().getEmail());
+//            startActivity(new Intent(login.this, MainActivity.class));
+//            finish();
+//        }
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,14 +65,13 @@ public class LoginFragment extends Fragment {
                 ModelFirebase.loginUser(email.getText().toString(), password.getText().toString(), new ModelFirebase.Listener<Boolean>() {
                     @Override
                     public void onComplete() {
-                        startActivity(new Intent(getActivity(), HomeActivity.class));
-                        getActivity().finish();
-
+                        startActivity(new Intent(login.this, MainActivity.class));
+                        finish();
                     }
 
                     @Override
                     public void onFail() {
-                        Toast.makeText(getActivity(), "Failed to login", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(login.this, "Failed to login", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -80,20 +80,20 @@ public class LoginFragment extends Fragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LoginFragment.class);
-                Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment);
+                startActivity(new Intent(login.this, register.class));
+                finish();
             }
         });
 
         FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(getContext());
+        //AppEventsLogger.activateApp(this);
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         updateUI(currentUser);
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
-        loginButton = view.findViewById(R.id.login_facebook_button);
+        loginButton = findViewById(R.id.login_facebook_button);
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -112,8 +112,6 @@ public class LoginFragment extends Fragment {
                 Log.d("TAG", "facebook:onError", error);
             }
         });
-
-        return view;
     }
 
     public void handleFacebookAccessToken(AccessToken token) {
@@ -121,7 +119,7 @@ public class LoginFragment extends Fragment {
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener((Executor) this, new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -132,7 +130,7 @@ public class LoginFragment extends Fragment {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("TAG", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(getActivity(), "Authentication failed.",
+                            Toast.makeText(login.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -142,10 +140,10 @@ public class LoginFragment extends Fragment {
 
     public void updateUI(FirebaseUser user) {
         if (user != null) {
-            startActivity(new Intent(getActivity(), HomeActivity.class));
-            getActivity().finish();
+            startActivity(new Intent(login.this, NearbyFragment.class));
+            finish();
         } else {
-            Toast.makeText(getActivity(), "Please Log in to continue.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please Log in to continue.", Toast.LENGTH_SHORT).show();
 
         }
     }

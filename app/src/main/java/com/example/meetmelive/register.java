@@ -1,21 +1,14 @@
 package com.example.meetmelive;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
-import android.net.Uri;
-import android.os.Bundle;
-
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,7 +17,7 @@ import android.widget.Toast;
 
 import com.example.meetmelive.model.ModelFirebase;
 
-public class RegisterFragment extends Fragment implements RadioGroup.OnCheckedChangeListener {
+public class register extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
 
     EditText username;
     EditText email;
@@ -38,46 +31,41 @@ public class RegisterFragment extends Fragment implements RadioGroup.OnCheckedCh
     ImageView profilePic;
     Uri profileImageUri = null;
 
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//    }
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_register, container, false);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_register);
 
-        username = view.findViewById(R.id.register_activity_username);
-        email = view.findViewById(R.id.register_activity_email_edit_text);
-        password = view.findViewById(R.id.register_activity_password);
-        city = view.findViewById(R.id.register_frag_city);
-        radioGroupGender = view.findViewById(R.id.register_radiogroupGender);
-        radioGroupLookingFor = view.findViewById(R.id.register_radiogroupLookingFor);
-        register = view.findViewById(R.id.register_activity_register_btn);
+        username = findViewById(R.id.register_activity_username);
+        email = findViewById(R.id.register_activity_email_edit_text);
+        password = findViewById(R.id.register_activity_password);
+        city = findViewById(R.id.register_frag_city);
+        radioGroupGender = findViewById(R.id.register_radiogroupGender);
+        radioGroupLookingFor = findViewById(R.id.register_radiogroupLookingFor);
+        register = findViewById(R.id.register_activity_register_btn);
         radioGroupGender.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) this);
         radioGroupLookingFor.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener)this);
-        dateB = view.findViewById(R.id.register_birthDate);
-        choosePhoto = view.findViewById(R.id.register_btnChoosePhoto);
-        profilePic = view.findViewById(R.id.register_profileImageView);
+        dateB = findViewById(R.id.register_birthDate);
+        choosePhoto = findViewById(R.id.register_btnChoosePhoto);
+        profilePic = findViewById(R.id.register_profileImageView);
 
         choosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.chooseImageFromGallery(RegisterFragment.this);
+                Utils.chooseImageFromGallery(register.this);
             }
         });
+
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ModelFirebase.registerUserAccount(username.getText().toString(),
                         password.getText().toString(),
                         email.getText().toString(), gender, lookingForGender, profileImageUri, new ModelFirebase.Listener<Boolean>() {
-
                             @Override
                             public void onComplete() {
-                                Navigation.findNavController(view).popBackStack();
+                                    startActivity(new Intent(register.this, MainActivity.class));
+                                    finish();
                             }
 
                             @Override
@@ -90,7 +78,6 @@ public class RegisterFragment extends Fragment implements RadioGroup.OnCheckedCh
 
             }
         });
-        return view;
     }
 
     @Override
@@ -129,7 +116,7 @@ public class RegisterFragment extends Fragment implements RadioGroup.OnCheckedCh
 
         }
         else {
-            Toast.makeText(getActivity(), "No image was selected", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No image was selected", Toast.LENGTH_SHORT).show();
         }
     }
 }
