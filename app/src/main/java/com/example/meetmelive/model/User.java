@@ -10,16 +10,16 @@ public class User {
     //@NonNull
     public String id = "";
     public String name = "";
-    public String description="";
+    public String description="";// about me
     public Date birthday;
     public String gender="";
-    public String interestedIn ="";
+    public String lookingForGender ="";
     public String currentLocation="";
     public String email = "";
     long lastUpdated;
     public String password;
     public String city;
-    List<String> listNotification;
+    List<String> listNotification;// need to be tested
     List<ChatMessage> listFriends;
     public String profilePic;
     public String pic1;
@@ -36,7 +36,7 @@ public class User {
         description=null;
         birthday=null;
         gender=null;
-        interestedIn =null;
+        lookingForGender =null;
         currentLocation=null;
         listNotification=null;
         listFriends=null;

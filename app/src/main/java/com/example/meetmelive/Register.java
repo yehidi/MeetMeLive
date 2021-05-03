@@ -65,7 +65,7 @@ public class Register extends Fragment implements RadioGroup.OnCheckedChangeList
         choosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.chooseImageFromGallery(RegisterFragment.this);
+                Utils.chooseImageFromGallery(Register.this);
             }
         });
         register.setOnClickListener(new View.OnClickListener() {

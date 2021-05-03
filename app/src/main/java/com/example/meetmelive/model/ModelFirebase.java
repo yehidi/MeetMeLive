@@ -157,12 +157,14 @@ public class ModelFirebase {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){
-                    User.getInstance().userUsername = (String) task.getResult().get("username");
-                    User.getInstance().profileImageUrl = (String) task.getResult().get("profileImageUrl");
-                    User.getInstance().userInfo = (String) task.getResult().get("info");
-                    User.getInstance().userEmail = email;
+                    User.getInstance().name = (String) task.getResult().get("username");
+                    User.getInstance().profilePic = (String) task.getResult().get("profileImageUrl");
+                    User.getInstance().description = (String) task.getResult().get("info");
+                    User.getInstance().email = email;
                     User.getInstance().gender = (String) task.getResult().get("gender");
-                    User.getInstance().userId = firebaseAuth.getUid();
+                    User.getInstance().interestedIn = (String) task.getResult().get("interestedIn");
+
+                    User.getInstance().id = firebaseAuth.getUid();
                 }
             }
         });
