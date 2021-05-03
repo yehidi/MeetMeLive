@@ -2,4 +2,6 @@
     <string name="app_name">MeetMeLive</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="facebook_app_id">2049924838498343</string>
+    <string name="fb_login_protocol_scheme">fb2049924838498343</string>
 </resources>
