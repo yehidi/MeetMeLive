@@ -10,11 +10,7 @@
         android:name="com.example.meetmelive.Search"
         android:label="Search"
         tools:layout="@layout/fragment_search" />
-    <fragment
-        android:id="@+id/Nearby"
-        android:name="com.example.meetmelive.Nearby"
-        android:label="fragment_nearby"
-        tools:layout="@layout/fragment_nearby" />
+
     <fragment
         android:id="@+id/Login"
         android:name="com.example.meetmelive.Login"
@@ -26,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/Register"
-        android:name="com.example.meetmelive.Register"
+        android:name="com.example.meetmelive.register"
         android:label="Register"
         tools:layout="@layout/activity_register" />
     <fragment
@@ -53,4 +49,10 @@
         android:name="com.example.meetmelive.DeleteProfile"
         android:label="fragment_delete_profile"
         tools:layout="@layout/fragment_delete_profile" />
+
+    <fragment
+        android:id="@+id/Nearby"
+        android:name="com.example.meetmelive.Nearby"
+        android:label="Nearby"
+        tools:layout="@layout/fragment_nearby" />
 </navigation>
