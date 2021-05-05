@@ -1,5 +1,6 @@
 package com.example.meetmelive;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -46,9 +47,7 @@ public class Profile<OnOption> extends Fragment {
 
         profilePic=view.findViewById(R.id.profile_profile_im);
         username=view.findViewById(R.id.profile_username);
-        Log.d("profile","user name: "+ FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        username.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-      //  setUserAppData(User.getInstance().email);
+        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         if (User.getInstance().profilePic != null){
             Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
 
@@ -60,6 +59,7 @@ public class Profile<OnOption> extends Fragment {
             public void onClick(View v) {
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 mAuth.signOut();
+                startActivity(new Intent(getActivity(),login.class));
             }
         });
 

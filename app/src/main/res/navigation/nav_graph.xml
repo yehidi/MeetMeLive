@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/Login">
+    app:startDestination="@id/Nearby">
 
     <fragment
         android:id="@+id/Search"
@@ -11,20 +11,6 @@
         android:label="Search"
         tools:layout="@layout/fragment_search" />
 
-    <fragment
-        android:id="@+id/Login"
-        android:name="com.example.meetmelive.Login"
-        android:label="Login"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/Register" />
-    </fragment>
-    <fragment
-        android:id="@+id/Register"
-        android:name="com.example.meetmelive.register"
-        android:label="Register"
-        tools:layout="@layout/activity_register" />
     <fragment
         android:id="@+id/Profile"
         android:name="com.example.meetmelive.Profile"
