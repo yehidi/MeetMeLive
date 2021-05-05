@@ -1,32 +1,40 @@
 package com.example.meetmelive.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.util.Date;
 import java.util.List;
+
+@Entity
 public class User {
 
     // static variable single_instance of type Singleton
     private static User MyUser = null;
-    //@PrimaryKey
-    //@NonNull
+    @PrimaryKey
+    @NonNull
     public String id = "";
     public String name = "";
     public String description="";// about me
-    public Date birthday;
+    public long birthday;
     public String gender="";
     public String lookingForGender ="";
     public String currentLocation="";
     public String email = "";
-    long lastUpdated;
+    public long lastUpdated;
     public String password;
     public String city;
-    List<String> listNotification;// need to be tested
-    List<ChatMessage> listFriends;
+   // List<String> listNotification;// need to be tested
+    //List<ChatMessage> listFriends;
     public String profilePic;
     public String pic1;
     public String pic2;
     public String pic3;
 
-    private User()
+    public boolean isActive;
+
+    public User()
     {
         email = null;
         name = null;
@@ -34,16 +42,16 @@ public class User {
         city = null;
         id = null;
         description=null;
-        birthday=null;
         gender=null;
         lookingForGender =null;
         currentLocation=null;
-        listNotification=null;
-        listFriends=null;
+//        listNotification=null;
+//        listFriends=null;
         profilePic=null;
         pic1=null;
         pic2=null;
         pic3=null;
+        isActive=true;
     }
 
     // create instance of Singleton class

@@ -44,10 +44,10 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/EditProfile_profile_im" />
+                app:layout_constraintTop_toBottomOf="@+id/Editprofile_profile_im" />
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/EditProfile_profile_im"
+                android:id="@+id/Editprofile_profile_im"
                 android:layout_width="122dp"
                 android:layout_height="121dp"
                 android:layout_marginTop="32dp"
@@ -63,8 +63,8 @@
                 android:layout_width="43dp"
                 android:layout_height="40dp"
                 android:src="@android:drawable/ic_menu_edit"
-                app:layout_constraintBottom_toBottomOf="@+id/EditProfile_profile_im"
-                app:layout_constraintEnd_toEndOf="@+id/EditProfile_profile_im" />
+                app:layout_constraintBottom_toBottomOf="@+id/Editprofile_profile_im"
+                app:layout_constraintEnd_toEndOf="@+id/Editprofile_profile_im" />
 
             <TextView
                 android:id="@+id/EditProfile_choosePhotos"

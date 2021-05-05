@@ -64,21 +64,21 @@ public class ModelFirebase {
         }
     }
 
-    public static void registerUserAccount(final String username, String password, final String email,
+    public static void registerUserAccount(final String name, String password, final String email,
                                            final String gender, final String lookingForGender, final Uri imageUri, final Listener<Boolean> listener){
 
         if (firebaseAuth.getCurrentUser() != null){
             firebaseAuth.signOut();
         }
         if (firebaseAuth.getCurrentUser() == null &&
-                username != null && !username.equals("") &&
+                name != null && !name.equals("") &&
                 password != null && !password.equals("") &&
                 email != null && !email.equals("")) {
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
-                    uploadUserData(username, email, gender, lookingForGender, imageUri);
+                    uploadUserData(name, email, gender, lookingForGender, imageUri);
                     listener.onComplete();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -157,7 +157,7 @@ public class ModelFirebase {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){
-                    User.getInstance().name = (String) task.getResult().get("username");
+                    User.getInstance().name = (String) task.getResult().get("name");
                     User.getInstance().profilePic = (String) task.getResult().get("profileImageUrl");
                     User.getInstance().description = (String) task.getResult().get("info");
                     User.getInstance().email = email;
