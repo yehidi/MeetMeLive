@@ -34,7 +34,7 @@ public class Request_ListActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         list.setLayoutManager(layoutManager);
 
-        data=Model.instance.getAllNotifications();
+//        data=Model.instance.getAllNotifications();
 
         MyAdapter adapter=new MyAdapter();
         list.setAdapter(adapter);
