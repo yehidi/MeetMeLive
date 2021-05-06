@@ -1,6 +1,8 @@
 package com.example.meetmelive;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +13,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.squareup.picasso.Picasso;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class GridAdapter extends ArrayAdapter<DataModel> {
@@ -58,6 +62,52 @@ public class GridAdapter extends ArrayAdapter<DataModel> {
                 // on the item click on our list view.
                 // we are displaying a toast message.
                 Toast.makeText(getContext(), "Item clicked is : " + dataModel.getName(), Toast.LENGTH_SHORT).show();
+
+
+
+                //added
+
+                    AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(v.getContext());
+                    myAlertBuilder.setTitle("Hi");
+                    myAlertBuilder.setMessage("Do You Want To Send A Request ?");
+
+
+
+                    myAlertBuilder.setPositiveButton("yes, I Want To Send", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(v.getContext(),"your Request sent" ,Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+                    myAlertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Toast.makeText(v.getContext(),"you clicked no", Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+                    myAlertBuilder.show();
+
+
+
+                //added
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             }
         });
         return listitemView;
