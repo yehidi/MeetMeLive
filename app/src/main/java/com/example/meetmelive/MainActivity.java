@@ -6,6 +6,7 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -28,6 +29,14 @@ public class MainActivity<OnOption> extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         NavigationUI.setupWithNavController(bottomNav,navController);
         //Navigation bar End
+
+        // maya added
+//        Intent intent=new Intent(this,NotificationActivity.class);
+//        startActivity(intent);
+
+        Intent intent=new Intent(this,Request_ListActivity.class);
+        startActivity(intent);
+        // maya added
     }
 
     @Override
