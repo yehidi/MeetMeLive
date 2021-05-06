@@ -6,20 +6,20 @@
     android:layout_height="600dp">
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/list_row_chat_user"
         android:layout_width="65dp"
         android:layout_height="70dp"
         android:layout_marginBottom="484dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintEnd_toStartOf="@+id/list_row_chat_message"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/user" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="238dp"
-        android:layout_height="69dp"
+        android:id="@+id/list_row_chat_message"
+        android:layout_width="237dp"
+        android:layout_height="75dp"
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="484dp"
         android:text="message"

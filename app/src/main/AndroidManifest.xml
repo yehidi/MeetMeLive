@@ -20,8 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".register"></activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".SearchActivity" />
+        <activity android:name=".MainActivity"> </activity>
+        <activity android:name=".register" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

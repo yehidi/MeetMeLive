@@ -52,12 +52,12 @@ public class login extends AppCompatActivity {
         btnRegister = findViewById(R.id.login_activity_register_btn);
         btnLogin = findViewById(R.id.login_activity_login_btn);
 
-//        firebaseAuth = FirebaseAuth.getInstance();
-//        if (firebaseAuth.getCurrentUser() != null) {
-//            ModelFirebase.setUserAppData(firebaseAuth.getCurrentUser().getEmail());
-//            startActivity(new Intent(login.this, MainActivity.class));
-//            finish();
-//        }
+        firebaseAuth = FirebaseAuth.getInstance();
+        if (firebaseAuth.getCurrentUser() != null) {
+            ModelFirebase.setUserAppData(firebaseAuth.getCurrentUser().getEmail());
+            startActivity(new Intent(login.this, MainActivity.class));
+            finish();
+        }
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,7 +140,7 @@ public class login extends AppCompatActivity {
 
     public void updateUI(FirebaseUser user) {
         if (user != null) {
-            startActivity(new Intent(login.this, NearbyFragment.class));
+            startActivity(new Intent(login.this, MainActivity.class));
             finish();
         } else {
             Toast.makeText(this, "Please Log in to continue.", Toast.LENGTH_SHORT).show();

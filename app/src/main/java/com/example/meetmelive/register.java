@@ -1,5 +1,6 @@
 package com.example.meetmelive;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
@@ -16,6 +17,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.meetmelive.model.ModelFirebase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class register extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
 
@@ -64,8 +70,19 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                         email.getText().toString(), gender, lookingForGender, profileImageUri, new ModelFirebase.Listener<Boolean>() {
                             @Override
                             public void onComplete() {
-                                    startActivity(new Intent(register.this, MainActivity.class));
-                                    finish();
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(username.getText().toString())
+                                        .build();
+                                user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            startActivity(new Intent(register.this, MainActivity.class));
+                                            finish();
+                                        }
+                                    }
+                                });
                             }
 
                             @Override
