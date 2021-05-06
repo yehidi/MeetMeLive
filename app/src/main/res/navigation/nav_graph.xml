@@ -3,32 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/Login">
+    app:startDestination="@id/Nearby">
 
     <fragment
         android:id="@+id/Search"
         android:name="com.example.meetmelive.Search"
         android:label="Search"
         tools:layout="@layout/fragment_search" />
-    <fragment
-        android:id="@+id/Nearby"
-        android:name="com.example.meetmelive.Nearby"
-        android:label="fragment_nearby"
-        tools:layout="@layout/fragment_nearby" />
-    <fragment
-        android:id="@+id/Login"
-        android:name="com.example.meetmelive.Login"
-        android:label="Login"
-        tools:layout="@layout/fragment_login">
-        <action
-            android:id="@+id/action_loginFragment_to_registerFragment"
-            app:destination="@id/Register" />
-    </fragment>
-    <fragment
-        android:id="@+id/Register"
-        android:name="com.example.meetmelive.Register"
-        android:label="Register"
-        tools:layout="@layout/fragment_register" />
+
     <fragment
         android:id="@+id/Profile"
         android:name="com.example.meetmelive.Profile"
@@ -53,4 +35,10 @@
         android:name="com.example.meetmelive.DeleteProfile"
         android:label="fragment_delete_profile"
         tools:layout="@layout/fragment_delete_profile" />
+
+    <fragment
+        android:id="@+id/Nearby"
+        android:name="com.example.meetmelive.Nearby"
+        android:label="Nearby"
+        tools:layout="@layout/fragment_nearby" />
 </navigation>

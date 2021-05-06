@@ -1,11 +1,8 @@
 package com.example.meetmelive;
 
+import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
-
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,37 +12,56 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
+
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
-
-import org.jetbrains.annotations.Nullable;
-
+import com.example.meetmelive.model.ModelFirebase;
+import com.example.meetmelive.model.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.example.meetmelive.model.ModelFirebase.setUserAppData;
 
 public class Profile<OnOption> extends Fragment {
 
     String userId;
     CircleImageView profilePic;
     TextView username;
-    Button connections;
-    Button editProfileBtn;
-    Button signoutBtn;
-    ImageSlider imageSlider;
+    ImageSlider imageSlider;//the pictures
     View view;
+    Button connection;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_profile, container, false);
-        profilePic=view.findViewById(R.id.matchprofile_profile_im);
 
-        username=view.findViewById(R.id.matchProfile_username);
-        //username.setText(FirebaseAuth.getInstance().getCurretnuser().getDisplayNamr);
+        profilePic=view.findViewById(R.id.profile_profile_im);
+        username=view.findViewById(R.id.profile_username);
+        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        if (User.getInstance().profilePic != null){
+            Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
 
+        }
+
+        connection = view.findViewById(R.id.profile_unmatch_btn);
+        connection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+                startActivity(new Intent(getActivity(),login.class));
+            }
+        });
 
 
 

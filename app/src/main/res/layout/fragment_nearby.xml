@@ -6,149 +6,139 @@
     android:layout_height="match_parent"
     tools:context=".Nearby">
 
-<!--    <androidx.gridlayout.widget.GridLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        tools:layout_editor_absoluteX="203dp"-->
-<!--        tools:layout_editor_absoluteY="315dp">-->
 
-<!--        <androidx.gridlayout.widget.GridLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            tools:layout_editor_absoluteX="203dp"-->
-<!--            tools:layout_editor_absoluteY="315dp">-->
+    <androidx.gridlayout.widget.GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-<!--            <androidx.gridlayout.widget.GridLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                tools:layout_editor_absoluteX="203dp"-->
-<!--                tools:layout_editor_absoluteY="315dp">-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_column="0"
+            app:layout_row="4" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24"-->
-<!--                    app:layout_column="0"-->
-<!--                    app:layout_row="4" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn1"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_column="0"
+            app:layout_row="0" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn1"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24"-->
-<!--                    app:layout_column="0"-->
-<!--                    app:layout_row="0" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn2"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn2"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn3"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn3"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn4"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_column="0"
+            app:layout_row="1" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn4"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24"-->
-<!--                    app:layout_column="0"-->
-<!--                    app:layout_row="1" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn5"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn5"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn6"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn6"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn7"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_column="0"
+            app:layout_row="2" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn7"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24"-->
-<!--                    app:layout_column="0"-->
-<!--                    app:layout_row="2" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn8"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn8"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn9"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn9"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn10"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_column="0"
+            app:layout_row="3" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn10"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24"-->
-<!--                    app:layout_column="0"-->
-<!--                    app:layout_row="3" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn11"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn11"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn12"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn12"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn13"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_column="1"
+            app:layout_row="4" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn13"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24"-->
-<!--                    app:layout_column="1"-->
-<!--                    app:layout_row="4" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn14"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn14"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn15"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            app:layout_column="0"
+            app:layout_row="5" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn15"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24"-->
-<!--                    app:layout_column="0"-->
-<!--                    app:layout_row="5" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn16"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn16"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+        <ImageButton
+            android:id="@+id/nearBy_imgbtn17"
+            android:layout_width="134dp"
+            android:layout_height="118dp"
+            android:src="@drawable/ic_baseline_account_circle_24" />
 
-<!--                <ImageButton-->
-<!--                    android:id="@+id/nearBy_imgbtn17"-->
-<!--                    android:layout_width="134dp"-->
-<!--                    android:layout_height="118dp"-->
-<!--                    android:src="@drawable/ic_baseline_account_circle_24" />-->
+    </androidx.gridlayout.widget.GridLayout>
 
-<!--            </androidx.gridlayout.widget.GridLayout>-->
-
-<!--        </androidx.gridlayout.widget.GridLayout>-->
-
-<!--    </androidx.gridlayout.widget.GridLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>
