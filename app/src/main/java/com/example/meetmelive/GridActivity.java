@@ -46,7 +46,7 @@ public class GridActivity extends AppCompatActivity {
     private void loadDatainGridView() {
         // below line is use to get data from Firebase
         // firestore using collection in android.
-        db.collection("Data").get()
+        db.collection("data").get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
