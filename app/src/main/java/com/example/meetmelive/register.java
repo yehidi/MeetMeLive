@@ -29,13 +29,19 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
     EditText email;
     EditText password;
     EditText city;
+    EditText description;
     String gender, lookingForGender;
     RadioGroup radioGroupGender, radioGroupLookingFor;
     Button register, choosePhoto;
     EditText dateB;
+    String currentLocation;
 
     ImageView profilePic;
+
     Uri profileImageUri = null;
+    Uri pic1 = null;
+    Uri pic2 = null;
+    Uri pic3 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +60,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         dateB = findViewById(R.id.register_birthDate);
         choosePhoto = findViewById(R.id.register_btnChoosePhoto);
         profilePic = findViewById(R.id.register_profileImageView);
+        description= findViewById(R.id.register_about);
 
         choosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,9 +72,19 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("register","birth date:"+dateB.getText().toString());
                 ModelFirebase.registerUserAccount(username.getText().toString(),
                         password.getText().toString(),
-                        email.getText().toString(), gender, lookingForGender, profileImageUri, new ModelFirebase.Listener<Boolean>() {
+                        email.getText().toString(),
+                        gender,
+                        lookingForGender,
+                        dateB.getText().toString(),
+                        currentLocation,
+                        description.toString(),
+                        city.toString(),
+                        profileImageUri,
+                        pic1,pic2,pic3,
+                        new ModelFirebase.Listener<Boolean>() {
                             @Override
                             public void onComplete() {
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -90,9 +107,6 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                                 Log.d("TAG", "FAILED");
                             }
                         });
-
-                Log.d("TAG", "Gender is: " + dateB.getText().toString());
-
             }
         });
     }

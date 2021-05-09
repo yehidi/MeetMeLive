@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,8 @@ import androidx.navigation.Navigation;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.meetmelive.R;
+import com.example.meetmelive.login;
 import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,11 +31,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.meetmelive.model.ModelFirebase.setUserAppData;
 
-public class Profile<OnOption> extends Fragment {
+public class    Profile<OnOption> extends Fragment {
 
     String userId;
     CircleImageView profilePic;
     TextView username;
+    TextView age,city,description;
     ImageSlider imageSlider;//the pictures
     View view;
     Button connection;
@@ -47,30 +50,42 @@ public class Profile<OnOption> extends Fragment {
 
         profilePic=view.findViewById(R.id.profile_profile_im);
         username=view.findViewById(R.id.profile_username);
-        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        age=view.findViewById(R.id.profile_age);
+        city=view.findViewById(R.id.profile_city);
+        description=view.findViewById(R.id.profile_aboutMe);
+
         if (User.getInstance().profilePic != null){
             Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
-
         }
-
-        connection = view.findViewById(R.id.profile_unmatch_btn);
-        connection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
-                startActivity(new Intent(getActivity(),login.class));
-            }
-        });
-
+        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+        age.setText(User.getInstance().birthday);
+        city.setText(User.getInstance().city);
+        description.setText(User.getInstance().description);
 
 
         //slides pictures
         imageSlider= view.findViewById(R.id.matchProfile_slider);
         List<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add(new SlideModel("https://i.pinimg.com/originals/cf/8a/11/cf8a11b44a748c4ce286fb020f920ada.png"));
-        slideModels.add(new SlideModel("https://i.pinimg.com/originals/46/da/e5/46dae512e375bee2664a025507da8795.jpg"));
-        slideModels.add(new SlideModel("https://i.pinimg.com/564x/23/37/db/2337db3ed61500b113e0db86d0fbf9b8.jpg"));
+        if(User.getInstance().pic1!=null &&User.getInstance().pic2!=null &&User.getInstance().pic3!=null){
+            slideModels.add(new SlideModel(User.getInstance().pic1));
+            slideModels.add(new SlideModel(User.getInstance().pic2));
+            slideModels.add(new SlideModel(User.getInstance().pic3));
+        }
+        else if(User.getInstance().pic1==null && User.getInstance().pic2!=null && User.getInstance().pic3!=null) {
+            slideModels.add(new SlideModel(User.getInstance().pic2));
+            slideModels.add(new SlideModel(User.getInstance().pic3));
+        }
+        else if(User.getInstance().pic2==null && User.getInstance().pic1!=null && User.getInstance().pic3!=null) {
+            slideModels.add(new SlideModel(User.getInstance().pic1));
+            slideModels.add(new SlideModel(User.getInstance().pic3));
+        }
+        else if (User.getInstance().pic3==null && User.getInstance().pic2!=null && User.getInstance().pic1!=null){
+            slideModels.add(new SlideModel(User.getInstance().pic1));
+            slideModels.add(new SlideModel(User.getInstance().pic2));
+        }
+        else{
+            slideModels.add(new SlideModel(User.getInstance().profilePic));
+        }
         imageSlider.setImageList(slideModels,true);
         return view;
     }
@@ -87,6 +102,11 @@ public class Profile<OnOption> extends Fragment {
             case R.id.editProfileFragment:{
                 Navigation.findNavController(view).navigate(R.id.action_Profile_to_editProfileFragment);
                 return true;
+            }
+            case R.id.SignOut:{
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
+                startActivity(new Intent(getActivity(), login.class));
             }
             default:
                return super.onOptionsItemSelected(item);

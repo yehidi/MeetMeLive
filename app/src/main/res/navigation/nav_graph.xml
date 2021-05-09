@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/Profile"
-        android:name="com.example.meetmelive.Profile"
+        android:name="com.example.meetmelive.profile.Profile"
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_match_profile" />
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.meetmelive.EditProfile"
+        android:name="com.example.meetmelive.profile.EditProfile"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile" />
     <fragment

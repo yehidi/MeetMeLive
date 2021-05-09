@@ -4,6 +4,8 @@
     <item
         android:id="@+id/editProfileFragment"
         android:title="Edit Profile" />
-    <item android:title="Signout" />
+    <item
+        android:id="@+id/SignOut"
+        android:title="Signout" />
     <item android:title="Delete Account" />
 </menu>

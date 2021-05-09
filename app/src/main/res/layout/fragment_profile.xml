@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile">
+    tools:context=".profile.Profile">
 
     <TextView
         android:id="@+id/profile_username"
@@ -13,47 +13,36 @@
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_marginTop="48dp"
-        android:hint="UserName"
+        android:hint="User"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/profile_profile_im"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/matchProfile_age"
+        android:id="@+id/profile_age"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="48dp"
         android:hint="Age"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/profile_profile_im"
-        app:layout_constraintTop_toBottomOf="@+id/profile_username" />
+        app:layout_constraintStart_toEndOf="@+id/profile_username"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/matchProfile_city"
+        android:id="@+id/profile_city"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="16dp"
-        android:hint="CIty"
-        app:layout_constraintStart_toEndOf="@+id/profile_profile_im"
-        app:layout_constraintTop_toBottomOf="@+id/matchProfile_age" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="48dp"
+        android:hint="City"
+        android:textSize="18sp"
 
-    <Button
-        android:id="@+id/profile_unmatch_btn"
-        android:layout_width="91dp"
-        android:layout_height="32dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:text="connections"
-        android:textSize="8sp"
-        app:cornerRadius="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/profile_age"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -65,10 +54,10 @@
         android:layout_marginTop="16dp"
         android:src="@drawable/about"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/matchProfile_city" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_city" />
 
     <TextView
-        android:id="@+id/matchProfile_aboutMe"
+        android:id="@+id/profile_aboutMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -77,18 +66,7 @@
         android:inputType="textPersonName"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/matchProfile_aboutMe_PlanTxt"
-        app:layout_constraintTop_toBottomOf="@+id/matchProfile_city" />
-
-    <ImageView
-        android:id="@+id/matchProfile_gender_img"
-        android:layout_width="21dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="48dp"
-        android:src="@drawable/genders"
-        app:layout_constraintStart_toEndOf="@+id/profile_username"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_city" />
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_profile_im"
@@ -113,7 +91,7 @@
         android:text="About Me: "
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/matchProfile_about_img"
-        app:layout_constraintTop_toBottomOf="@+id/matchProfile_city" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_city" />
 
 
     <com.denzcoskun.imageslider.ImageSlider
@@ -130,8 +108,10 @@
         app:layout_constraintStart_toStartOf="parent"
 
 
-        app:layout_constraintTop_toBottomOf="@+id/matchProfile_aboutMe"
+        app:layout_constraintTop_toBottomOf="@+id/profile_aboutMe"
         app:layout_constraintVertical_bias="0.0"
-        app:period="1000" />
+        app:period="1000">
+
+    </com.denzcoskun.imageslider.ImageSlider>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

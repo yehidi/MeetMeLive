@@ -65,7 +65,9 @@ public class ModelFirebase {
     }
 
     public static void registerUserAccount(final String name, String password, final String email,
-                                           final String gender, final String lookingForGender, final Uri imageUri, final Listener<Boolean> listener){
+                                           final String gender, final String lookingForGender,final String dateB,
+                                           final String currentLocation ,final String description ,final String city,final Uri profileImage,
+                                           final Uri image1,final Uri image2,final Uri image3 ,Listener<Boolean> listener){
 
         if (firebaseAuth.getCurrentUser() != null){
             firebaseAuth.signOut();
@@ -78,7 +80,7 @@ public class ModelFirebase {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
-                    uploadUserData(name, email, gender, lookingForGender, imageUri);
+                    uploadUserData(name, email, gender, lookingForGender,dateB,currentLocation,description,city,profileImage,image1,image2,image3);
                     listener.onComplete();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -95,15 +97,15 @@ public class ModelFirebase {
         }
     }
 
-    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender, Uri imageUri){
+    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender,final String dateB,final String currentLocation,final String description ,final String city, Uri profileImage,Uri image1,Uri image2,Uri image3){
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
-        if (imageUri != null){
-            String imageName = username + "." + getExtension(imageUri);
+        if (profileImage != null){
+            String imageName = username + "." + getExtension(profileImage);
             final StorageReference imageRef = storageReference.child(imageName);
 
-            UploadTask uploadTask = imageRef.putFile(imageUri);
+            UploadTask uploadTask = imageRef.putFile(profileImage);
             uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -121,10 +123,16 @@ public class ModelFirebase {
                         data.put("profileImageUrl", task.getResult().toString());
                         data.put("username", username);
                         data.put("email", email);
-                        data.put("gender", gender);
                         data.put("looking for", lookingForGender);
+                        data.put("gender", gender);
+                        data.put("current Location",null);
+                        data.put("birthDate",dateB);
+                        data.put("info",description);
+                        data.put("city",city);
+                        data.put("picture 1", null);
+                        data.put("picture 2", null);
+                        data.put("picture 3", null);
 
-                        data.put("info", "NA");
                         db.collection("userProfileData").document(email).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -157,12 +165,19 @@ public class ModelFirebase {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){
-                    User.getInstance().name = (String) task.getResult().get("name");
+                    User.getInstance().name = (String) task.getResult().get("username");
                     User.getInstance().profilePic = (String) task.getResult().get("profileImageUrl");
                     User.getInstance().description = (String) task.getResult().get("info");
                     User.getInstance().email = email;
                     User.getInstance().gender = (String) task.getResult().get("gender");
-                    User.getInstance().lookingForGender = (String) task.getResult().get("lookingForGender");
+                    User.getInstance().lookingForGender = (String) task.getResult().get("looking for");
+                    User.getInstance().birthday= (String) task.getResult().get("birthDate");
+                    User.getInstance().currentLocation= (String) task.getResult().get("current Location");
+                    User.getInstance().city= (String) task.getResult().get("city");
+                    User.getInstance().pic1= (String) task.getResult().get("picture 1");
+                    User.getInstance().pic2= (String) task.getResult().get("picture 2");
+                    User.getInstance().pic3= (String) task.getResult().get("picture 3");
+
 
                     User.getInstance().id = firebaseAuth.getUid();
                 }

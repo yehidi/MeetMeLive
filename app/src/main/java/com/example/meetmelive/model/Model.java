@@ -10,16 +10,24 @@ public class Model {
 
     public static final Model instance = new Model();
     ModelFirebase modelFirebase = new ModelFirebase();
+    LiveData<List<User>> userList;
 
     private Model(){
     }
 
-    public List<User> getAllActiveUsers(){
-        LiveData<List<User>> data =  AppLocalDb.db.userDao().getAllActiveUsers();
-        return null;
+    public interface Listener<T>{
+        void onComplete(T result);
     }
 
+    public interface GetAllActiveUsersListener{
+        void onComplete();
+    }
 
+    public  LiveData<List<User>> getAllActiveUsers(){
+        userList =  AppLocalDb.db.userDao().getAllActiveUsers();
+
+        return userList;
+    }
 
 
 

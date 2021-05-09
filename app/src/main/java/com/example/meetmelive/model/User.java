@@ -17,7 +17,7 @@ public class User {
     public String id = "";
     public String name = "";
     public String description="";// about me
-    public long birthday;
+    public String birthday;
     public String gender="";
     public String lookingForGender ="";
     public String currentLocation="";
@@ -40,6 +40,7 @@ public class User {
         name = null;
         password = null;
         city = null;
+        birthday=null;
         id = null;
         description=null;
         gender=null;

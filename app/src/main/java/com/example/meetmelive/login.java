@@ -53,6 +53,8 @@ public class login extends AppCompatActivity {
         btnLogin = findViewById(R.id.login_activity_login_btn);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        //sets all the parameters of the logged on user
         if (firebaseAuth.getCurrentUser() != null) {
             ModelFirebase.setUserAppData(firebaseAuth.getCurrentUser().getEmail());
             startActivity(new Intent(login.this, MainActivity.class));

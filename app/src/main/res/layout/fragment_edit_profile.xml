@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditProfile">
+    tools:context=".profile.EditProfile">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -32,6 +32,43 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/editProfile_gender_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="20dp"
+                android:text="Gender:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+            <RadioButton
+                android:id="@+id/editProfile_male_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Male"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/editProfile_gender_tv"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+
+            <RadioButton
+                android:id="@+id/editProfile_female_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:text="Female"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/editProfile_male_radiobutton"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
 
             <EditText
                 android:id="@+id/editTextTextPersonName"
@@ -72,15 +109,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
                 android:text="Choose Additional Photos:"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+                tools:layout_editor_absoluteY="448dp" />
 
             <ImageView
-                android:id="@+id/imageView"
+                android:id="@+id/editProfile_img1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -90,27 +126,28 @@
                 tools:visibility="visible" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/editProfile_img2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                app:layout_constraintStart_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/editProfile_img1"
                 app:layout_constraintTop_toBottomOf="@+id/EditProfile_choosePhotos"
                 tools:src="@tools:sample/avatars"
                 tools:visibility="visible" />
 
             <ImageView
-                android:id="@+id/imageView4"
+                android:id="@+id/editProfile_img3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintStart_toEndOf="@+id/editProfile_img2"
                 app:layout_constraintTop_toBottomOf="@+id/EditProfile_choosePhotos"
                 tools:src="@tools:sample/avatars"
                 tools:visibility="visible" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

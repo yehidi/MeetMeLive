@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.profile;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.meetmelive.R;
 
 
 public class EditProfile extends Fragment {

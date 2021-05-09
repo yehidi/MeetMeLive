@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Search_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SearchActivity"><![CDATA[
@@ -15,7 +16,7 @@
     ]]>
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/editProfile_img1"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:src="@drawable/location"
@@ -43,7 +44,7 @@
         android:layout_height="wrap_content"
         android:text="Get Location"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/editProfile_img1"
         app:layout_constraintVertical_bias="0.301"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="120dp" />
