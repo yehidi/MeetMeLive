@@ -2,7 +2,6 @@ package com.example.meetmelive;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +16,15 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.squareup.picasso.Picasso;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 public class GridAdapter extends ArrayAdapter<DataModel> {
+    //maya added
+
+
+    //maya added
+
+
     public GridAdapter(@NonNull Context context,  ArrayList<DataModel> dataModalArrayList) {
         super(context,0, dataModalArrayList);
     }
@@ -48,11 +52,11 @@ public class GridAdapter extends ArrayAdapter<DataModel> {
         // after initializing our items we are
         // setting data to our view.
         // below line is use to set data to our text view.
-        nameTV.setText(dataModel.getName());
+        nameTV.setText(dataModel.getUsername());
 
         // in below line we are using Picasso to load image
         // from URL in our Image VIew.
-        Picasso.get().load(dataModel.getImgUrl()).into(courseIV);
+        Picasso.get().load(dataModel.getProfileImageUrl()).into(courseIV);
 
         // below line is use to add item
         // click listener for our item of list view.
@@ -61,15 +65,22 @@ public class GridAdapter extends ArrayAdapter<DataModel> {
             public void onClick(View v) {
                 // on the item click on our list view.
                 // we are displaying a toast message.
-                Toast.makeText(getContext(), "Item clicked is : " + dataModel.getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Item clicked is : " + dataModel.getUsername(), Toast.LENGTH_SHORT).show();
 
 
 
                 //added
 
                     AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(v.getContext());
+
+                    //maya added new
+                    Picasso.get().load(dataModel.getProfileImageUrl()).into(courseIV);
+
+                   //maya added new
+
                     myAlertBuilder.setTitle("Hi");
                     myAlertBuilder.setMessage("Do You Want To Send A Request ?");
+
 
 
 
@@ -91,25 +102,10 @@ public class GridAdapter extends ArrayAdapter<DataModel> {
 
                     myAlertBuilder.show();
 
-
-
                 //added
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             }
         });
         return listitemView;
     }
+
 }
