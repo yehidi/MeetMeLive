@@ -66,26 +66,17 @@ public class    Profile<OnOption> extends Fragment {
         //slides pictures
         imageSlider= view.findViewById(R.id.matchProfile_slider);
         List<SlideModel> slideModels = new ArrayList<>();
-        if(User.getInstance().pic1!=null &&User.getInstance().pic2!=null &&User.getInstance().pic3!=null){
+        if(User.getInstance().pic1!=null){
             slideModels.add(new SlideModel(User.getInstance().pic1));
-            slideModels.add(new SlideModel(User.getInstance().pic2));
-            slideModels.add(new SlideModel(User.getInstance().pic3));
         }
-        else if(User.getInstance().pic1==null && User.getInstance().pic2!=null && User.getInstance().pic3!=null) {
-            slideModels.add(new SlideModel(User.getInstance().pic2));
-            slideModels.add(new SlideModel(User.getInstance().pic3));
-        }
-        else if(User.getInstance().pic2==null && User.getInstance().pic1!=null && User.getInstance().pic3!=null) {
-            slideModels.add(new SlideModel(User.getInstance().pic1));
-            slideModels.add(new SlideModel(User.getInstance().pic3));
-        }
-        else if (User.getInstance().pic3==null && User.getInstance().pic2!=null && User.getInstance().pic1!=null){
-            slideModels.add(new SlideModel(User.getInstance().pic1));
+        if(User.getInstance().pic2!=null){
             slideModels.add(new SlideModel(User.getInstance().pic2));
         }
-        else{
-            slideModels.add(new SlideModel(User.getInstance().profilePic));
+        if(User.getInstance().pic3!=null){
+            slideModels.add(new SlideModel(User.getInstance().pic3));
         }
+
+
         imageSlider.setImageList(slideModels,true);
         return view;
     }
