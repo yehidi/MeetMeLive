@@ -44,7 +44,36 @@ Intent intent = new Intent(this,Match_Request.class);
 startActivity(intent);
 
 
+
     }
+
+
+
+    public void simpleAlert(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Simple Alert");
+        builder.setMessage("We have a message");
+        builder.setPositiveButton("OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(),
+                                "OK was clicked",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                });
+        builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),
+                        android.R.string.no, Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.setCancelable(false);
+        builder.show();
+    }
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){

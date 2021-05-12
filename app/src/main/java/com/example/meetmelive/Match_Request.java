@@ -20,11 +20,6 @@ public class Match_Request extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_match__request);
 
-
-
-
-
-
         //Lidor Match Reeusst
         button= findViewById(R.id.button_alert);
         button.setOnClickListener(new View.OnClickListener() {
