@@ -41,4 +41,9 @@
         android:name="com.example.meetmelive.Nearby"
         android:label="Nearby"
         tools:layout="@layout/fragment_nearby" />
+    <activity
+        android:id="@+id/searchActivity"
+        android:name="com.example.meetmelive.SearchActivity"
+        android:label="activity_search"
+        tools:layout="@layout/activity_search" />
 </navigation>
