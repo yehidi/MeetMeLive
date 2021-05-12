@@ -1,34 +1,67 @@
 package com.example.meetmelive.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.util.Date;
+import java.util.List;
+
+@Entity
 public class User {
 
     // static variable single_instance of type Singleton
-    private static User theUser = null;
+    private static User MyUser = null;
+    @PrimaryKey
+    @NonNull
+    public String id = "";
+    public String name = "";
+    public String description="";// about me
+    public String birthday;
+    public String gender="";
+    public String lookingForGender ="";
+    public String currentLocation="";
+    public String email = "";
+    public long lastUpdated;
+    public String password;
+    public String city;
+   // List<String> listNotification;// need to be tested
+    //List<ChatMessage> listFriends;
+    public String profilePic;
+    public String pic1;
+    public String pic2;
+    public String pic3;
 
-    public String userUsername;
-    public String userEmail;
-    public String profileImageUrl;
-    public String userId;
-    public String userInfo;
-    public String gender;
+    public boolean isActive;
 
-    private User()
+    public User()
     {
-        userEmail = null;
-        userUsername = null;
-        profileImageUrl = null;
-        userId = null;
-        userInfo = null;
-        gender = null;
+        email = null;
+        name = null;
+        password = null;
+        city = null;
+        birthday=null;
+        id = null;
+        description=null;
+        gender=null;
+        lookingForGender =null;
+        currentLocation=null;
+//        listNotification=null;
+//        listFriends=null;
+        profilePic=null;
+        pic1=null;
+        pic2=null;
+        pic3=null;
+        isActive=true;
     }
 
     // create instance of Singleton class
     public static User getInstance()
     {
-        if (theUser == null)
-            theUser = new User();
+        if (MyUser == null)
+            MyUser = new User();
 
-        return theUser;
+        return MyUser;
     }
 
 }
