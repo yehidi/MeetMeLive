@@ -1,6 +1,7 @@
 package com.example.meetmelive.model;
 
 import android.content.ContentResolver;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
@@ -18,6 +19,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.util.Listener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -25,6 +28,7 @@ import com.google.firebase.storage.UploadTask;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
+import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +36,7 @@ public class ModelFirebase {
 
     public static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseStorage storage = FirebaseStorage.getInstance();
 
     public interface Listener<T>{
         void onComplete();
@@ -181,6 +186,82 @@ public class ModelFirebase {
 
                     User.getInstance().id = firebaseAuth.getUid();
                 }
+            }
+        });
+    }
+
+    public static  void updateUserProfile(User user){
+
+        if(user.pic1==null || user.pic2==null || user.pic3==null){
+            db.collection("userProfileData").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+
+                            if(document.getData().get("id").equals(user.id)){
+                                if(document.getData().get("picture 1")!=null){
+                                    String url= (String) document.getData().get("picture 1");
+                                    user.pic1=url;
+                                }
+                                else
+                                    user.pic1=null;
+
+                                if(document.getData().get("picture 2")!=null){
+                                    String url= (String) document.getData().get("picture 2");
+                                    user.pic2=url;
+                                }
+                                else
+                                    user.pic2=null;
+
+                                if(document.getData().get("picture 3")!=null){
+                                    String url= (String) document.getData().get("picture 3");
+                                    user.pic3=url;
+                                }
+                                else
+                                    user.pic3=null;
+
+                                db.collection("userProfileData")
+                                        .document(User.getInstance().email).set(user.toMap());
+                            }
+                        }
+                    }
+//                    else {
+//                        Log.d("Update Profile", "Error getting documents: ", task.getException());
+//                    }
+                }
+            });
+
+        }else{
+            db.collection("userProfileData")
+                    .document(User.getInstance().email).set(user.toMap());
+        }
+    }
+
+
+    //image uploading
+    public void uploadImage(Bitmap imageBmp, String name, Model.UploadImageListener listener){
+        final StorageReference imagesRef = storage.getReference().child("images").child(name);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        imageBmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+        UploadTask uploadTask = imagesRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(Exception exception) {
+                listener.onComplete(null);
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        Uri downloadUrl = uri;
+                        listener.onComplete(downloadUrl.toString());
+                    }
+                });
             }
         });
     }

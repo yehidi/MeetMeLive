@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.meetmelive.R;
+import com.example.meetmelive.model.DataModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

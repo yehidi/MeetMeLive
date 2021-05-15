@@ -63,7 +63,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="hello"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textMultiLine"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/matchProfile_aboutMe_PlanTxt"
         app:layout_constraintTop_toBottomOf="@+id/profile_city" />

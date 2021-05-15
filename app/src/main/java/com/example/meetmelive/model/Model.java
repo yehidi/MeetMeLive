@@ -1,6 +1,7 @@
 package com.example.meetmelive.model;
 
 import android.app.Application;
+import android.graphics.Bitmap;
 
 import androidx.lifecycle.LiveData;
 
@@ -29,6 +30,14 @@ public class Model {
         return userList;
     }
 
+    //Upload
+    public interface UploadImageListener extends Listener<String> {}
+    public void uploadImage(Bitmap imageBmp, String name, final UploadImageListener listener){
+        modelFirebase.uploadImage(imageBmp,name,listener);
+    }
 
-
+    //update user profile
+    public void updateUserProfile(User user) {
+        ModelFirebase.updateUserProfile(user);
+    }
 }
