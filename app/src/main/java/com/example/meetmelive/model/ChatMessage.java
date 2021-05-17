@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.model;
 
 import java.util.Date;
 

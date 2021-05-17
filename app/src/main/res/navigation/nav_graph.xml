@@ -3,45 +3,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/registerFragment">
+    app:startDestination="@id/Nearby">
+
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.meetmelive.SearchFragment"
-        android:label="fragment_search"
+        android:id="@+id/Search"
+        android:name="com.example.meetmelive.Search"
+        android:label="Search"
         tools:layout="@layout/fragment_search" />
+
     <fragment
-        android:id="@+id/nearbyFragment"
-        android:name="com.example.meetmelive.NearbyFragment"
-        android:label="fragment_nearby"
-        tools:layout="@layout/fragment_nearby" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.meetmelive.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.meetmelive.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
-    <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.meetmelive.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        android:id="@+id/Profile"
+        android:name="com.example.meetmelive.profile.Profile"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_Profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/matchProfileFragment"
-        android:name="com.example.meetmelive.MatchProfileFragment"
-        android:label="fragment_match_profile"
+        android:name="com.example.meetmelive.MatchProfile"
+        android:label="Match Profile"
         tools:layout="@layout/fragment_match_profile" />
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.meetmelive.EditProfileFragment"
-        android:label="fragment_edit_profile"
+        android:name="com.example.meetmelive.profile.EditProfile"
+        android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile" />
     <fragment
         android:id="@+id/deleteProfileFragment"
-        android:name="com.example.meetmelive.DeleteProfileFragment"
+        android:name="com.example.meetmelive.DeleteProfile"
         android:label="fragment_delete_profile"
         tools:layout="@layout/fragment_delete_profile" />
+
+    <fragment
+        android:id="@+id/Nearby"
+        android:name="com.example.meetmelive.Nearby"
+        android:label="Nearby"
+        tools:layout="@layout/fragment_nearby" />
+    <activity
+        android:id="@+id/searchActivity"
+        android:name="com.example.meetmelive.SearchActivity"
+        android:label="activity_search"
+        tools:layout="@layout/activity_search" />
 </navigation>
