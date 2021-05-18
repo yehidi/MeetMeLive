@@ -2,6 +2,7 @@ package com.example.meetmelive.model;
 
 import android.app.Application;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
@@ -37,7 +38,26 @@ public class Model {
     }
 
     //update user profile
+
     public void updateUserProfile(User user) {
         ModelFirebase.updateUserProfile(user);
     }
+
+
+    //Delete
+    public interface DeleteUserListener {
+        void onComplete();
+    }
+    public void deleteUser(User user, DeleteUserListener listener){
+        modelFirebase.deleteRecipeCollection(user);
+        modelFirebase.deleteUser(user, listener);
+        new AsyncTask<String, String, String>() {
+            @Override
+            protected String doInBackground(String... strings) {
+                AppLocalDb.db.userDao().deleteUser(user);
+                return "";
+            }
+        }.execute();
+    }
+
 }

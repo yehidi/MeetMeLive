@@ -1,8 +1,7 @@
-package com.example.meetmelive;
+package com.example.meetmelive.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +11,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.meetmelive.MainActivity;
+import com.example.meetmelive.R;
 import com.example.meetmelive.model.ModelFirebase;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,10 +29,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.concurrent.Executor;
-
 import static com.example.meetmelive.model.ModelFirebase.firebaseAuth;
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class login extends AppCompatActivity {
 
@@ -70,7 +67,6 @@ public class login extends AppCompatActivity {
                         startActivity(new Intent(login.this, MainActivity.class));
                         finish();
                     }
-
                     @Override
                     public void onFail() {
                         Toast.makeText(login.this, "Failed to login", Toast.LENGTH_SHORT).show();
@@ -86,67 +82,5 @@ public class login extends AppCompatActivity {
                 finish();
             }
         });
-
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        //AppEventsLogger.activateApp(this);
-
-        mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-        // Initialize Facebook Login button
-        mCallbackManager = CallbackManager.Factory.create();
-        loginButton = findViewById(R.id.login_facebook_button);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d("TAG", "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d("TAG", "facebook:onCancel");
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d("TAG", "facebook:onError", error);
-            }
-        });
-    }
-
-    public void handleFacebookAccessToken(AccessToken token) {
-        Log.d("TAG", "handleFacebookAccessToken:" + token);
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("TAG", "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("TAG", "signInWithCredential:failure", task.getException());
-                            Toast.makeText(login.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-                    }
-                });
-    }
-
-    public void updateUI(FirebaseUser user) {
-        if (user != null) {
-            startActivity(new Intent(login.this, MainActivity.class));
-            finish();
-        } else {
-            Toast.makeText(this, "Please Log in to continue.", Toast.LENGTH_SHORT).show();
-
-        }
     }
 }

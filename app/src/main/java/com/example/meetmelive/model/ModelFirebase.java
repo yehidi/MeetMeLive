@@ -72,7 +72,7 @@ public class ModelFirebase {
     public static void registerUserAccount(final String name, String password, final String email,
                                            final String gender, final String lookingForGender,final String dateB,
                                            final String currentLocation ,final String description ,final String city,final Uri profileImage,
-                                           final Uri image1,final Uri image2,final Uri image3 ,Listener<Boolean> listener){
+                                           final String image1,final String image2,final String image3 ,Listener<Boolean> listener){
 
         if (firebaseAuth.getCurrentUser() != null){
             firebaseAuth.signOut();
@@ -85,7 +85,9 @@ public class ModelFirebase {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
+
                     uploadUserData(name, email, gender, lookingForGender,dateB,currentLocation,description,city,profileImage,image1,image2,image3);
+
                     listener.onComplete();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -102,7 +104,7 @@ public class ModelFirebase {
         }
     }
 
-    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender,final String dateB,final String currentLocation,final String description ,final String city, Uri profileImage,Uri image1,Uri image2,Uri image3){
+    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender,final String dateB,final String currentLocation,final String description ,final String city, Uri profileImage,String image1,String image2,String image3){
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
@@ -125,6 +127,7 @@ public class ModelFirebase {
                     if (task.isSuccessful()){
 
                         Map<String,Object> data = new HashMap<>();
+                        data.put("id",FirebaseAuth.getInstance().getCurrentUser().getUid());
                         data.put("profileImageUrl", task.getResult().toString());
                         data.put("username", username);
                         data.put("email", email);
@@ -134,6 +137,7 @@ public class ModelFirebase {
                         data.put("birthDate",dateB);
                         data.put("info",description);
                         data.put("city",city);
+
                         data.put("picture 1", null);
                         data.put("picture 2", null);
                         data.put("picture 3", null);
@@ -141,6 +145,7 @@ public class ModelFirebase {
                         db.collection("userProfileData").document(email).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                setUserAppData(email);
                                 if (firebaseAuth.getCurrentUser() != null){
                                     firebaseAuth.signOut();
                                 }
@@ -169,7 +174,7 @@ public class ModelFirebase {
         db.collection("userProfileData").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()){ ;
                     User.getInstance().name = (String) task.getResult().get("username");
                     User.getInstance().profilePic = (String) task.getResult().get("profileImageUrl");
                     User.getInstance().description = (String) task.getResult().get("info");
@@ -182,8 +187,6 @@ public class ModelFirebase {
                     User.getInstance().pic1= (String) task.getResult().get("picture 1");
                     User.getInstance().pic2= (String) task.getResult().get("picture 2");
                     User.getInstance().pic3= (String) task.getResult().get("picture 3");
-
-
                     User.getInstance().id = firebaseAuth.getUid();
                 }
             }
@@ -192,7 +195,6 @@ public class ModelFirebase {
 
     public static  void updateUserProfile(User user){
 
-        if(user.pic1==null || user.pic2==null || user.pic3==null){
             db.collection("userProfileData").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 
                 @Override
@@ -200,43 +202,21 @@ public class ModelFirebase {
                     if (task.isSuccessful()) {
                         for (QueryDocumentSnapshot document : task.getResult()) {
 
-                            if(document.getData().get("id").equals(user.id)){
-                                if(document.getData().get("picture 1")!=null){
-                                    String url= (String) document.getData().get("picture 1");
-                                    user.pic1=url;
-                                }
-                                else
-                                    user.pic1=null;
-
-                                if(document.getData().get("picture 2")!=null){
-                                    String url= (String) document.getData().get("picture 2");
-                                    user.pic2=url;
-                                }
-                                else
-                                    user.pic2=null;
-
-                                if(document.getData().get("picture 3")!=null){
-                                    String url= (String) document.getData().get("picture 3");
-                                    user.pic3=url;
-                                }
-                                else
-                                    user.pic3=null;
-
+                            if(document.getData().get("email").equals(user.email)){
+//                                if(document.getData().get("profilePic")!=null){
+//                                    String url= (String) document.getData().get("profilePic");
+//                                    user.profilePic=url;
+//                                }
+                                Log.d("save: ","got here");
                                 db.collection("userProfileData")
                                         .document(User.getInstance().email).set(user.toMap());
                             }
                         }
+                    } else {
+                        Log.d("TAG", "Error getting documents: ", task.getException());
                     }
-//                    else {
-//                        Log.d("Update Profile", "Error getting documents: ", task.getException());
-//                    }
                 }
             });
-
-        }else{
-            db.collection("userProfileData")
-                    .document(User.getInstance().email).set(user.toMap());
-        }
     }
 
 
@@ -278,9 +258,26 @@ public class ModelFirebase {
         }
     }
 
-    public static void signOut(){
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        mAuth.signOut();
+
+
+    public void deleteRecipeCollection(User user) {
+        db.collection("Deleted Users")
+                .document(user.email).set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("TAG", "********* Recipe remove Successfully ************");
+            }
+
+        });
+    }
+
+    public void deleteUser(User user, Model.DeleteUserListener listener) {
+        db.collection("userProfileData").document(user.email).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                listener.onComplete();
+            }
+        });
     }
 
 }

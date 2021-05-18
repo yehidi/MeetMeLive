@@ -78,11 +78,13 @@ public class User {
     }
 
 
-    public User(String id,String name,String description,String lookingForGender,String city,String profilePic,String pic1,String pic2,String pic3) {
+    public User(String email,String name,String birthday,String description,String gender,String lookingForGender,String city,String profilePic,String pic1,String pic2,String pic3) {
         this.name = name;
         this.city = city;
-        this.id = id;
+        this.birthday=birthday;
+        this.email = email;
         this.description=description;
+        this.gender=gender;
         this.lookingForGender =lookingForGender;
         this.profilePic=profilePic;
         this.pic1=pic1;

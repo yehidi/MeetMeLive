@@ -1,9 +1,8 @@
-package com.example.meetmelive;
+package com.example.meetmelive.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.meetmelive.MainActivity;
+import com.example.meetmelive.R;
+import com.example.meetmelive.Utils;
 import com.example.meetmelive.model.ModelFirebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,9 +41,9 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
     ImageView profilePic;
 
     Uri profileImageUri = null;
-    Uri pic1 = null;
-    Uri pic2 = null;
-    Uri pic3 = null;
+    String pic1 = null;
+    String pic2 = null;
+    String pic3 = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
