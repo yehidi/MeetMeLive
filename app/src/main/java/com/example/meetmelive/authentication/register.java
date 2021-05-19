@@ -82,8 +82,8 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                         lookingForGender,
                         dateB.getText().toString(),
                         currentLocation,
-                        description.toString(),
-                        city.toString(),
+                        description.getText().toString(),
+                        city.getText().toString(),
                         profileImageUri,
                         pic1,pic2,pic3,
                         new ModelFirebase.Listener<Boolean>() {

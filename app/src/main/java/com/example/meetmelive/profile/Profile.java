@@ -81,13 +81,13 @@ public class    Profile<OnOption> extends Fragment {
         //slides pictures
         imageSlider= view.findViewById(R.id.matchProfile_slider);
         List<SlideModel> slideModels = new ArrayList<>();
-        if(User.getInstance().pic1!=null && !User.getInstance().pic1.equals("null")){
+        if(User.getInstance().pic1!=null && !User.getInstance().pic1.equals("")){
             slideModels.add(new SlideModel(User.getInstance().pic1));
         }
-        if(User.getInstance().pic2!=null  && !User.getInstance().pic2.equals("null")){
+        if(User.getInstance().pic2!=null  && !User.getInstance().pic2.equals("")){
             slideModels.add(new SlideModel(User.getInstance().pic2));
         }
-        if(User.getInstance().pic3!=null  && !User.getInstance().pic3.equals("null")){
+        if(User.getInstance().pic3!=null  && !User.getInstance().pic3.equals("")){
             slideModels.add(new SlideModel(User.getInstance().pic3));
         }
 

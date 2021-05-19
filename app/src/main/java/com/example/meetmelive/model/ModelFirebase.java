@@ -87,7 +87,7 @@ public class ModelFirebase {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
 
                     uploadUserData(name, email, gender, lookingForGender,dateB,currentLocation,description,city,profileImage,image1,image2,image3);
-
+                    setUserAppData(email);
                     listener.onComplete();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -138,17 +138,14 @@ public class ModelFirebase {
                         data.put("info",description);
                         data.put("city",city);
 
-                        data.put("picture 1", null);
-                        data.put("picture 2", null);
-                        data.put("picture 3", null);
+                        data.put("picture 1", "");
+                        data.put("picture 2", "");
+                        data.put("picture 3", "");
 
                         db.collection("userProfileData").document(email).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 setUserAppData(email);
-                                if (firebaseAuth.getCurrentUser() != null){
-                                    firebaseAuth.signOut();
-                                }
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
