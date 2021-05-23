@@ -21,6 +21,17 @@ public class Model {
         void onComplete(T result);
     }
 
+
+    //Get
+    public interface GetUserListener{
+        void onComplete(User user);
+    }
+    public void getUser(String email, GetUserListener listener){
+        modelFirebase.getUser(email, listener);
+    }
+
+
+
     public interface GetAllActiveUsersListener{
         void onComplete();
     }
@@ -41,6 +52,13 @@ public class Model {
 
     public void updateUserProfile(User user) {
         ModelFirebase.updateUserProfile(user);
+        new AsyncTask<String, String, String>() {
+            @Override
+            protected String doInBackground(String... strings) {
+                AppLocalDb.db.userDao().insertAll(user);
+                return "";
+            }
+        }.execute();
     }
 
 

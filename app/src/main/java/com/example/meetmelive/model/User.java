@@ -1,5 +1,7 @@
 package com.example.meetmelive.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -75,6 +77,21 @@ public class User {
         data.put("picture 2", pic2);
         data.put("picture 3", pic3);
         return data;
+    }
+
+    public void fromMap(Map<String, Object> map) {
+        profilePic=(String) map.get("profileImageUrl");
+        name=(String) map.get("username");
+        email=(String) map.get("email");
+        gender=(String) map.get("gender");
+        lookingForGender=(String) map.get("looking for");
+        currentLocation=(String) map.get("current Location");
+        birthday=(String) map.get("birthDate");
+        description=(String) map.get("info");
+        city=(String) map.get("city");
+        pic1=(String) map.get("picture 1");
+        pic2=(String) map.get("picture 2");
+        pic3=(String) map.get("picture 3");
     }
 
 

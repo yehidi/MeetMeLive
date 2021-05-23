@@ -2,6 +2,7 @@ package com.example.meetmelive.profile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -69,13 +70,24 @@ public class    Profile<OnOption> extends Fragment {
         city=view.findViewById(R.id.profile_city);
         description=view.findViewById(R.id.profile_aboutMe);
 
-        if (User.getInstance().profilePic != null){
+
+        Log.d("pic","profilePic "+User.getInstance().profilePic);
+
+        if(User.getInstance().profilePic!=null){
             Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
         }
-        username.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
-        age.setText(User.getInstance().birthday);
-        city.setText(User.getInstance().city);
-        description.setText(User.getInstance().description);
+
+        Model.instance.getUser(User.getInstance().email,new Model.GetUserListener() {
+            @Override
+            public void onComplete(User user) {
+
+                username.setText(user.name);
+                age.setText(user.birthday);
+                city.setText(user.city);
+                description.setText(user.description);
+            }
+        });
+
 
 
         //slides pictures
@@ -93,6 +105,7 @@ public class    Profile<OnOption> extends Fragment {
 
 
         imageSlider.setImageList(slideModels,true);
+
         return view;
     }
 

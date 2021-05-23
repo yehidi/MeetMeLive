@@ -3,6 +3,7 @@ package com.example.meetmelive.model;
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
@@ -28,6 +29,8 @@ import com.google.firebase.storage.UploadTask;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +40,7 @@ public class ModelFirebase {
     public static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
+
 
     public interface Listener<T>{
         void onComplete();
@@ -85,9 +89,18 @@ public class ModelFirebase {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
-
                     uploadUserData(name, email, gender, lookingForGender,dateB,currentLocation,description,city,profileImage,image1,image2,image3);
                     setUserAppData(email);
+
+                    //add user data to local DB
+                    User user =  new User(email, name, dateB, description, gender, lookingForGender, city, User.getInstance().profilePic, "","","");
+                    new AsyncTask<String, String, String>() {
+                        @Override
+                        protected String doInBackground(String... strings) {
+                            AppLocalDb.db.userDao().insertAll(user);
+                            return "";
+                        }
+                    }.execute();
                     listener.onComplete();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -105,6 +118,7 @@ public class ModelFirebase {
     }
 
     private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender,final String dateB,final String currentLocation,final String description ,final String city, Uri profileImage,String image1,String image2,String image3){
+
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
@@ -200,11 +214,6 @@ public class ModelFirebase {
                         for (QueryDocumentSnapshot document : task.getResult()) {
 
                             if(document.getData().get("email").equals(user.email)){
-//                                if(document.getData().get("profilePic")!=null){
-//                                    String url= (String) document.getData().get("profilePic");
-//                                    user.profilePic=url;
-//                                }
-                                Log.d("save: ","got here");
                                 db.collection("userProfileData")
                                         .document(User.getInstance().email).set(user.toMap());
                             }
@@ -255,6 +264,48 @@ public class ModelFirebase {
         }
     }
 
+
+    public void getUser(String email, Model.GetUserListener listener) {
+        db.collection("userProfileData").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NotNull Task<DocumentSnapshot> task) {
+                User user=null;
+                if(task.isSuccessful()){
+                    DocumentSnapshot doc = task.getResult();
+                    if (doc!=null) {
+                        user = new User();
+                        user.fromMap(task.getResult().getData());
+                    }
+                }
+                listener.onComplete(user);
+            }
+        });
+    }
+
+    public static void getImageFromFireBase(String picName){
+
+        db.collection("userProfileData").whereEqualTo("email",User.getInstance().email).get().addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    if(picName.contains("profileImageUrl")){
+                    User.getInstance().profilePic=(String) document.getData().get("profileImageUrl");
+                        Log.d("fire photo","profile  "+User.getInstance().profilePic);
+                    }
+                    if(picName.contains("picture 1")){
+                        User.getInstance().pic1=(String) document.getData().get("picture 1");
+                    }
+                    if(picName.contains("picture 2")){
+                        User.getInstance().pic2=(String) document.getData().get("picture 2");
+                    }
+                    if(picName.contains("picture 3")){
+                        User.getInstance().pic3=(String) document.getData().get("picture 3");
+                    }
+                }
+            } else {
+                Log.d("TAG", "Error getting documents: ", task.getException());
+            }
+        });
+    }
 
 
     public void deleteRecipeCollection(User user) {

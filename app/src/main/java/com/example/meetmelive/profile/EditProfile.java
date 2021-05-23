@@ -26,6 +26,7 @@ import com.example.meetmelive.MyApplication;
 import com.example.meetmelive.R;
 import com.example.meetmelive.model.Model;
 import com.example.meetmelive.model.User;
+import com.example.meetmelive.model.UserDao;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,6 +42,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.example.meetmelive.model.ModelFirebase.getExtension;
+import static com.example.meetmelive.model.ModelFirebase.getImageFromFireBase;
 
 
 public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeListener {
@@ -85,8 +87,15 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
         view= inflater.inflate(R.layout.fragment_edit_profile, container, false);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
+        currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
+                User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
+                User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,User.getInstance().pic2, User.getInstance().pic3);
+
+        Log.d("initial","user"+User.getInstance());
+
+
         profilePic= view.findViewById(R.id.editProfile_profile_im);
-        if(User.getInstance().profilePic!=null){
+        if(User.getInstance().profilePic!=null &&!User.getInstance().profilePic.contains("")){
             Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
         }
 
@@ -152,13 +161,13 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
                 chooseImageFromGallery();
             }
         });
-        if(User.getInstance().pic1!=null){
+        if(User.getInstance().pic1!=null && !User.getInstance().pic1.equals("")){
             Picasso.get().load(User.getInstance().pic1).noPlaceholder().into(pic1);
         }
-        if(User.getInstance().pic2!=null){
+        if(User.getInstance().pic2!=null && !User.getInstance().pic2.equals("")){
             Picasso.get().load(User.getInstance().pic2).noPlaceholder().into(pic2);
         }
-        if(User.getInstance().pic3!=null){
+        if(User.getInstance().pic3!=null && !User.getInstance().pic3.equals("")){
             Picasso.get().load(User.getInstance().pic3).noPlaceholder().into(pic3);
         }
 
@@ -188,30 +197,33 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
 
     private void updateUserProfile() {
 
-            profileUpdates = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(name.getText().toString()).setPhotoUri(profileImageUri)
+        profileUpdates = new UserProfileChangeRequest.Builder()
+                    .setDisplayName(name.getText().toString())
                     .build();
+        getImageFromFireBase("picture 1");
+        getImageFromFireBase("picture 2");
+        getImageFromFireBase("picture 3");
+        getImageFromFireBase("profileImageUrl");
+        Log.d("user p[hoto","pic 1 "+User.getInstance().pic1);
+        Log.d("user p[hoto","pic 1 "+User.getInstance().profilePic);
         currentUser= new User(User.getInstance().email,name.getText().toString(),User.getInstance().birthday,
                 description.getText().toString(),User.getInstance().gender,lookingForGender,
-                city.getText().toString(),User.getInstance().profilePic,User.getInstance().pic1,User.getInstance().pic2,User.getInstance().pic3);
+                city.getText().toString(), currentUser.profilePic, currentUser.pic1,currentUser.pic2,currentUser.pic3);
         Model.instance.updateUserProfile(currentUser);
 
         user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()){
-                    //Navigation.findNavController(view).navigate( R.id.profile);
                     NavController navCtrl = Navigation.findNavController(view);
                     navCtrl.popBackStack();
                     navCtrl.popBackStack();
-                    //navCtrl.navigateUp();
+                    //Navigation.findNavController(view).navigate( R.id.profile);
                 }
             }
         });
 
     }
-
-
 
 
     @Override
@@ -286,7 +298,7 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
             StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
             if (image != null){
-                String imageName = User.getInstance().name + "." +nameImage+"."+ getExtension(image);
+                String imageName = User.getInstance().email + "." +nameImage+"."+ getExtension(image);
                 final StorageReference imageRef = storageReference.child(imageName);
 
                 UploadTask uploadTask = imageRef.putFile(image);
@@ -303,26 +315,30 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()){
 
-                            if(nameImage=="pic1"){
+                            if(nameImage.contains("pic1")){
                                // Toast.makeText(MyApplication.context, "pic 1", Toast.LENGTH_SHORT).show();
+                                getImageFromFireBase("pic1");
                                 currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
                                         User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
                                         User.getInstance().city,User.getInstance().profilePic,task.getResult().toString(),User.getInstance().pic2,User.getInstance().pic3);
                                 Model.instance.updateUserProfile(currentUser);
-                            }else if(nameImage=="pic2"){
+                            }else if(nameImage.contains("pic2")){
+                                getImageFromFireBase(nameImage);
                                 //Toast.makeText(MyApplication.context, "pic 2", Toast.LENGTH_SHORT).show();
                                 currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
                                         User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
                                         User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,task.getResult().toString(),User.getInstance().pic3);
                                 Model.instance.updateUserProfile(currentUser);
-                            }else if(nameImage=="pic3"){
+                            }else if(nameImage.contains("pic3")){
+                                getImageFromFireBase(nameImage);
                                // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
                                 currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
                                         User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
                                         User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,User.getInstance().pic2,task.getResult().toString());
                                 Model.instance.updateUserProfile(currentUser);
                             }
-                            else if(nameImage=="profileImageUrl"){
+                            else if(nameImage.contains("profileImageUrl")){
+                                getImageFromFireBase(nameImage);
                                 // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
                                 currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
                                         User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
