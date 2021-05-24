@@ -4,12 +4,13 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
 
     public static final Model instance = new Model();
-    ModelFirebase modelFirebase = new ModelFirebase();
+    LiveData<ArrayList<String>> matchList;
 
     private Model(){
     }
@@ -19,7 +20,10 @@ public class Model {
         return null;
     }
 
-
+//    public LiveData<ArrayList<String>> getRecipesByCategory(String gender) {
+//        matchList = AppLocalDb.db.userDao().getUserMatch(gender);
+//        return matchList;
+//    }
 
 
 

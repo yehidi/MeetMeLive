@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.meetmelive.model.ModelFirebase;
+import com.example.meetmelive.model.User;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -28,6 +29,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.concurrent.Executor;
 
@@ -85,12 +87,11 @@ public class login extends AppCompatActivity {
             }
         });
 
-        FacebookSdk.sdkInitialize(getApplicationContext());
+        FacebookSdk.sdkInitialize(login.this);
         //AppEventsLogger.activateApp(this);
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+
         // Initialize Facebook Login button
         mCallbackManager = CallbackManager.Factory.create();
         loginButton = findViewById(R.id.login_facebook_button);
@@ -114,6 +115,13 @@ public class login extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        mCallbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     public void handleFacebookAccessToken(AccessToken token) {
         Log.d("TAG", "handleFacebookAccessToken:" + token);
 
@@ -126,6 +134,8 @@ public class login extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("TAG", "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            AccessToken accessToken = token;
+
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -138,8 +148,30 @@ public class login extends AppCompatActivity {
                 });
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null)
+            updateUI(currentUser);
+    }
+
     public void updateUI(FirebaseUser user) {
         if (user != null) {
+            Log.d("Facebook", "Name is: " + user.getDisplayName());
+            Log.d("Facebook", "Photo is: " + user.getPhotoUrl());
+
+
+
+            if (user.getPhotoUrl() != null){
+                String profilePic = user.getPhotoUrl().toString();
+                ModelFirebase.uploadUserData(user.getDisplayName(), user.getEmail(), "", "", "", "", "", user.getPhotoUrl());
+                User.getInstance().setProfileImageUrl(profilePic);
+                User.getInstance().setUsername(user.getDisplayName());
+                User.getInstance().setEmail(user.getEmail());
+                User.getInstance().setUser_id(user.getUid());
+
+            }
             startActivity(new Intent(login.this, MainActivity.class));
             finish();
         } else {
