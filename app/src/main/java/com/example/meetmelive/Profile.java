@@ -126,9 +126,6 @@ public class Profile<OnOption> extends Fragment {
         connection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
-                startActivity(new Intent(getActivity(),login.class));
             }
         });
 
