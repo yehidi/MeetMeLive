@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import com.example.meetmelive.model.Model;
 import com.example.meetmelive.model.ModelFirebase;
-import com.example.meetmelive.model.Notification;
 import com.example.meetmelive.model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,7 +42,7 @@ public class SendRequestFragment extends Fragment {
 
 
     int position;
-    GridAdapter adapter;
+   // GridAdapter adapter;
 
 
     //maya added
@@ -89,7 +88,7 @@ public class SendRequestFragment extends Fragment {
 
 //        Name=getArguments().getString("name");
 //        String message=Name;
-          username.setText(Name);
+        username.setText(Name);
 //
         String Image=SendRequestFragmentArgs.fromBundle(getArguments()).getUserimage();
 ////        Name=getArguments().getString("name");
@@ -111,9 +110,9 @@ public class SendRequestFragment extends Fragment {
 
             @Override
             public void onClick(View v) {
-            Notification no=new Notification(User.getInstance());
-                String Name=SendRequestFragmentArgs.fromBundle(getArguments()).getUsername();
-                String Image=SendRequestFragmentArgs.fromBundle(getArguments()).getUserimage();
+//                Notification no=new Notification(User.getInstance());
+//                String Name=SendRequestFragmentArgs.fromBundle(getArguments()).getUsername();
+//                String Image=SendRequestFragmentArgs.fromBundle(getArguments()).getUserimage();
 //                User user=User.FindUserBy_nameANDimg(Name,Image);
 
 

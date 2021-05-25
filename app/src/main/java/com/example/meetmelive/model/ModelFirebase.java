@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -199,41 +200,51 @@ public class ModelFirebase {
                     User.getInstance().pic2= (String) task.getResult().get("picture 2");
                     User.getInstance().pic3= (String) task.getResult().get("picture 3");
                     User.getInstance().id = firebaseAuth.getUid();
-
-
-
-
-
-
                 }
             }
         });
     }
 
-
-
-
-
-
     public static  void updateUserProfile(User user){
 
-        db.collection("userProfileData").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            db.collection("userProfileData").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
 
-                        if(document.getData().get("email").equals(user.email)){
-                            db.collection("userProfileData")
-                                    .document(User.getInstance().email).set(user.toMap());
+                            if(document.getData().get("email").equals(user.email)){
+                                db.collection("userProfileData")
+                                        .document(User.getInstance().email).set(user.toMap());
+                            }
                         }
+                    } else {
+                        Log.d("TAG", "Error getting documents: ", task.getException());
                     }
-                } else {
-                    Log.d("TAG", "Error getting documents: ", task.getException());
                 }
-            }
-        });
+            });
+    }
+
+
+    public static void trying(){
+        DocumentReference washingtonRef = db.collection("userProfileData").document(User.getInstance().email);
+
+     //   Log.d("pull data", "document: "+washingtonRef.get());
+        washingtonRef
+                .update("current Location", "1")
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error updating document", e);
+                    }
+                });
     }
 
 
@@ -299,7 +310,7 @@ public class ModelFirebase {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     if(picName.contains("profileImageUrl")){
-                        User.getInstance().profilePic=(String) document.getData().get("profileImageUrl");
+                    User.getInstance().profilePic=(String) document.getData().get("profileImageUrl");
                         Log.d("fire photo","profile  "+User.getInstance().profilePic);
                     }
                     if(picName.contains("picture 1")){
@@ -340,273 +351,3 @@ public class ModelFirebase {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//import android.content.ContentResolver;
-//import android.net.Uri;
-//import android.util.Log;
-//import android.webkit.MimeTypeMap;
-//import android.widget.Toast;
-//
-//import androidx.annotation.NonNull;
-//
-//import com.example.meetmelive.MyApplication;
-//import com.google.android.gms.tasks.Continuation;
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.OnFailureListener;
-//import com.google.android.gms.tasks.OnSuccessListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.firestore.DocumentSnapshot;
-//import com.google.firebase.firestore.FirebaseFirestore;
-//import com.google.firebase.firestore.util.Listener;
-//import com.google.firebase.storage.FirebaseStorage;
-//import com.google.firebase.storage.StorageReference;
-//import com.google.firebase.storage.UploadTask;
-//import com.facebook.FacebookSdk;
-//import com.facebook.appevents.AppEventsLogger;
-//
-//import java.util.HashMap;
-//import java.util.Map;
-//import java.util.UUID;
-//
-//public class ModelFirebase {
-//
-//    public static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-//    public static FirebaseFirestore db = FirebaseFirestore.getInstance();
-//
-//
-//// maya added new new new
-//    public void addNotification(Notification not, Model.Listener<Boolean> listener) {
-//            final FirebaseFirestore db = FirebaseFirestore.getInstance();
-//            db.collection("userProfileData").document(not.getSenderId()).set(toMap(not)).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                @Override
-//                public void onComplete(@NonNull Task<Void> task) {
-//                    if (listener!=null){
-//                        listener.onComplete(task.isSuccessful());
-//                    }
-//                }
-//            });
-//
-//    }
-//    // maya added new new new
-//
-//
-//
-//    public interface Listener<T>{
-//        void onComplete();
-//        void onFail();
-//    }
-//
-//    public static void loginUser(final String email, String password, final Listener<Boolean> listener){
-//
-//        if (email != null && !email.equals("") && password != null && !password.equals("")){
-//            if (firebaseAuth.getCurrentUser() != null) {
-//                firebaseAuth.signOut();
-//            }
-//            firebaseAuth.signInWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-//                @Override
-//                public void onSuccess(AuthResult authResult) {
-//                    Toast.makeText(MyApplication.context, "Welcome!", Toast.LENGTH_SHORT).show();
-//                    setUserAppData(email);
-//                    listener.onComplete();
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(MyApplication.context, "Failed to login: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    listener.onFail();
-//                }
-//            });
-//        }
-//        else {
-//            Toast.makeText(MyApplication.context, "Please fill both data fields", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//    public static void registerUserAccount(final String name, String password, final String email,
-//                                           final String gender, final String lookingForGender, final Uri imageUri, final Listener<Boolean> listener){
-//
-//        if (firebaseAuth.getCurrentUser() != null){
-//            firebaseAuth.signOut();
-//        }
-//        if (firebaseAuth.getCurrentUser() == null &&
-//                name != null && !name.equals("") &&
-//                password != null && !password.equals("") &&
-//                email != null && !email.equals("")) {
-//            firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-//                @Override
-//                public void onSuccess(AuthResult authResult) {
-//                    Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
-//                    uploadUserData(name, email, gender, lookingForGender, imageUri);
-//
-//
-//                    listener.onComplete();
-//                }
-//            }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception e) {
-//                    Toast.makeText(MyApplication.context, "Failed registering user", Toast.LENGTH_SHORT).show();
-//                    listener.onFail();
-//                }
-//            });
-//        }
-//        else {
-//            Toast.makeText(MyApplication.context, "Please fill all input fields and profile image", Toast.LENGTH_SHORT).show();
-//            listener.onFail();
-//        }
-//    }
-//
-//    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender, Uri imageUri){
-//
-//        StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
-//
-//        if (imageUri != null){
-//            String imageName = username + "." + getExtension(imageUri);
-//            final StorageReference imageRef = storageReference.child(imageName);
-//
-//            UploadTask uploadTask = imageRef.putFile(imageUri);
-//            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-//                @Override
-//                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-//                    if (!task.isSuccessful()){
-//                        throw task.getException();
-//                    }
-//                    return imageRef.getDownloadUrl();
-//                }
-//            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-//                @Override
-//                public void onComplete(@NonNull Task<Uri> task) {
-//                    if (task.isSuccessful()){
-//
-//                        Map<String,Object> data = new HashMap<>();
-//                        data.put("profileImageUrl", task.getResult().toString());
-//                        data.put("username", username);
-//                        data.put("email", email);
-//                        data.put("gender", gender);
-//                        data.put("looking for", lookingForGender);
-//
-//                        data.put("info", "NA");
-//                        db.collection("userProfileData").document(email).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                if (firebaseAuth.getCurrentUser() != null){
-//                                    firebaseAuth.signOut();
-//                                }
-//                            }
-//                        }).addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(MyApplication.context, "Fails to create user and upload data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//                    }
-//                    else if (!task.isSuccessful()){
-//                        Toast.makeText(MyApplication.context, task.getException().toString(), Toast.LENGTH_SHORT).show();
-//                    }
-//                }
-//            });
-//        }
-//        else {
-//            Toast.makeText(MyApplication.context, "Please choose a profile image", Toast.LENGTH_SHORT).show();
-//        }
-//    }
-//
-//    public static void setUserAppData(final String email){
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-//        db.collection("userProfileData").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()){
-//                    User.getInstance().name = (String) task.getResult().get("name");
-//                    User.getInstance().profilePic = (String) task.getResult().get("profileImageUrl");
-//                    User.getInstance().description = (String) task.getResult().get("info");
-//                    User.getInstance().email = email;
-//                    User.getInstance().gender = (String) task.getResult().get("gender");
-//                    User.getInstance().lookingForGender = (String) task.getResult().get("lookingForGender");
-//
-//                    User.getInstance().id = firebaseAuth.getUid();
-//                }
-//            }
-//        });
-//    }
-//
-//
-////    public static void AddNotification(Notification notification,Model){
-////        FirebaseFirestore db = FirebaseFirestore.getInstance();
-////        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-////
-////    }
-//
-//
-//
-//    public static String getExtension(Uri uri){
-//        try{
-//            ContentResolver contentResolver = MyApplication.context.getContentResolver();
-//            MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
-//            return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
-//
-//        } catch (Exception e) {
-//            Toast.makeText(MyApplication.context, "Register page: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//            return null;
-//        }
-//    }
-//
-//    public static void signOut(){
-//        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-//        mAuth.signOut();
-//    }
-//
-//    //maya added new new new
-//    public static Map<String, Object> toMap(Notification notif){
-//        HashMap<String, Object> map = new HashMap<>();
-//        map.put("senderId", notif.senderId);
-//        map.put("senderName", notif.senderName);
-//        map.put("senderAge", notif.senderAge);
-//        map.put("senderEmail", notif.senderEmail);
-//        map.put("senderImage", notif.senderImage);
-//        return map;
-//    }
-//
-//    private static Notification from_Map(Map<String,Object> json){
-//        Notification newNotification = new Notification();
-//        newNotification.senderId = (String) json.get("senderId");
-//        newNotification.senderName = (String) json.get("senderName");
-//        newNotification.senderAge = (Integer) json.get("senderAge");
-//        newNotification.senderEmail = (String) json.get("senderEmail");
-//        newNotification.senderImage = (String) json.get("senderImage");
-//
-//        return newNotification;
-//    }
-//    //maya added new new new
-//
-//}

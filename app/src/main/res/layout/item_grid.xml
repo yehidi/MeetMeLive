@@ -27,6 +27,7 @@
         android:padding="3dp"
         android:text="Category Text"
         android:textAlignment="center"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:gravity="center_horizontal" />
 
 </LinearLayout>

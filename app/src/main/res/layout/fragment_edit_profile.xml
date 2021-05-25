@@ -24,6 +24,21 @@
                 android:layout_height="match_parent">
 
                 <TextView
+                    android:id="@+id/editprofile_nameTextbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="24dp"
+                    android:text="Name:"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/editProfile_name"
+                    app:layout_constraintHorizontal_bias="0.363"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editProfile_profile_im" />
+
+                <TextView
                     android:id="@+id/editProfile_gender_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -83,6 +98,20 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="35dp"
+                    android:text="City:"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/editProfile_city"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/editprofile_nameTextbox" />
+
                 <EditText
                     android:id="@+id/editProfile_name"
                     android:layout_width="wrap_content"
@@ -139,7 +168,7 @@
                     android:scaleType="fitXY"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/EditProfile_choosePhotos"
-                    tools:src="@drawable/pic"
+                    tools:src="@drawable/addphotopng"
                     tools:visibility="visible" />
 
                 <ImageView
@@ -152,7 +181,7 @@
                     android:scaleType="fitXY"
                     app:layout_constraintStart_toEndOf="@+id/editProfile_img1"
                     app:layout_constraintTop_toBottomOf="@+id/EditProfile_choosePhotos"
-                    tools:src="@drawable/pic"
+                    tools:src="@drawable/addphotopng"
                     tools:visibility="visible" />
 
                 <ImageView
@@ -165,7 +194,7 @@
                     android:scaleType="fitXY"
                     app:layout_constraintStart_toEndOf="@+id/editProfile_img2"
                     app:layout_constraintTop_toBottomOf="@+id/EditProfile_choosePhotos"
-                    tools:src="@drawable/pic"
+                    tools:src="@drawable/addphotopng"
                     tools:visibility="visible" />
 
                 <EditText
@@ -181,6 +210,20 @@
                     app:layout_constraintHorizontal_bias="0.497"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editProfile_name" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Info:"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/editProfile_aboutme"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/editProfile_aboutme" />
 
                 <EditText
                     android:id="@+id/editProfile_aboutme"

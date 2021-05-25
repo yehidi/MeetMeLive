@@ -5,10 +5,9 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/Nearby">
 
-
     <fragment
         android:id="@+id/Profile"
-        android:name="com.example.meetmelive.Profile"
+        android:name="com.example.meetmelive.profile.Profile"
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
         <action
@@ -22,14 +21,9 @@
         tools:layout="@layout/fragment_match_profile" />
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.meetmelive.EditProfile"
+        android:name="com.example.meetmelive.profile.EditProfile"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile" />
-    <fragment
-        android:id="@+id/deleteProfileFragment"
-        android:name="com.example.meetmelive.DeleteProfile"
-        android:label="fragment_delete_profile"
-        tools:layout="@layout/fragment_delete_profile" />
 
     <fragment
         android:id="@+id/Nearby"
@@ -39,20 +33,6 @@
         <action
             android:id="@+id/action_Nearby_to_sendRequestFragment"
             app:destination="@id/sendRequestFragment" />
-    </fragment>
-<!--    <activity-->
-<!--        android:id="@+id/Search"-->
-<!--        android:name="com.example.meetmelive.SearchActivity"-->
-<!--        android:label="activity_search"-->
-<!--        tools:layout="@layout/fragmentNew_search" />-->
-    <fragment
-        android:id="@+id/searchFragment_new"
-        android:name="com.example.meetmelive.Search"
-        android:label="search"
-        tools:layout="@layout/fragment_new_search" >
-        <action
-            android:id="@+id/action_searchFragment_new_to_Nearby"
-            app:destination="@id/Nearby" />
     </fragment>
     <fragment
         android:id="@+id/sendRequestFragment"
@@ -65,21 +45,14 @@
         <argument
             android:name="userimage"
             app:argType="string" />
-<!--        <action-->
-<!--            android:id="@+id/action_sendRequestFragment_to_request_ListActivity"-->
-<!--            app:destination="@id/request_ListActivity" />-->
-        <action
-            android:id="@+id/action_sendRequestFragment_to_notificationFragment2"
-            app:destination="@id/notificationFragment2" />
     </fragment>
-    <activity
-        android:id="@+id/request_ListActivity"
-        android:name="com.example.meetmelive.Request_ListActivity"
-        android:label="activity_request__list"
-        tools:layout="@layout/activity_request__list" />
     <fragment
-        android:id="@+id/notificationFragment2"
-        android:name="com.example.meetmelive.NotificationFragment"
-        android:label="fragment_notification"
-        tools:layout="@layout/fragment_notification" />
+        android:id="@+id/search"
+        android:name="com.example.meetmelive.Search"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_search_to_Nearby"
+            app:destination="@id/Nearby" />
+    </fragment>
 </navigation>

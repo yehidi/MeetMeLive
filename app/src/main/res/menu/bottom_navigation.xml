@@ -5,11 +5,11 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Near By" />
     <item
-        android:id="@+id/notificationFragment2"
+        android:id="@+id/notificationFragment"
         android:icon="@drawable/ic_baseline_notifications_24"
         android:title="Notifications" />
     <item
-        android:id="@id/searchFragment_new"
+        android:id="@id/search"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Search" />
     <item

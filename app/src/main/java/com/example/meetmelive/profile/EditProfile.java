@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.profile;
 
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
@@ -95,7 +95,7 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
 
 
         profilePic= view.findViewById(R.id.editProfile_profile_im);
-        if(User.getInstance().profilePic!=null &&!User.getInstance().profilePic.contains("")){
+        if(User.getInstance().profilePic!=null){
             Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
         }
 
@@ -198,8 +198,8 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
     private void updateUserProfile() {
 
         profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName(name.getText().toString())
-                .build();
+                    .setDisplayName(name.getText().toString())
+                    .build();
         getImageFromFireBase("picture 1");
         getImageFromFireBase("picture 2");
         getImageFromFireBase("picture 3");
@@ -295,96 +295,63 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
     }
 
     public void SavePic(Uri image,String nameImage){
-        StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
-        if (image != null){
-            String imageName = User.getInstance().email + "." +nameImage+"."+ getExtension(image);
-            final StorageReference imageRef = storageReference.child(imageName);
+            if (image != null){
+                String imageName = User.getInstance().email + "." +nameImage+"."+ getExtension(image);
+                final StorageReference imageRef = storageReference.child(imageName);
 
-            UploadTask uploadTask = imageRef.putFile(image);
-            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()){
-                        throw task.getException();
-                    }
-                    return imageRef.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()){
-
-                        if(nameImage.contains("pic1")){
-                            // Toast.makeText(MyApplication.context, "pic 1", Toast.LENGTH_SHORT).show();
-                            getImageFromFireBase("pic1");
-                            currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
-                                    User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
-                                    User.getInstance().city,User.getInstance().profilePic,task.getResult().toString(),User.getInstance().pic2,User.getInstance().pic3);
-                            Model.instance.updateUserProfile(currentUser);
-                        }else if(nameImage.contains("pic2")){
-                            getImageFromFireBase(nameImage);
-                            //Toast.makeText(MyApplication.context, "pic 2", Toast.LENGTH_SHORT).show();
-                            currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
-                                    User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
-                                    User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,task.getResult().toString(),User.getInstance().pic3);
-                            Model.instance.updateUserProfile(currentUser);
-                        }else if(nameImage.contains("pic3")){
-                            getImageFromFireBase(nameImage);
-                            // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
-                            currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
-                                    User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
-                                    User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,User.getInstance().pic2,task.getResult().toString());
-                            Model.instance.updateUserProfile(currentUser);
+                UploadTask uploadTask = imageRef.putFile(image);
+                uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()){
+                            throw task.getException();
                         }
-                        else if(nameImage.contains("profileImageUrl")){
-                            getImageFromFireBase(nameImage);
-                            // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
-                            currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
-                                    User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
-                                    User.getInstance().city,task.getResult().toString(),User.getInstance().pic1,User.getInstance().pic2,User.getInstance().pic3);
-                            Model.instance.updateUserProfile(currentUser);
+                        return imageRef.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()){
+
+                            if(nameImage.contains("pic1")){
+                               // Toast.makeText(MyApplication.context, "pic 1", Toast.LENGTH_SHORT).show();
+                                getImageFromFireBase("pic1");
+                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
+                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
+                                        User.getInstance().city,User.getInstance().profilePic,task.getResult().toString(),User.getInstance().pic2,User.getInstance().pic3);
+                                Model.instance.updateUserProfile(currentUser);
+                            }else if(nameImage.contains("pic2")){
+                                getImageFromFireBase(nameImage);
+                                //Toast.makeText(MyApplication.context, "pic 2", Toast.LENGTH_SHORT).show();
+                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
+                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
+                                        User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,task.getResult().toString(),User.getInstance().pic3);
+                                Model.instance.updateUserProfile(currentUser);
+                            }else if(nameImage.contains("pic3")){
+                                getImageFromFireBase(nameImage);
+                               // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
+                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
+                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
+                                        User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,User.getInstance().pic2,task.getResult().toString());
+                                Model.instance.updateUserProfile(currentUser);
+                            }
+                            else if(nameImage.contains("profileImageUrl")){
+                                getImageFromFireBase(nameImage);
+                                // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
+                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
+                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
+                                        User.getInstance().city,task.getResult().toString(),User.getInstance().pic1,User.getInstance().pic2,User.getInstance().pic3);
+                                Model.instance.updateUserProfile(currentUser);
+                            }
+                        }
+                        else if (!task.isSuccessful()){
+                            Toast.makeText(MyApplication.context, task.getException().toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
-                    else if (!task.isSuccessful()){
-                        Toast.makeText(MyApplication.context, task.getException().toString(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
+                });
+            }
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//import android.os.Bundle;
-//
-//import androidx.fragment.app.Fragment;
-//
-//import android.view.LayoutInflater;
-//import android.view.View;
-//import android.view.ViewGroup;
-//
-//
-//public class EditProfile extends Fragment {
-//
-//
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
-//    }
-//}

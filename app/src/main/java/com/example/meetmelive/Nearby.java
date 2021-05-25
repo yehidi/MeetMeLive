@@ -12,14 +12,12 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import com.example.meetmelive.adapter.GridAdapter;
+import com.example.meetmelive.model.DataModel;
 import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,6 +28,7 @@ import com.google.firebase.firestore.Source;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Nearby extends Fragment {
 
     // creating a variable for our
@@ -37,21 +36,12 @@ public class Nearby extends Fragment {
     // firebase Firestore.
     GridView gridadapter;
     ArrayList<DataModel> dataModelArrayList;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    ;
+    FirebaseFirestore db;
     View view;
-
-
-    // new one
-    private String Email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
-    FirebaseUser firebaseUser;
-    User user;
-
-    // new one
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                             Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         //  return inflater.inflate(R.layout.fragment_nearby, container, false);  activiygrid
         view = inflater.inflate(R.layout.fragment_nearby, container, false);
@@ -60,24 +50,14 @@ public class Nearby extends Fragment {
         gridadapter = view.findViewById(R.id.idGVCourses);
         dataModelArrayList = new ArrayList<>();
 
-        user = new User();
         // initializing our variable for firebase
         // firestore and getting its instance.
         db = FirebaseFirestore.getInstance();
 
-        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
-
-        FindByEmail(Email);
-
-        Log.d("user test", "hello world");
-        Log.d("user test", "user data test: " + user.name);
 
         // here we are calling a method
         // to load data in our list view.
         loadDatainGridView();
-
-
         return view;
     }
 
@@ -96,38 +76,6 @@ public class Nearby extends Fragment {
                             // progress bar and adding our data in a list.
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d : list) {
-
-
-                                //maya
-//                                 ModelFirebase.setUserAppData(Email);
-//
-                                Log.d("TAG", "Gender is: " + Email);
-//                                 String gen=user.getGender();
-                                Log.d("TAG", "Gender is: " + user.name);
-
-
-//                                 if(user.lookingForGender.equals("Male"))
-//                                 {
-//                                     User theRestUsers=d.toObject(User.class);
-//                                     if(theRestUsers.gender.equals("Male"))
-//                                  {
-//                                      DataModel dataModel = d.toObject(DataModel.class);
-//                                      dataModelArrayList.add(dataModel);
-//                                  }
-//                                 }
-//
-//                                if(user.lookingForGender.equals("Female"))
-//                                {
-//                                    User theRestUsers=d.toObject(User.class);
-//                                    if(theRestUsers.gender.equals("Female"))
-//                                    {
-//                                        DataModel dataModel = d.toObject(DataModel.class);
-//                                        dataModelArrayList.add(dataModel);
-//                                    }
-//                                }
-//
-
-                                //maya
 
                                 // after getting this list we are passing
                                 // that list to our object class.
@@ -160,53 +108,7 @@ public class Nearby extends Fragment {
     }
 
 
-    public void FindByEmail(String email) {
-        db.collection("userProfileData").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    user.name = (String) task.getResult().get("username");
-//                    User.getInstance().profilePic = (String) task.getResult().get("profileImageUrl");
-//                    User.getInstance().description = (String) task.getResult().get("info");
-//                    User.getInstance().email = email;
-//                    User.getInstance().gender = (String) task.getResult().get("gender");
-//                    User.getInstance().lookingForGender = (String) task.getResult().get("looking for");
-//                    User.getInstance().birthday= (String) task.getResult().get("birthDate");
-//                    User.getInstance().currentLocation= (String) task.getResult().get("current Location");
-//                    User.getInstance().city= (String) task.getResult().get("city");
-//                    User.getInstance().pic1= (String) task.getResult().get("picture 1");
-//                    User.getInstance().pic2= (String) task.getResult().get("picture 2");
-//                    User.getInstance().pic3= (String) task.getResult().get("picture 3");
-//                    User.getInstance().id = firebaseAuth.getUid();
-                }
-            }
-        });
-    }
 
-
-
-
-
-//        DocumentReference docRef = db.collection("Data").document("2");
-//
-//// Source can be CACHE, SERVER, or DEFAULT.
-//        Source source = Source.CACHE;
-//
-//// Get the document, forcing the SDK to use the offline cache
-//        docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    // Document found in the offline cache
-//                    DocumentSnapshot document = task.getResult();
-//                    Log.d("TAG", "Cached document data: " + document.getData());
-//                }
-//
-//                else {
-//                    Log.d("res", "Cached get failed: ", task.getException());
-//                }
-//            }
-//        });
 
 
 

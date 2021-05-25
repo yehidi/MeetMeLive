@@ -19,15 +19,10 @@ import android.widget.Toast;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import java.util.List;
 import java.util.Locale;
-
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 
 
 public class Search extends Fragment implements LocationListener {
@@ -42,7 +37,7 @@ public class Search extends Fragment implements LocationListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        view = inflater.inflate(R.layout.fragment_new_search, container, false);
+        view = inflater.inflate(R.layout.fragment_search, container, false);
         //added
 
 
@@ -76,8 +71,7 @@ public class Search extends Fragment implements LocationListener {
             @Override
             public void onClick(View v)
             {
-                Navigation.findNavController(v).navigate(R.id.action_searchFragment_new_to_Nearby);
-
+                Navigation.findNavController(v).navigate(R.id.action_search_to_Nearby);
             }
 
         });
