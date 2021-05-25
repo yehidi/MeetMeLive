@@ -21,12 +21,11 @@ import java.util.List;
 
 public class Request_ListActivity extends AppCompatActivity {
     RecyclerView list;
-    List<Notification> data;
+    List<Notification> notificationlist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request__list);
-
 
         list=findViewById(R.id.requestlist_recyclerv);
         list.hasFixedSize();
@@ -34,7 +33,10 @@ public class Request_ListActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         list.setLayoutManager(layoutManager);
 
-//        data=Model.instance.getAllNotifications();
+
+//       //maya added new
+//        notificationlist=Model.instance.getAllNotifications();
+//        //maya added new
 
         MyAdapter adapter=new MyAdapter();
         list.setAdapter(adapter);
@@ -53,7 +55,7 @@ public class Request_ListActivity extends AppCompatActivity {
             age=itemView.findViewById(R.id.list_row_chats_age);
             image=itemView.findViewById(R.id.list_row_chats_image_view);
             confirm=itemView.findViewById(R.id.list_row_chats_btn_view_profile);
-            delete=itemView.findViewById(R.id.button5);
+            delete=itemView.findViewById(R.id.button);
         }
     }
     class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
@@ -71,14 +73,14 @@ public class Request_ListActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-         Notification notification=data.get(position);
-         holder.username.setText(notification.Username);
+         Notification notification=notificationlist.get(position);
+         holder.username.setText(notification.senderName);
 
         }
 
         @Override
         public int getItemCount() {
-             return data.size();
+             return notificationlist.size();
         }
     }
 }

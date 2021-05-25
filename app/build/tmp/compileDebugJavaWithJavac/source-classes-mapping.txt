@@ -6,8 +6,6 @@ com/example/meetmelive/login.java
  com.example.meetmelive.login$1
  com.example.meetmelive.login$1$1
  com.example.meetmelive.login$2
- com.example.meetmelive.login$3
- com.example.meetmelive.login$4
 com/example/meetmelive/NotificationActivity.java
  com.example.meetmelive.NotificationActivity
 com/example/meetmelive/Request_ListActivity.java
@@ -18,8 +16,16 @@ com/example/meetmelive/Notification.java
  com.example.meetmelive.Notification
 com/example/meetmelive/BuildConfig.java
  com.example.meetmelive.BuildConfig
+com/example/meetmelive/SendRequestFragmentArgs.java
+ com.example.meetmelive.SendRequestFragmentArgs
+ com.example.meetmelive.SendRequestFragmentArgs$1
+ com.example.meetmelive.SendRequestFragmentArgs$Builder
 com/example/meetmelive/model/ChatMessage.java
  com.example.meetmelive.model.ChatMessage
+com/example/meetmelive/SendRequestFragment.java
+ com.example.meetmelive.SendRequestFragment
+ com.example.meetmelive.SendRequestFragment$1
+ com.example.meetmelive.SendRequestFragment$2
 com/example/meetmelive/ProfileDirections.java
  com.example.meetmelive.ProfileDirections
 com/example/meetmelive/DataModel.java
@@ -32,14 +38,27 @@ com/example/meetmelive/register.java
  com.example.meetmelive.register$2$1$1
 com/example/meetmelive/model/UserDao.java
  com.example.meetmelive.model.UserDao
-com/example/meetmelive/GridActivity.java
- com.example.meetmelive.GridActivity
- com.example.meetmelive.GridActivity$1
- com.example.meetmelive.GridActivity$2
+com/example/meetmelive/SearchDirections.java
+ com.example.meetmelive.SearchDirections
+com/example/meetmelive/NotificationAdapter.java
+ com.example.meetmelive.NotificationAdapter
 com/example/meetmelive/EditProfile.java
  com.example.meetmelive.EditProfile
+ com.example.meetmelive.EditProfile$1
+ com.example.meetmelive.EditProfile$2
+ com.example.meetmelive.EditProfile$3
+ com.example.meetmelive.EditProfile$4
+ com.example.meetmelive.EditProfile$5
+ com.example.meetmelive.EditProfile$6
+ com.example.meetmelive.EditProfile$7
+ com.example.meetmelive.EditProfile$8
+ com.example.meetmelive.EditProfile$9
 com/example/meetmelive/DeleteProfile.java
  com.example.meetmelive.DeleteProfile
+com/example/meetmelive/NearbyDirections.java
+ com.example.meetmelive.NearbyDirections
+ com.example.meetmelive.NearbyDirections$1
+ com.example.meetmelive.NearbyDirections$ActionNearbyToSendRequestFragment
 com/example/meetmelive/model/Notification.java
  com.example.meetmelive.model.Notification
 com/example/meetmelive/model/AppLocalDb.java
@@ -47,35 +66,58 @@ com/example/meetmelive/model/AppLocalDb.java
  com.example.meetmelive.model.AppLocalDbRepository
 com/example/meetmelive/model/User.java
  com.example.meetmelive.model.User
+com/example/meetmelive/SendRequestFragmentDirections.java
+ com.example.meetmelive.SendRequestFragmentDirections
 com/example/meetmelive/MyApplication.java
  com.example.meetmelive.MyApplication
 com/example/meetmelive/Utils.java
  com.example.meetmelive.Utils
 com/example/meetmelive/model/Model.java
  com.example.meetmelive.model.Model
+ com.example.meetmelive.model.Model$1
+ com.example.meetmelive.model.Model$2
+ com.example.meetmelive.model.Model$DeleteUserListener
+ com.example.meetmelive.model.Model$GetAllActiveUsersListener
+ com.example.meetmelive.model.Model$GetUserListener
+ com.example.meetmelive.model.Model$Listener
+ com.example.meetmelive.model.Model$UploadImageListener
 com/example/meetmelive/Nearby.java
  com.example.meetmelive.Nearby
+ com.example.meetmelive.Nearby$1
+ com.example.meetmelive.Nearby$2
+ com.example.meetmelive.Nearby$3
 com/example/meetmelive/model/ModelFirebase.java
  com.example.meetmelive.model.ModelFirebase
  com.example.meetmelive.model.ModelFirebase$1
+ com.example.meetmelive.model.ModelFirebase$10
+ com.example.meetmelive.model.ModelFirebase$11
+ com.example.meetmelive.model.ModelFirebase$12
+ com.example.meetmelive.model.ModelFirebase$13
  com.example.meetmelive.model.ModelFirebase$2
  com.example.meetmelive.model.ModelFirebase$3
  com.example.meetmelive.model.ModelFirebase$4
+ com.example.meetmelive.model.ModelFirebase$4$1
  com.example.meetmelive.model.ModelFirebase$5
  com.example.meetmelive.model.ModelFirebase$5$1
  com.example.meetmelive.model.ModelFirebase$5$2
  com.example.meetmelive.model.ModelFirebase$6
  com.example.meetmelive.model.ModelFirebase$7
+ com.example.meetmelive.model.ModelFirebase$8
+ com.example.meetmelive.model.ModelFirebase$9
+ com.example.meetmelive.model.ModelFirebase$9$1
  com.example.meetmelive.model.ModelFirebase$Listener
 com/example/meetmelive/MatchProfile.java
  com.example.meetmelive.MatchProfile
 com/example/meetmelive/MainActivity.java
  com.example.meetmelive.MainActivity
-com/example/meetmelive/SearchActivity.java
- com.example.meetmelive.SearchActivity
- com.example.meetmelive.SearchActivity$1
 com/example/meetmelive/GridAdapter.java
  com.example.meetmelive.GridAdapter
  com.example.meetmelive.GridAdapter$1
- com.example.meetmelive.GridAdapter$1$1
- com.example.meetmelive.GridAdapter$1$2
+com/example/meetmelive/NotificationFragment.java
+ com.example.meetmelive.NotificationFragment
+ com.example.meetmelive.NotificationFragment$1
+ com.example.meetmelive.NotificationFragment$2
+com/example/meetmelive/Search.java
+ com.example.meetmelive.Search
+ com.example.meetmelive.Search$1
+ com.example.meetmelive.Search$2

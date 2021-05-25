@@ -50,7 +50,11 @@ public final class UserDao_Impl implements UserDao {
         } else {
           stmt.bindString(3, value.description);
         }
-        stmt.bindLong(4, value.birthday);
+        if (value.birthday == null) {
+          stmt.bindNull(4);
+        } else {
+          stmt.bindString(4, value.birthday);
+        }
         if (value.gender == null) {
           stmt.bindNull(5);
         } else {
@@ -180,7 +184,7 @@ public final class UserDao_Impl implements UserDao {
             _item.id = _cursor.getString(_cursorIndexOfId);
             _item.name = _cursor.getString(_cursorIndexOfName);
             _item.description = _cursor.getString(_cursorIndexOfDescription);
-            _item.birthday = _cursor.getLong(_cursorIndexOfBirthday);
+            _item.birthday = _cursor.getString(_cursorIndexOfBirthday);
             _item.gender = _cursor.getString(_cursorIndexOfGender);
             _item.lookingForGender = _cursor.getString(_cursorIndexOfLookingForGender);
             _item.currentLocation = _cursor.getString(_cursorIndexOfCurrentLocation);

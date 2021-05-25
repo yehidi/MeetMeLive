@@ -21,24 +21,24 @@
 13-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:7:22-76
 14
 15    <uses-feature
-15-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8856fbdd48aae704b76a00d398d3d640\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+15-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\71191dc114c2621fe2c7b5b034858c08\jetified-play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
 16        android:glEsVersion="0x00020000"
-16-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8856fbdd48aae704b76a00d398d3d640\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+16-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\71191dc114c2621fe2c7b5b034858c08\jetified-play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
 17        android:required="true" />
-17-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8856fbdd48aae704b76a00d398d3d640\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+17-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\71191dc114c2621fe2c7b5b034858c08\jetified-play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
 18
 19    <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
-19-->[com.android.installreferrer:installreferrer:1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fde6c60e3e65b1e5ecae544bdcd58bc2\jetified-installreferrer-1.0\AndroidManifest.xml:9:5-110
-19-->[com.android.installreferrer:installreferrer:1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fde6c60e3e65b1e5ecae544bdcd58bc2\jetified-installreferrer-1.0\AndroidManifest.xml:9:22-107
+19-->[com.android.installreferrer:installreferrer:1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\becb98431e8b214c46f72ef55018870d\jetified-installreferrer-1.0\AndroidManifest.xml:9:5-110
+19-->[com.android.installreferrer:installreferrer:1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\becb98431e8b214c46f72ef55018870d\jetified-installreferrer-1.0\AndroidManifest.xml:9:22-107
 20
 21    <application
-21-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:9:5-49:19
+21-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:9:5-51:19
 22        android:name="com.example.meetmelive.MyApplication"
 22-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:10:9-38
 23        android:allowBackup="true"
 23-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:11:9-35
 24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-24-->[androidx.core:core:1.3.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9769d8b19aa7c34983d4388838b7e017\core-1.3.1\AndroidManifest.xml:24:18-86
+24-->[androidx.core:core:1.3.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\183cafa047069757b0d3768ea1ffe79c\core-1.3.1\AndroidManifest.xml:24:18-86
 25        android:debuggable="true"
 26        android:icon="@mipmap/ic_launcher"
 26-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:12:9-43
@@ -51,305 +51,309 @@
 30        android:testOnly="true"
 31        android:theme="@style/Theme.MeetMeLive" >
 31-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:16:9-48
-32        <activity android:name="com.example.meetmelive.GridActivity" />
-32-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:17:9-59
-32-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:17:19-47
-33        <activity android:name="com.example.meetmelive.login" >
-33-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:18:9-24:20
-33-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:18:19-40
-34            <intent-filter>
-34-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:19:13-23:29
-35                <action android:name="android.intent.action.MAIN" />
-35-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:20:17-69
-35-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:20:25-66
-36
-37                <category android:name="android.intent.category.LAUNCHER" />
-37-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:22:17-77
-37-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:22:27-74
-38            </intent-filter>
-39        </activity>
-40        <activity android:name="com.example.meetmelive.SearchActivity" />
-40-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:25:9-52
-40-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:25:19-49
-41        <activity android:name="com.example.meetmelive.MainActivity" />
-41-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:26:9-59
-41-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:26:19-47
-42        <activity android:name="com.example.meetmelive.register" />
-42-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:27:9-46
-42-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:27:19-43
-43
+32        <activity android:name="com.example.meetmelive.login" >
+32-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:17:9-23:20
+32-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:17:19-40
+33            <intent-filter>
+33-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:18:13-22:29
+34                <action android:name="android.intent.action.MAIN" />
+34-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:19:17-69
+34-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:19:25-66
+35
+36                <category android:name="android.intent.category.LAUNCHER" />
+36-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:21:17-77
+36-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:21:27-74
+37            </intent-filter>
+38        </activity>
+39        <activity android:name="com.example.meetmelive.MainActivity" />
+39-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:25:9-59
+39-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:25:19-47
+40        <activity android:name="com.example.meetmelive.register" />
+40-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:26:9-46
+40-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:26:19-43
+41        //maya added new
+42        <activity android:name="com.example.meetmelive.Request_ListActivity" />
+42-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:28:9-58
+42-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:28:19-55
+43        //maya added new
 44        <meta-data
-44-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:29:9-31:55
+44-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:31:9-33:55
 45            android:name="com.facebook.sdk.ApplicationId"
-45-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:30:13-58
+45-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:32:13-58
 46            android:value="@string/facebook_app_id" />
-46-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:31:13-52
+46-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:33:13-52
 47
 48        <activity
-48-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:33:9-36:48
+48-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:35:9-38:48
 49            android:name="com.facebook.FacebookActivity"
-49-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:34:13-57
+49-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:36:13-57
 50            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-50-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:35:13-96
+50-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:37:13-96
 51            android:label="@string/app_name"
-51-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:36:13-45
+51-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:38:13-45
 52            android:theme="@style/com_facebook_activity_theme" />
-52-->[com.facebook.android:facebook-common:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\dc22ec553bd039056ec5e5d403a6ea4a\jetified-facebook-common-5.15.3\AndroidManifest.xml:33:13-63
+52-->[com.facebook.android:facebook-common:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8bc26938c1ed31f6d9b4a2e30a0de837\jetified-facebook-common-5.15.3\AndroidManifest.xml:33:13-63
 53        <activity
-53-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:37:9-48:20
+53-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:39:9-50:20
 54            android:name="com.facebook.CustomTabActivity"
-54-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:38:13-58
+54-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:40:13-58
 55            android:exported="true" >
-55-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:39:13-36
+55-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:41:13-36
 56            <intent-filter>
-56-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:40:13-47:29
+56-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:42:13-49:29
 57                <action android:name="android.intent.action.VIEW" />
-57-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:41:17-69
-57-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:41:25-66
+57-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:17-69
+57-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:25-66
 58
 59                <category android:name="android.intent.category.DEFAULT" />
-59-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:17-76
-59-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:27-73
+59-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:17-76
+59-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:27-73
 60                <category android:name="android.intent.category.BROWSABLE" />
-60-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:44:17-78
-60-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:44:27-75
+60-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:17-78
+60-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:27-75
 61
 62                <data android:scheme="@string/fb_login_protocol_scheme" />
-62-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:17-75
-62-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:23-72
+62-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:48:17-75
+62-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:48:23-72
 63            </intent-filter>
 64            <intent-filter>
-64-->[com.facebook.android:facebook-common:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\dc22ec553bd039056ec5e5d403a6ea4a\jetified-facebook-common-5.15.3\AndroidManifest.xml:39:13-48:29
+64-->[com.facebook.android:facebook-common:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8bc26938c1ed31f6d9b4a2e30a0de837\jetified-facebook-common-5.15.3\AndroidManifest.xml:39:13-48:29
 65                <action android:name="android.intent.action.VIEW" />
-65-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:41:17-69
-65-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:41:25-66
+65-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:17-69
+65-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:25-66
 66
 67                <category android:name="android.intent.category.DEFAULT" />
-67-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:17-76
-67-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:27-73
+67-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:17-76
+67-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:27-73
 68                <category android:name="android.intent.category.BROWSABLE" />
-68-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:44:17-78
-68-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:44:27-75
+68-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:17-78
+68-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:27-75
 69
 70                <data
-70-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:17-75
+70-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:48:17-75
 71                    android:host="cct.com.example.meetmelive"
 72                    android:scheme="fbconnect" />
-72-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:23-72
+72-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:48:23-72
 73            </intent-filter>
 74        </activity>
 75        <activity android:name="com.facebook.CustomTabMainActivity" />
-75-->[com.facebook.android:facebook-common:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\dc22ec553bd039056ec5e5d403a6ea4a\jetified-facebook-common-5.15.3\AndroidManifest.xml:34:9-71
-75-->[com.facebook.android:facebook-common:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\dc22ec553bd039056ec5e5d403a6ea4a\jetified-facebook-common-5.15.3\AndroidManifest.xml:34:19-68
+75-->[com.facebook.android:facebook-common:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8bc26938c1ed31f6d9b4a2e30a0de837\jetified-facebook-common-5.15.3\AndroidManifest.xml:34:9-71
+75-->[com.facebook.android:facebook-common:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8bc26938c1ed31f6d9b4a2e30a0de837\jetified-facebook-common-5.15.3\AndroidManifest.xml:34:19-68
 76
 77        <service
-77-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\aae5b80628c45f1c23373c5463fa4825\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:17:9-23:19
+77-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\29ce1316b5b3a6ddad37ed57304ce612\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:17:9-23:19
 78            android:name="com.google.firebase.components.ComponentDiscoveryService"
-78-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\aae5b80628c45f1c23373c5463fa4825\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:18:13-84
+78-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\29ce1316b5b3a6ddad37ed57304ce612\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:18:13-84
 79            android:directBootAware="true"
-79-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:35:13-43
+79-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:35:13-43
 80            android:exported="false" >
-80-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\aae5b80628c45f1c23373c5463fa4825\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:19:13-37
+80-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\29ce1316b5b3a6ddad37ed57304ce612\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:19:13-37
 81            <meta-data
-81-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\aae5b80628c45f1c23373c5463fa4825\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:20:13-22:85
+81-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\29ce1316b5b3a6ddad37ed57304ce612\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:20:13-22:85
 82                android:name="com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar"
-82-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\aae5b80628c45f1c23373c5463fa4825\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:21:17-111
+82-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\29ce1316b5b3a6ddad37ed57304ce612\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:21:17-111
 83                android:value="com.google.firebase.components.ComponentRegistrar" />
-83-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\aae5b80628c45f1c23373c5463fa4825\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:22:17-82
+83-->[com.google.firebase:firebase-firestore:22.1.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\29ce1316b5b3a6ddad37ed57304ce612\jetified-firebase-firestore-22.1.2\AndroidManifest.xml:22:17-82
 84            <meta-data
-84-->[com.google.firebase:firebase-storage:19.2.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\873c8b5fef8ac54453195fccfe4065ae\jetified-firebase-storage-19.2.2\AndroidManifest.xml:33:13-35:85
+84-->[com.google.firebase:firebase-storage:19.2.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e421bb009046cb87209e95879d6f31b\jetified-firebase-storage-19.2.2\AndroidManifest.xml:33:13-35:85
 85                android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
-85-->[com.google.firebase:firebase-storage:19.2.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\873c8b5fef8ac54453195fccfe4065ae\jetified-firebase-storage-19.2.2\AndroidManifest.xml:34:17-107
+85-->[com.google.firebase:firebase-storage:19.2.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e421bb009046cb87209e95879d6f31b\jetified-firebase-storage-19.2.2\AndroidManifest.xml:34:17-107
 86                android:value="com.google.firebase.components.ComponentRegistrar" />
-86-->[com.google.firebase:firebase-storage:19.2.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\873c8b5fef8ac54453195fccfe4065ae\jetified-firebase-storage-19.2.2\AndroidManifest.xml:35:17-82
+86-->[com.google.firebase:firebase-storage:19.2.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e421bb009046cb87209e95879d6f31b\jetified-firebase-storage-19.2.2\AndroidManifest.xml:35:17-82
 87            <meta-data
-87-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:77:13-79:85
-88                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
-88-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:78:17-109
+87-->[com.google.firebase:firebase-database:19.4.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\abb38b69f5af7474326e535f0cb58911\jetified-firebase-database-19.4.0\AndroidManifest.xml:32:13-34:85
+88                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
+88-->[com.google.firebase:firebase-database:19.4.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\abb38b69f5af7474326e535f0cb58911\jetified-firebase-database-19.4.0\AndroidManifest.xml:33:17-109
 89                android:value="com.google.firebase.components.ComponentRegistrar" />
-89-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:79:17-82
-90            <!--
-91                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
-92                clients to use it as well, by defining this registrar in their own core/common library.
-93            -->
-94            <meta-data
-94-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:43:13-45:85
-95                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
-95-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:44:17-121
-96                android:value="com.google.firebase.components.ComponentRegistrar" />
-96-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:45:17-82
-97        </service>
-98
-99        <provider
-99-->[com.squareup.picasso:picasso:2.71828] C:\Users\User\.gradle\caches\transforms-2\files-2.1\4d4d669ab961abbb9d744e8cb7da6158\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
-100            android:name="com.squareup.picasso.PicassoProvider"
-100-->[com.squareup.picasso:picasso:2.71828] C:\Users\User\.gradle\caches\transforms-2\files-2.1\4d4d669ab961abbb9d744e8cb7da6158\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
-101            android:authorities="com.example.meetmelive.com.squareup.picasso"
-101-->[com.squareup.picasso:picasso:2.71828] C:\Users\User\.gradle\caches\transforms-2\files-2.1\4d4d669ab961abbb9d744e8cb7da6158\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
-102            android:exported="false" />
-102-->[com.squareup.picasso:picasso:2.71828] C:\Users\User\.gradle\caches\transforms-2\files-2.1\4d4d669ab961abbb9d744e8cb7da6158\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
-103
-104        <activity
-104-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:27:9-44:20
-105            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
-105-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:28:13-80
-106            android:excludeFromRecents="true"
-106-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:29:13-46
-107            android:exported="true"
-107-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:30:13-36
-108            android:launchMode="singleTask"
-108-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:31:13-44
-109            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-109-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:32:13-72
-110            <intent-filter>
-110-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:33:13-43:29
-111                <action android:name="android.intent.action.VIEW" />
-111-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:41:17-69
-111-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:41:25-66
-112
-113                <category android:name="android.intent.category.DEFAULT" />
-113-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:17-76
-113-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:27-73
-114                <category android:name="android.intent.category.BROWSABLE" />
-114-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:44:17-78
-114-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:44:27-75
+89-->[com.google.firebase:firebase-database:19.4.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\abb38b69f5af7474326e535f0cb58911\jetified-firebase-database-19.4.0\AndroidManifest.xml:34:17-82
+90            <meta-data
+90-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:77:13-79:85
+91                android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"
+91-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:78:17-109
+92                android:value="com.google.firebase.components.ComponentRegistrar" />
+92-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:79:17-82
+93            <!--
+94                This registrar is not defined in the dynamic-module-support sdk itself to allow non-firebase
+95                clients to use it as well, by defining this registrar in their own core/common library.
+96            -->
+97            <meta-data
+97-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:43:13-45:85
+98                android:name="com.google.firebase.components:com.google.firebase.dynamicloading.DynamicLoadingRegistrar"
+98-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:44:17-121
+99                android:value="com.google.firebase.components.ComponentRegistrar" />
+99-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:45:17-82
+100        </service>
+101
+102        <provider
+102-->[com.squareup.picasso:picasso:2.71828] C:\Users\User\.gradle\caches\transforms-2\files-2.1\df7058dde718ef8858549c6e4f7aacac\jetified-picasso-2.71828\AndroidManifest.xml:8:9-11:40
+103            android:name="com.squareup.picasso.PicassoProvider"
+103-->[com.squareup.picasso:picasso:2.71828] C:\Users\User\.gradle\caches\transforms-2\files-2.1\df7058dde718ef8858549c6e4f7aacac\jetified-picasso-2.71828\AndroidManifest.xml:9:13-64
+104            android:authorities="com.example.meetmelive.com.squareup.picasso"
+104-->[com.squareup.picasso:picasso:2.71828] C:\Users\User\.gradle\caches\transforms-2\files-2.1\df7058dde718ef8858549c6e4f7aacac\jetified-picasso-2.71828\AndroidManifest.xml:10:13-72
+105            android:exported="false" />
+105-->[com.squareup.picasso:picasso:2.71828] C:\Users\User\.gradle\caches\transforms-2\files-2.1\df7058dde718ef8858549c6e4f7aacac\jetified-picasso-2.71828\AndroidManifest.xml:11:13-37
+106
+107        <activity
+107-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:27:9-44:20
+108            android:name="com.google.firebase.auth.internal.GenericIdpActivity"
+108-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:28:13-80
+109            android:excludeFromRecents="true"
+109-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:29:13-46
+110            android:exported="true"
+110-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:30:13-36
+111            android:launchMode="singleTask"
+111-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:31:13-44
+112            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+112-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:32:13-72
+113            <intent-filter>
+113-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:33:13-43:29
+114                <action android:name="android.intent.action.VIEW" />
+114-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:17-69
+114-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:25-66
 115
-116                <data
-116-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:17-75
-117                    android:host="firebase.auth"
-118                    android:path="/"
-119                    android:scheme="genericidp" />
-119-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:23-72
-120            </intent-filter>
-121        </activity>
-122        <activity
-122-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:45:9-62:20
-123            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
-123-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:46:13-79
-124            android:excludeFromRecents="true"
-124-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:47:13-46
-125            android:exported="true"
-125-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:48:13-36
-126            android:launchMode="singleTask"
-126-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:49:13-44
-127            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-127-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:50:13-72
-128            <intent-filter>
-128-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:51:13-61:29
-129                <action android:name="android.intent.action.VIEW" />
-129-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:41:17-69
-129-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:41:25-66
-130
-131                <category android:name="android.intent.category.DEFAULT" />
-131-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:17-76
-131-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:27-73
-132                <category android:name="android.intent.category.BROWSABLE" />
-132-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:44:17-78
-132-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:44:27-75
+116                <category android:name="android.intent.category.DEFAULT" />
+116-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:17-76
+116-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:27-73
+117                <category android:name="android.intent.category.BROWSABLE" />
+117-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:17-78
+117-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:27-75
+118
+119                <data
+119-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:48:17-75
+120                    android:host="firebase.auth"
+121                    android:path="/"
+122                    android:scheme="genericidp" />
+122-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:48:23-72
+123            </intent-filter>
+124        </activity>
+125        <activity
+125-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:45:9-62:20
+126            android:name="com.google.firebase.auth.internal.RecaptchaActivity"
+126-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:46:13-79
+127            android:excludeFromRecents="true"
+127-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:47:13-46
+128            android:exported="true"
+128-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:48:13-36
+129            android:launchMode="singleTask"
+129-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:49:13-44
+130            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+130-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:50:13-72
+131            <intent-filter>
+131-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:51:13-61:29
+132                <action android:name="android.intent.action.VIEW" />
+132-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:17-69
+132-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:25-66
 133
-134                <data
-134-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:17-75
-135                    android:host="firebase.auth"
-136                    android:path="/"
-137                    android:scheme="recaptcha" />
-137-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:23-72
-138            </intent-filter>
-139        </activity>
-140
-141        <service
-141-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:64:9-73:19
-142            android:name="com.google.firebase.auth.api.fallback.service.FirebaseAuthFallbackService"
-142-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:65:13-101
-143            android:enabled="true"
-143-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:66:13-35
-144            android:exported="false" >
-144-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:67:13-37
-145            <intent-filter>
-145-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:68:13-72:29
-146                <action android:name="com.google.firebase.auth.api.gms.service.START" />
-146-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:69:17-89
-146-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\c8d62fd15a0164a9fce8e58ca6ef6071\jetified-firebase-auth-20.0.2\AndroidManifest.xml:69:25-86
-147
-148                <category android:name="android.intent.category.DEFAULT" />
-148-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:17-76
-148-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:43:27-73
-149            </intent-filter>
-150        </service> <!-- Needs to be explicitly declared on P+ -->
-151        <uses-library
-151-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8856fbdd48aae704b76a00d398d3d640\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
-152            android:name="org.apache.http.legacy"
-152-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8856fbdd48aae704b76a00d398d3d640\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
-153            android:required="false" />
-153-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8856fbdd48aae704b76a00d398d3d640\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
-154
-155        <activity
-155-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\e5afa99f9543f6e403a392be82282d08\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
-156            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-156-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\e5afa99f9543f6e403a392be82282d08\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
-157            android:exported="false"
-157-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\e5afa99f9543f6e403a392be82282d08\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
-158            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-158-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\e5afa99f9543f6e403a392be82282d08\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
-159
-160        <provider
-160-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:26:9-31:39
-161            android:name="com.google.firebase.provider.FirebaseInitProvider"
-161-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:27:13-77
-162            android:authorities="com.example.meetmelive.firebaseinitprovider"
-162-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:28:13-72
-163            android:directBootAware="true"
-163-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:29:13-43
-164            android:exported="false"
-164-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:30:13-37
-165            android:initOrder="100" />
-165-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\fe2166618afe97af0b25e2afd81d3196\jetified-firebase-common-19.5.0\AndroidManifest.xml:31:13-36
-166
-167        <meta-data
-167-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9350c33fe59478844132e62d44338213\jetified-play-services-basement-17.1.0\AndroidManifest.xml:23:9-25:69
-168            android:name="com.google.android.gms.version"
-168-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9350c33fe59478844132e62d44338213\jetified-play-services-basement-17.1.0\AndroidManifest.xml:24:13-58
-169            android:value="@integer/google_play_services_version" />
-169-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9350c33fe59478844132e62d44338213\jetified-play-services-basement-17.1.0\AndroidManifest.xml:25:13-66
-170        <!--
-171         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
-172         with the application context. This config is merged in with the host app's manifest,
-173         but there can only be one provider with the same authority activated at any given
-174         point; so if the end user has two or more different apps that use Facebook SDK, only the
-175         first one will be able to use the provider. To work around this problem, we use the
-176         following placeholder in the authority to identify each host application as if it was
-177         a completely different provider.
-178        -->
-179        <provider
-179-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:39:9-42:40
-180            android:name="com.facebook.internal.FacebookInitProvider"
-180-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:40:13-70
-181            android:authorities="com.example.meetmelive.FacebookInitProvider"
-181-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:41:13-72
-182            android:exported="false" />
-182-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:42:13-37
-183
-184        <receiver
-184-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:44:9-50:20
-185            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
-185-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:45:13-86
-186            android:exported="false" >
-186-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:46:13-37
-187            <intent-filter>
-187-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:47:13-49:29
-188                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
-188-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:48:17-95
-188-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\07b59d280ca8e110f9c8b11a760d435c\jetified-facebook-core-5.15.3\AndroidManifest.xml:48:25-92
-189            </intent-filter>
-190        </receiver>
-191
-192        <service
-192-->[androidx.room:room-runtime:2.2.6] C:\Users\User\.gradle\caches\transforms-2\files-2.1\7165424b88b4e16ea03ca3fe23dc7f7f\room-runtime-2.2.6\AndroidManifest.xml:25:9-28:40
-193            android:name="androidx.room.MultiInstanceInvalidationService"
-193-->[androidx.room:room-runtime:2.2.6] C:\Users\User\.gradle\caches\transforms-2\files-2.1\7165424b88b4e16ea03ca3fe23dc7f7f\room-runtime-2.2.6\AndroidManifest.xml:26:13-74
-194            android:directBootAware="true"
-194-->[androidx.room:room-runtime:2.2.6] C:\Users\User\.gradle\caches\transforms-2\files-2.1\7165424b88b4e16ea03ca3fe23dc7f7f\room-runtime-2.2.6\AndroidManifest.xml:27:13-43
-195            android:exported="false" />
-195-->[androidx.room:room-runtime:2.2.6] C:\Users\User\.gradle\caches\transforms-2\files-2.1\7165424b88b4e16ea03ca3fe23dc7f7f\room-runtime-2.2.6\AndroidManifest.xml:28:13-37
-196    </application>
-197
-198</manifest>
+134                <category android:name="android.intent.category.DEFAULT" />
+134-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:17-76
+134-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:27-73
+135                <category android:name="android.intent.category.BROWSABLE" />
+135-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:17-78
+135-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:46:27-75
+136
+137                <data
+137-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:48:17-75
+138                    android:host="firebase.auth"
+139                    android:path="/"
+140                    android:scheme="recaptcha" />
+140-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:48:23-72
+141            </intent-filter>
+142        </activity>
+143
+144        <service
+144-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:64:9-73:19
+145            android:name="com.google.firebase.auth.api.fallback.service.FirebaseAuthFallbackService"
+145-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:65:13-101
+146            android:enabled="true"
+146-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:66:13-35
+147            android:exported="false" >
+147-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:67:13-37
+148            <intent-filter>
+148-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:68:13-72:29
+149                <action android:name="com.google.firebase.auth.api.gms.service.START" />
+149-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:69:17-89
+149-->[com.google.firebase:firebase-auth:20.0.2] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8eb05a08076c46530c784b82c84fd869\jetified-firebase-auth-20.0.2\AndroidManifest.xml:69:25-86
+150
+151                <category android:name="android.intent.category.DEFAULT" />
+151-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:17-76
+151-->C:\Users\User\AndroidStudioProjects\MeetMeLive\app\src\main\AndroidManifest.xml:45:27-73
+152            </intent-filter>
+153        </service> <!-- Needs to be explicitly declared on P+ -->
+154        <uses-library
+154-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\71191dc114c2621fe2c7b5b034858c08\jetified-play-services-maps-17.0.0\AndroidManifest.xml:33:9-35:40
+155            android:name="org.apache.http.legacy"
+155-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\71191dc114c2621fe2c7b5b034858c08\jetified-play-services-maps-17.0.0\AndroidManifest.xml:34:13-50
+156            android:required="false" />
+156-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\71191dc114c2621fe2c7b5b034858c08\jetified-play-services-maps-17.0.0\AndroidManifest.xml:35:13-37
+157
+158        <activity
+158-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\57ecddbbb03f6a9decfa9afd4003bb2a\jetified-play-services-base-17.1.0\AndroidManifest.xml:23:9-26:75
+159            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+159-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\57ecddbbb03f6a9decfa9afd4003bb2a\jetified-play-services-base-17.1.0\AndroidManifest.xml:24:13-79
+160            android:exported="false"
+160-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\57ecddbbb03f6a9decfa9afd4003bb2a\jetified-play-services-base-17.1.0\AndroidManifest.xml:25:13-37
+161            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+161-->[com.google.android.gms:play-services-base:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\57ecddbbb03f6a9decfa9afd4003bb2a\jetified-play-services-base-17.1.0\AndroidManifest.xml:26:13-72
+162
+163        <provider
+163-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:26:9-31:39
+164            android:name="com.google.firebase.provider.FirebaseInitProvider"
+164-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:27:13-77
+165            android:authorities="com.example.meetmelive.firebaseinitprovider"
+165-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:28:13-72
+166            android:directBootAware="true"
+166-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:29:13-43
+167            android:exported="false"
+167-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:30:13-37
+168            android:initOrder="100" />
+168-->[com.google.firebase:firebase-common:19.5.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\50ccc31115fe3a374bed78d78030b552\jetified-firebase-common-19.5.0\AndroidManifest.xml:31:13-36
+169
+170        <meta-data
+170-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0020a2dc4f16c4c7fb2506b67fe0a467\jetified-play-services-basement-17.1.0\AndroidManifest.xml:23:9-25:69
+171            android:name="com.google.android.gms.version"
+171-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0020a2dc4f16c4c7fb2506b67fe0a467\jetified-play-services-basement-17.1.0\AndroidManifest.xml:24:13-58
+172            android:value="@integer/google_play_services_version" />
+172-->[com.google.android.gms:play-services-basement:17.1.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0020a2dc4f16c4c7fb2506b67fe0a467\jetified-play-services-basement-17.1.0\AndroidManifest.xml:25:13-66
+173        <!--
+174         The initialization ContentProvider will call FacebookSdk.sdkInitialize automatically
+175         with the application context. This config is merged in with the host app's manifest,
+176         but there can only be one provider with the same authority activated at any given
+177         point; so if the end user has two or more different apps that use Facebook SDK, only the
+178         first one will be able to use the provider. To work around this problem, we use the
+179         following placeholder in the authority to identify each host application as if it was
+180         a completely different provider.
+181        -->
+182        <provider
+182-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:39:9-42:40
+183            android:name="com.facebook.internal.FacebookInitProvider"
+183-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:40:13-70
+184            android:authorities="com.example.meetmelive.FacebookInitProvider"
+184-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:41:13-72
+185            android:exported="false" />
+185-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:42:13-37
+186
+187        <receiver
+187-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:44:9-50:20
+188            android:name="com.facebook.CurrentAccessTokenExpirationBroadcastReceiver"
+188-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:45:13-86
+189            android:exported="false" >
+189-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:46:13-37
+190            <intent-filter>
+190-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:47:13-49:29
+191                <action android:name="com.facebook.sdk.ACTION_CURRENT_ACCESS_TOKEN_CHANGED" />
+191-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:48:17-95
+191-->[com.facebook.android:facebook-core:5.15.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\68386951262e118028b4903c0fd30287\jetified-facebook-core-5.15.3\AndroidManifest.xml:48:25-92
+192            </intent-filter>
+193        </receiver>
+194
+195        <service
+195-->[androidx.room:room-runtime:2.2.6] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8245d7d41d35b4d546c239bffef77ca9\room-runtime-2.2.6\AndroidManifest.xml:25:9-28:40
+196            android:name="androidx.room.MultiInstanceInvalidationService"
+196-->[androidx.room:room-runtime:2.2.6] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8245d7d41d35b4d546c239bffef77ca9\room-runtime-2.2.6\AndroidManifest.xml:26:13-74
+197            android:directBootAware="true"
+197-->[androidx.room:room-runtime:2.2.6] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8245d7d41d35b4d546c239bffef77ca9\room-runtime-2.2.6\AndroidManifest.xml:27:13-43
+198            android:exported="false" />
+198-->[androidx.room:room-runtime:2.2.6] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8245d7d41d35b4d546c239bffef77ca9\room-runtime-2.2.6\AndroidManifest.xml:28:13-37
+199    </application>
+200
+201</manifest>

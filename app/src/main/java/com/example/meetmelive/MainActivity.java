@@ -34,8 +34,8 @@ public class MainActivity<OnOption> extends AppCompatActivity {
 //        Intent intent=new Intent(this,NotificationActivity.class);
 //        startActivity(intent);
 
-        Intent intent=new Intent(this,GridActivity.class);
-        startActivity(intent);
+//        Intent intent=new Intent(this,MainActivity.class);
+//        startActivity(intent);
         // maya added
     }
 

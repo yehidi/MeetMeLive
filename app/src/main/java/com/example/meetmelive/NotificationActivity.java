@@ -24,6 +24,8 @@ public class NotificationActivity<OnOption> extends AppCompatActivity {
     private EditText editTextTitle;
     private EditText editTextMessage;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,11 +37,11 @@ public class NotificationActivity<OnOption> extends AppCompatActivity {
     }
   // added
 
-    @SuppressLint("ResourceType")
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu);
-        inflater.inflate(R.id.notificationFragment,menu);
-    }
+//    @SuppressLint("ResourceType")
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu);
+//        inflater.inflate(R.id.notificationFragment,menu);
+//    }
 
 //    @Override
 //    public boolean onOptionsItemSelected(@NonNull MenuItem item) {

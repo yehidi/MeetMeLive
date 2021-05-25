@@ -29,7 +29,6 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.MeetMeLive" >
-        <activity android:name="com.example.meetmelive.GridActivity" />
         <activity android:name="com.example.meetmelive.login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,10 +36,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.meetmelive.SearchActivity" />
         <activity android:name="com.example.meetmelive.MainActivity" />
         <activity android:name="com.example.meetmelive.register" />
-
+        //maya added new
+        <activity android:name="com.example.meetmelive.Request_ListActivity" />
+        //maya added new
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
@@ -83,6 +83,9 @@
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.storage.StorageRegistrar"
+                android:value="com.google.firebase.components.ComponentRegistrar" />
+            <meta-data
+                android:name="com.google.firebase.components:com.google.firebase.database.DatabaseRegistrar"
                 android:value="com.google.firebase.components.ComponentRegistrar" />
             <meta-data
                 android:name="com.google.firebase.components:com.google.firebase.auth.FirebaseAuthRegistrar"

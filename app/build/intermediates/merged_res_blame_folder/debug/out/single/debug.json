@@ -12,24 +12,24 @@
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_row_chats.xml.flat",
-        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\list_row_chats.xml"
-    },
-    {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_notifications_24.png.flat",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_notifications_24.png"
     },
     {
-        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
-        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_row_chats.xml.flat",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\list_row_chats.xml"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_chat_24.png.flat",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_chat_24.png"
     },
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\layout_list_row_chat.xml.flat",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\list_row_chat.xml"
     },
     {
-        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_chat_24.png.flat",
-        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\generated\\res\\pngs\\debug\\drawable-ldpi\\ic_baseline_chat_24.png"
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\mipmap-xxxhdpi\\ic_launcher.png"
     },
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_notifications_24.png.flat",
@@ -100,12 +100,12 @@
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\generated\\res\\pngs\\debug\\drawable-hdpi\\ic_two.png"
     },
     {
-        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
-        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
-    },
-    {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher.png.flat",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\mipmap-hdpi\\ic_launcher_round.png"
     },
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_baseline_home_24.png.flat",
@@ -130,6 +130,10 @@
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_two.png.flat",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_two.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_new_search.xml.flat",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\fragment_new_search.xml"
     },
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_ic_baseline_home_24.png.flat",
@@ -264,10 +268,6 @@
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\fragment_delete_profile.xml"
     },
     {
-        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_search.xml.flat",
-        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\activity_search.xml"
-    },
-    {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_account_circle_24.png.flat",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\generated\\res\\pngs\\debug\\drawable-xxxhdpi\\ic_baseline_account_circle_24.png"
     },
@@ -352,8 +352,16 @@
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\fragment_match_profile.xml"
     },
     {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_notification.xml.flat",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\fragment_notification.xml"
+    },
+    {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_round_person_grey.png.flat",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\generated\\res\\pngs\\debug\\drawable-xhdpi\\ic_round_person_grey.png"
+    },
+    {
+        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_send_request.xml.flat",
+        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\fragment_send_request.xml"
     },
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_ic_baseline_notifications_24.png.flat",
@@ -418,9 +426,5 @@
     {
         "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\layout_item_grid.xml.flat",
         "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\item_grid.xml"
-    },
-    {
-        "merged": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_grid.xml.flat",
-        "source": "C:\\Users\\User\\AndroidStudioProjects\\MeetMeLive\\app\\src\\main\\res\\layout\\activity_grid.xml"
     }
 ]
