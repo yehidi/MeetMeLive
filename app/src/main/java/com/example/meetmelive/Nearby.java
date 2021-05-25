@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import android.widget.Toast;
 
 import com.example.meetmelive.adapter.GridAdapter;
 import com.example.meetmelive.model.DataModel;
+import com.example.meetmelive.model.ModelFirebase;
+import com.example.meetmelive.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,6 +27,7 @@ import com.google.firebase.firestore.Source;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class Nearby extends Fragment {
 
@@ -49,6 +53,7 @@ public class Nearby extends Fragment {
         // initializing our variable for firebase
         // firestore and getting its instance.
         db = FirebaseFirestore.getInstance();
+
 
         // here we are calling a method
         // to load data in our list view.
@@ -103,26 +108,7 @@ public class Nearby extends Fragment {
     }
 
 
-//        DocumentReference docRef = db.collection("Data").document("2");
-//
-//// Source can be CACHE, SERVER, or DEFAULT.
-//        Source source = Source.CACHE;
-//
-//// Get the document, forcing the SDK to use the offline cache
-//        docRef.get(source).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    // Document found in the offline cache
-//                    DocumentSnapshot document = task.getResult();
-//                    Log.d("TAG", "Cached document data: " + document.getData());
-//                }
-//
-//                else {
-//                    Log.d("res", "Cached get failed: ", task.getException());
-//                }
-//            }
-//        });
+
 
 
 

@@ -23,6 +23,7 @@ import com.example.meetmelive.MyApplication;
 import com.example.meetmelive.R;
 import com.example.meetmelive.authentication.login;
 import com.example.meetmelive.model.Model;
+import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -70,8 +71,7 @@ public class    Profile<OnOption> extends Fragment {
         city=view.findViewById(R.id.profile_city);
         description=view.findViewById(R.id.profile_aboutMe);
 
-
-        Log.d("pic","profilePic "+User.getInstance().profilePic);
+      //  ModelFirebase.trying();
 
         if(User.getInstance().profilePic!=null){
             Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
@@ -102,8 +102,6 @@ public class    Profile<OnOption> extends Fragment {
         if(User.getInstance().pic3!=null  && !User.getInstance().pic3.equals("")){
             slideModels.add(new SlideModel(User.getInstance().pic3));
         }
-
-
         imageSlider.setImageList(slideModels,true);
 
         return view;

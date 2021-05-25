@@ -95,7 +95,7 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
 
 
         profilePic= view.findViewById(R.id.editProfile_profile_im);
-        if(User.getInstance().profilePic!=null &&!User.getInstance().profilePic.contains("")){
+        if(User.getInstance().profilePic!=null){
             Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
         }
 
