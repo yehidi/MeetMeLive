@@ -13,7 +13,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.navigation.Navigation;
 
+import com.example.meetmelive.NearbyDirections;
 import com.example.meetmelive.R;
 import com.example.meetmelive.model.DataModel;
 import com.squareup.picasso.Picasso;
@@ -69,42 +71,10 @@ public class GridAdapter extends ArrayAdapter<DataModel> {
                 // we are displaying a toast message.
                 Toast.makeText(getContext(), "Item clicked is : " + dataModel.getUsername(), Toast.LENGTH_SHORT).show();
 
-
-
-                //added
-
-                AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(v.getContext());
-
-                //maya added new
-                Picasso.get().load(dataModel.getProfileImageUrl()).into(courseIV);
-
-                //maya added new
-
-                myAlertBuilder.setTitle("Hi");
-                myAlertBuilder.setMessage("Do You Want To Send A Request ?");
-
-
-
-
-                myAlertBuilder.setPositiveButton("yes, I Want To Send", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(v.getContext(),"your Request sent" ,Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-                myAlertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(v.getContext(),"you clicked no", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-                myAlertBuilder.show();
-
-                //added
+                String name=dataModel.getUsername();
+                String image=dataModel.getProfileImageUrl();
+                NearbyDirections.ActionNearbyToSendRequestFragment action = NearbyDirections.actionNearbyToSendRequestFragment(name,image);
+                Navigation.findNavController(v).navigate(action);
             }
         });
         return listitemView;
