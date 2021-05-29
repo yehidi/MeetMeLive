@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_Profile_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <argument
+            android:name="myDate"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/matchProfileFragment"
@@ -55,4 +58,16 @@
             android:id="@+id/action_search_to_Nearby"
             app:destination="@id/Nearby" />
     </fragment>
+
+
+    <activity
+        android:id="@+id/register"
+        android:name="com.example.meetmelive.authentication.register"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+    <activity
+        android:id="@+id/calenderActivity"
+        android:name="com.example.meetmelive.CalenderActivity"
+        android:label="CalenderActivity"
+        app:action="action_calenderActivity_to_Profile" />
 </navigation>

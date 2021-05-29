@@ -1,11 +1,15 @@
 package com.example.meetmelive.model;
 
-import android.app.Application;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.GridView;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.meetmelive.Nearby;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Model {
@@ -77,5 +81,16 @@ public class Model {
             }
         }.execute();
     }
+
+//    public String getAge(int year, int month, int day){
+
+
+    //NearBy
+        public void loadDatainGridView(ArrayList<DataModel> dataModelArrayList, GridView gridadapter, Nearby near) {
+            modelFirebase.loadDatainGridView(dataModelArrayList, gridadapter,near);
+
+        }
+
+
 
 }

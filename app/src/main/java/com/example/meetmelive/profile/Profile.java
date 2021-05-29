@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
@@ -39,7 +40,8 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class    Profile<OnOption> extends Fragment {
+public class  Profile<OnOption> extends Fragment {
+
 
     String userId;
     CircleImageView profilePic;
@@ -51,6 +53,26 @@ public class    Profile<OnOption> extends Fragment {
 
     User user;
     FirebaseUser firebaseuser ;
+
+
+
+
+
+
+    //try
+    public static final String TAG = "Profile";
+
+
+    public Profile() {
+
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,11 +93,14 @@ public class    Profile<OnOption> extends Fragment {
         city=view.findViewById(R.id.profile_city);
         description=view.findViewById(R.id.profile_aboutMe);
 
+
+
       //  ModelFirebase.trying();
 
         if(User.getInstance().profilePic!=null){
             Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
         }
+
 
         Model.instance.getUser(User.getInstance().email,new Model.GetUserListener() {
             @Override
@@ -104,8 +129,13 @@ public class    Profile<OnOption> extends Fragment {
         }
         imageSlider.setImageList(slideModels,true);
 
+
+
+
+
         return view;
     }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {

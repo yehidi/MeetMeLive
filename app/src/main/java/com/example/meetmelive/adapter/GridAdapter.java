@@ -18,6 +18,7 @@ import androidx.navigation.Navigation;
 import com.example.meetmelive.NearbyDirections;
 import com.example.meetmelive.R;
 import com.example.meetmelive.model.DataModel;
+import com.example.meetmelive.model.User;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class GridAdapter extends ArrayAdapter<DataModel> {
     //maya added
 
 
-    public GridAdapter(@NonNull Context context,  ArrayList<DataModel> dataModalArrayList) {
+    public GridAdapter(@NonNull Context context, ArrayList<DataModel> dataModalArrayList) {
         super(context,0, dataModalArrayList);
     }
 

@@ -7,6 +7,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -37,8 +38,11 @@ public class User {
     public String pic1;
     public String pic2;
     public String pic3;
-
     public boolean isActive;
+
+    //try
+//    public Calendar date;
+    //try
 
     public User()
     {
@@ -59,6 +63,9 @@ public class User {
         pic2=null;
         pic3=null;
         isActive=true;
+        //try
+//        date=null;
+        //try
     }
 
 
@@ -76,6 +83,8 @@ public class User {
         data.put("picture 1", pic1);
         data.put("picture 2", pic2);
         data.put("picture 3", pic3);
+        //try
+
         return data;
     }
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".CalenderActivity">
+
+    <TextView
+        android:id="@+id/myDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="105dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="20dp"
+        android:text="Mark Your Dates"
+        android:textColor="#FFF"
+        android:textSize="23sp" />
+
+    <LinearLayout
+        android:layout_marginTop="48dp"
+        android:background="#FFF"
+        android:layout_marginLeft="44dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+
+        <CalendarView
+            android:id="@+id/calenderView"
+            android:layout_width="wrap_content"
+            android:layout_height="320dp"></CalendarView>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/calender_btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="34dp"
+        android:paddingLeft="20dp"
+        android:text="Save My Date" />
+
+
+
+
+</LinearLayout>

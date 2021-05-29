@@ -4,7 +4,11 @@ package com.example.meetmelive.authentication;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,7 +18,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
+
+
+import com.example.meetmelive.CalenderActivity;
 
 import com.example.meetmelive.MainActivity;
 import com.example.meetmelive.R;
@@ -45,7 +53,10 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
     String pic1 = null;
     String pic2 = null;
     String pic3 = null;
+    //try
+    Button Date;
 
+    //try
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +75,11 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         choosePhoto = findViewById(R.id.register_btnChoosePhoto);
         profilePic = findViewById(R.id.register_profileImageView);
         description= findViewById(R.id.register_about);
+        //try
+        Date=findViewById(R.id.register_btnDate);
 
+
+        //try
         choosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +125,23 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                                 Log.d("TAG", "FAILED");
                             }
                         });
+            }
+        });
+
+
+
+
+        Date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(register.this, CalenderActivity.class));
+                finish();
+
+//                FragmentManager fm=getFragmentManager();
+//                FragmentTransaction ft=fm.beginTransaction();
+//                ft.replace(R.id.register_btnDate,new Fragment(),"calender");
+//                ft.commit();
+
             }
         });
     }

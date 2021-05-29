@@ -5,12 +5,18 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.GridView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
 import com.example.meetmelive.MyApplication;
+import com.example.meetmelive.Nearby;
+import com.example.meetmelive.R;
+import com.example.meetmelive.adapter.GridAdapter;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,7 +39,9 @@ import com.facebook.appevents.AppEventsLogger;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ModelFirebase {
@@ -41,6 +49,7 @@ public class ModelFirebase {
     public static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
+
 
 
     public interface Listener<T>{
@@ -349,5 +358,83 @@ public class ModelFirebase {
             }
         });
     }
+
+
+    //NearBy
+    public void loadDatainGridView(ArrayList<DataModel> dataModelArrayList,GridView gridadapter,Nearby near) {
+        // below line is use to get data from Firebase
+        // firestore using collection in android.
+        db.collection("userProfileData").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        // after getting the data we are calling on success method
+                        // and inside this method we are checking if the received
+                        // query snapshot is empty or not.
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            // if the snapshot is not empty we are hiding our
+                            // progress bar and adding our data in a list.
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+
+                                //try
+                                setUserAppData(User.getInstance().email);
+                                //try
+
+                                // after getting this list we are passing
+                                // that list to our object class.
+
+                                //from datamodel to user
+                                if(User.getInstance().lookingForGender.equals("Female") && d.get("gender").equals("Female")) {
+                                    DataModel dataModel = d.toObject(DataModel.class);
+                                    dataModelArrayList.add(dataModel);
+                                }
+
+                                if(User.getInstance().lookingForGender.equals("Male") && d.get("gender").equals("Male")) {
+                                    DataModel dataModel = d.toObject(DataModel.class);
+                                    dataModelArrayList.add(dataModel);
+                                }
+//                                if(d.get("birthDate").)
+
+
+                                //try
+//                                if(User.getInstance().lookingForGender.equals("Female"))
+//                                {
+//                                    if(dataModel.equals("Female"))
+//                                        dataModelArrayList.add(user);
+//                                }
+                                //try
+//                                        dataModelArrayList.add(dataModel);
+                                // after getting data from Firebase
+                                // we are storing that data in our array list
+
+                            }
+                            // after that we are passing our array list to our adapter class.
+                            GridAdapter adapter = new GridAdapter(near.getContext(), dataModelArrayList);
+
+                            // after passing this array list
+                            // to our adapter class we are setting
+                            // our adapter to our list view.
+                            gridadapter.setAdapter(adapter);
+                        } else {
+                            // if the snapshot is empty we are displaying a toast message.
+                            Toast.makeText(near.getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // we are displaying a toast message
+                // when we get any error from Firebase.
+                Toast.makeText(near.getContext(), "Fail to load data..", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+//    public void loadDatainGridView_filteringByAge(RadioGroup group)
+//    {
+//
+//    }
 
 }

@@ -1,23 +1,34 @@
 package com.example.meetmelive;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.meetmelive.adapter.GridAdapter;
+import com.example.meetmelive.authentication.login;
 import com.example.meetmelive.model.DataModel;
+import com.example.meetmelive.model.Model;
 import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -25,11 +36,16 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.security.acl.Group;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Nearby extends Fragment {
+public class Nearby<OnOption> extends Fragment{
+
+    // implements RadioGroup.OnCheckedChangeListener
 
     // creating a variable for our
     // grid view, arraylist and
@@ -38,6 +54,16 @@ public class Nearby extends Fragment {
     ArrayList<DataModel> dataModelArrayList;
     FirebaseFirestore db;
     View view;
+
+    //try
+    String one;
+    String two;
+    String three;
+    RadioGroup Age;
+   //try
+    public Nearby() {
+        // Required empty public constructor
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,285 +80,82 @@ public class Nearby extends Fragment {
         // firestore and getting its instance.
         db = FirebaseFirestore.getInstance();
 
+        //try
+//        Age = view.findViewById(R.id.group_age);
+
+        //try
 
         // here we are calling a method
         // to load data in our list view.
-        loadDatainGridView();
+        Model.instance.loadDatainGridView(dataModelArrayList,gridadapter,this);
         return view;
     }
 
-    private void loadDatainGridView() {
-        // below line is use to get data from Firebase
-        // firestore using collection in android.
-        db.collection("userProfileData").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        // after getting the data we are calling on success method
-                        // and inside this method we are checking if the received
-                        // query snapshot is empty or not.
-                        if (!queryDocumentSnapshots.isEmpty()) {
-                            // if the snapshot is not empty we are hiding our
-                            // progress bar and adding our data in a list.
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                            for (DocumentSnapshot d : list) {
-
-                                // after getting this list we are passing
-                                // that list to our object class.
-                                DataModel dataModel = d.toObject(DataModel.class);
-
-                                // after getting data from Firebase
-                                // we are storing that data in our array list
-                                dataModelArrayList.add(dataModel);
-                            }
-                            // after that we are passing our array list to our adapter class.
-                            GridAdapter adapter = new GridAdapter(getContext(), dataModelArrayList);
-
-                            // after passing this array list
-                            // to our adapter class we are setting
-                            // our adapter to our list view.
-                            gridadapter.setAdapter(adapter);
-                        } else {
-                            // if the snapshot is empty we are displaying a toast message.
-                            Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                // we are displaying a toast message
-                // when we get any error from Firebase.
-                Toast.makeText(getContext(), "Fail to load data..", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    private void loadDatainGridView() {
-//        // below line is use to get data from Firebase
-//        // firestore using collection in android.
+//    @Override
+//    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+//        super.onCreateOptionsMenu(menu, inflater);
+//        inflater.inflate(R.menu.nearby_menu,menu);
+//    }
 //
-//        db.collection("Data")
-//                .get()
-//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch ((item.getItemId())){
+//            case R.id.group_age:{
+//                onCheckedChanged(Age, item.getGroupId());
+//                }
+//
+//            }
+//
+//        switch (item.getItemId()){
+//            case R.id.editProfileFragment:{
+//                Navigation.findNavController(view).navigate(R.id.action_Profile_to_editProfileFragment);
+//                return true;
+//            }
+//            case R.id.SignOut:{
+//                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+//                mAuth.signOut();
+//                startActivity(new Intent(getActivity(), login.class));
+//            }
+//            case R.id.DeleteAccount:{
+//                Model.instance.deleteUser(user, new Model.DeleteUserListener() {
 //                    @Override
-//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                        if (task.isSuccessful()) {
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//
-//                                //maya added
-//                                DataModel dm=new DataModel();
-//                                dm.fromMap(document.getData());
-//                                dataModelArrayList.add(dm);
-//
-//
-//                                Log.d("TAG", document.getId() + " => " + document.getData());
+//                    public void onComplete() {
+//                        firebaseuser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull @NotNull Task<Void> task) {
+//                                Navigation.findNavController(view).popBackStack();
+//                                startActivity(new Intent(getActivity(), login.class));
 //                            }
-//
-//                        //maya added
-//
-////                            List<QuerySnapshot> list = task.getResult();
-////                            for (QuerySnapshot d : list) {
-////
-////                                // after getting this list we are passing
-////                                // that list to our object class.
-////                                DataModel dataModel = d.toObject(DataModel.class);
-////
-////                                // after getting data from Firebase
-////                                // we are storing that data in our array list
-////                                dataModelArrayList.add(dataModel);
-////                            }
-//                            // after that we are passing our array list to our adapter class.
-//
-//
-//                            //GridAdapter adapter = new GridAdapter(Nearby.this, dataModelArrayList);
-//
-//                            //maya added
-//                              GridAdapter adapter=new GridAdapter(getContext(),dataModelArrayList);
-//                            //maya added
-//
-//                            // after passing this array list
-//                            // to our adapter class we are setting
-//                            // our adapter to our list view.
-//                            gridadapter.setAdapter(adapter);
-//                        } else {
-//                            Log.d("TAG", "Error getting documents: ", task.getException());
-//                        }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull @NotNull Exception e) {
+//                                Toast.makeText(MyApplication.context, "Failed To Delete Account", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
 //                    }
 //                });
-////        db.collection("data").get()
-////                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-////
-////                    @Override
-////                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-////                        // after getting the data we are calling on success method
-////                        // and inside this method we are checking if the received
-////                        // query snapshot is empty or not.
-////                        if (true) {
-////                            Log.d("nearby", "Query: here: "+ queryDocumentSnapshots);
-////                            // if the snapshot is not empty we are hiding our
-////                            // progress bar and adding our data in a list.
-////                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-////                            for (DocumentSnapshot d : list) {
-////
-////                                // after getting this list we are passing
-////                                // that list to our object class.
-////                                DataModel dataModel = d.toObject(DataModel.class);
-////
-////                                // after getting data from Firebase
-////                                // we are storing that data in our array list
-////                                dataModelArrayList.add(dataModel);
-////                            }
-////                            // after that we are passing our array list to our adapter class.
-////
-////
-////                            //GridAdapter adapter = new GridAdapter(Nearby.this, dataModelArrayList);
-////
-////                            //maya added
-////                              GridAdapter adapter=new GridAdapter(getContext(),dataModelArrayList);
-////                            //maya added
-////
-////                            // after passing this array list
-////                            // to our adapter class we are setting
-////                            // our adapter to our list view.
-////                            gridadapter.setAdapter(adapter);
-////                        } else {
-////                            // if the snapshot is empty we are displaying a toast message.
-////                            Toast.makeText(getContext(), "No data found in Database", Toast.LENGTH_SHORT).show();
-////                        }
-////                    }
-////                }).addOnFailureListener(new OnFailureListener() {
-////            @Override
-////            public void onFailure(@NonNull Exception e) {
-////                // we are displaying a toast message
-////                // when we get any error from Firebase.
-////                Toast.makeText(getContext(), "Fail to load data..", Toast.LENGTH_SHORT).show();
-////            }
-////        });
+//
+//            }
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//        return super.onOptionsItemSelected(item);
 //    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Nearby() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment NearbyFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Nearby newInstance(String param1, String param2) {
-        Nearby fragment = new Nearby();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//                             Bundle savedInstanceState) {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_nearby, container, false);
+//   @Override
+//    public void onCheckedChanged(RadioGroup group, int i) {
+//        switch(i) {
+//            case R.id.one:
+//                one="18-21";
+//                break;
+//            case R.id.two:
+//                one="21-23";
+//                break;
+//            case R.id.three:
+//                one="23-30";
+//                break;
+//
+//        }
 //    }
 }

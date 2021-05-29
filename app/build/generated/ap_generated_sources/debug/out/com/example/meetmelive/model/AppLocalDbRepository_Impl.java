@@ -27,7 +27,7 @@ public final class AppLocalDbRepository_Impl extends AppLocalDbRepository {
 
   @Override
   protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration configuration) {
-    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(1) {
+    final SupportSQLiteOpenHelper.Callback _openCallback = new RoomOpenHelper(configuration, new RoomOpenHelper.Delegate(2) {
       @Override
       public void createAllTables(SupportSQLiteDatabase _db) {
         _db.execSQL("CREATE TABLE IF NOT EXISTS `User` (`id` TEXT NOT NULL, `name` TEXT, `description` TEXT, `birthday` TEXT, `gender` TEXT, `lookingForGender` TEXT, `currentLocation` TEXT, `email` TEXT, `lastUpdated` INTEGER NOT NULL, `password` TEXT, `city` TEXT, `profilePic` TEXT, `pic1` TEXT, `pic2` TEXT, `pic3` TEXT, `isActive` INTEGER NOT NULL, PRIMARY KEY(`id`))");

@@ -214,7 +214,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_radiogroupLookingFor" />
 
+            <Button
+                android:id="@+id/register_btnDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="308dp"
+                android:text="Date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.598"
+                app:layout_constraintStart_toEndOf="@+id/register_birthDate"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

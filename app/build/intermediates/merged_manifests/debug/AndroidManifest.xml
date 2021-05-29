@@ -10,6 +10,9 @@
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+    <!-- <uses-sdk android:minSdkVersion="14" /> -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
@@ -29,7 +32,8 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.MeetMeLive" >
-        <activity android:name="com.example.meetmelive.login" >
+        <activity android:name="com.example.meetmelive.CalenderActivity" />
+        <activity android:name="com.example.meetmelive.authentication.login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,10 +41,8 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.meetmelive.MainActivity" />
-        <activity android:name="com.example.meetmelive.register" />
-        //maya added new
-        <activity android:name="com.example.meetmelive.Request_ListActivity" />
-        //maya added new
+        <activity android:name="com.example.meetmelive.authentication.register" />
+
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />

@@ -1789,6 +1789,7 @@ drawable abc_textfield_search_material
 drawable abc_vector_test
 drawable about
 drawable add
+drawable addphotopng
 drawable avd_hide_password
 drawable avd_show_password
 drawable btn_checkbox_checked_mtrl
@@ -1872,6 +1873,8 @@ drawable ic_round_person_grey
 drawable ic_two
 drawable icon_m
 drawable location
+drawable logo
+drawable logo2
 drawable material_cursor_drawable
 drawable material_ic_calendar_black_24dp
 drawable material_ic_clear_black_24dp
@@ -1924,6 +1927,7 @@ id ALT
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
+id DeleteAccount
 id EditProfile_Title
 id EditProfile_choosePhotos
 id EditProfile_ediProfilePic
@@ -1937,6 +1941,7 @@ id SHOW_ALL
 id SHOW_PATH
 id SHOW_PROGRESS
 id SYM
+id SignOut
 id TOP_END
 id TOP_START
 id accelerate
@@ -1992,8 +1997,7 @@ id action_menu_presenter
 id action_mode_bar
 id action_mode_bar_stub
 id action_mode_close_button
-id action_searchFragment_new_to_Nearby
-id action_sendRequestFragment_to_notificationFragment2
+id action_search_to_Nearby
 id action_text
 id actions
 id activity_chooser_view_content
@@ -2036,6 +2040,9 @@ id button_cancel
 id button_location
 id button_search
 id button_send
+id calenderActivity
+id calenderView
+id calender_btn_save
 id cancel_action
 id cancel_button
 id center
@@ -2088,7 +2095,6 @@ id decelerate
 id decelerateAndComplete
 id decor_content_parent
 id default_activity_button
-id deleteProfileFragment
 id deltaRelative
 id design_bottom_sheet
 id design_menu_item_action_area
@@ -2130,6 +2136,7 @@ id editProfile_save_btn
 id edit_query
 id edit_text_message
 id edit_text_title
+id editprofile_nameTextbox
 id elastic
 id end
 id endToStart
@@ -2219,7 +2226,6 @@ id login_activity_register_btn
 id login_activity_text_view
 id login_activity_text_view1
 id login_facebook_button
-id map
 id masked
 id matchProfileFragment
 id matchProfile_aboutMe
@@ -2291,6 +2297,7 @@ id mtrl_picker_text_input_range_start
 id mtrl_picker_title_text
 id mtrl_view_tag_bottom_padding
 id multiply
+id myDate
 id nav_controller_view_tag
 id nav_graph
 id nav_host_fragment
@@ -2301,7 +2308,7 @@ id never_display
 id noScroll
 id none
 id normal
-id notificationFragment2
+id notificationFragment
 id notification_background
 id notification_main_column
 id notification_main_column_container
@@ -2338,6 +2345,7 @@ id radio
 id ratio
 id rectangles
 id recycler
+id register
 id register_about
 id register_activity_email_edit_text
 id register_activity_password
@@ -2345,6 +2353,7 @@ id register_activity_register_btn
 id register_activity_username
 id register_birthDate
 id register_btnChoosePhoto
+id register_btnDate
 id register_female_radiobutton
 id register_frag_city
 id register_gender_tv
@@ -2355,7 +2364,6 @@ id register_male_radiobutton
 id register_profileImageView
 id register_radiogroupGender
 id register_radiogroupLookingFor
-id request_ListActivity
 id requestlist_recyclerv
 id reverseSawtooth
 id right
@@ -2375,7 +2383,8 @@ id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
 id scrollable
-id searchFragment_btn
+id search
+id searchFragment
 id searchFragment_new
 id search_badge
 id search_bar
@@ -2447,6 +2456,8 @@ id textSpacerNoTitle
 id textStart
 id textTop
 id textView
+id textView2
+id textView3
 id textView_request
 id text_input_end_icon
 id text_input_error_icon
@@ -2556,6 +2567,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_calender
 layout activity_login
 layout activity_main
 layout activity_notification
@@ -2584,7 +2596,6 @@ layout design_navigation_menu
 layout design_navigation_menu_item
 layout design_text_input_end_icon
 layout design_text_input_start_icon
-layout fragment_delete_profile
 layout fragment_edit_profile
 layout fragment_match_profile
 layout fragment_nearby
@@ -2685,6 +2696,7 @@ layout text_view_without_line_height
 menu bottom_navigation
 menu profile_menu
 mipmap ic_launcher
+mipmap ic_launcher_foreground
 mipmap ic_launcher_round
 navigation nav_graph
 plurals mtrl_badge_content_description
