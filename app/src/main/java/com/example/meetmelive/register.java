@@ -1,10 +1,5 @@
 package com.example.meetmelive;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,6 +10,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.meetmelive.model.ModelFirebase;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,13 +34,16 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
     Button register, choosePhoto;
     EditText dateB;
     String currentLocation;
-
     ImageView profilePic;
 
     Uri profileImageUri = null;
     Uri pic1 = null;
     Uri pic2 = null;
     Uri pic3 = null;
+
+    //Chat
+    ChatActivity chat;
+    //Chat
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,11 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                         });
             }
         });
+
+        //Chat
+        // Load chat room contents
+        //chat.displayChatMessages();
+        //Chat
     }
 
     @Override

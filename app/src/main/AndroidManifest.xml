@@ -13,6 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeetMeLive">
+        <activity android:name=".ChatActivity"></activity>
         <activity android:name=".login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchActivity" />
-        <activity android:name=".MainActivity"> </activity>
+        <activity android:name=".MainActivity"></activity>
         <activity android:name=".register" />
 
         <meta-data

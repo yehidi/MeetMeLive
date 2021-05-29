@@ -1,26 +1,22 @@
 package com.example.meetmelive;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.example.meetmelive.adapter.GridAdapter;
 import com.example.meetmelive.model.DataModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,12 +67,11 @@ public class Nearby extends Fragment {
                             // progress bar and adding our data in a list.
                             List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                             for (DocumentSnapshot d : list) {
-
                                 // after getting this list we are passing
                                 // that list to our object class.
                                 DataModel dataModel = d.toObject(DataModel.class);
 
-                                // after getting data from Firebase
+                                // after getting data from FirebaseHow to Create an Android Ch
                                 // we are storing that data in our array list
                                 dataModelArrayList.add(dataModel);
                             }

@@ -1,9 +1,5 @@
 package com.example.meetmelive;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.Navigation;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,13 +8,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.meetmelive.model.ModelFirebase;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,10 +27,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.concurrent.Executor;
-
 import static com.example.meetmelive.model.ModelFirebase.firebaseAuth;
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class login extends AppCompatActivity {
 
@@ -41,6 +36,9 @@ public class login extends AppCompatActivity {
     CallbackManager mCallbackManager;
     LoginButton loginButton;
     FirebaseAuth mAuth;
+    //Chat
+    ChatActivity chat;
+    //Chat
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,7 +112,14 @@ public class login extends AppCompatActivity {
                 Log.d("TAG", "facebook:onError", error);
             }
         });
+
+        //Chat
+        // Load chat room contents
+        //chat.displayChatMessages();
+        //Chat
+
     }
+
 
     public void handleFacebookAccessToken(AccessToken token) {
         Log.d("TAG", "handleFacebookAccessToken:" + token);
