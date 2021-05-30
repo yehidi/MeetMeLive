@@ -4,12 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
-public class User implements Serializable{
+public class User{
 
     // static variable single_instance of type Singleton
     private static User MyUser = null;
@@ -23,16 +22,32 @@ public class User implements Serializable{
     private String sex;
     private String preferSex;
     private String dateOfBirth;
+    private String age;
     private String profileImageUrl;
     private String pic1;
     private String pic2;
     private String pic3;
+    public String currentLocation="";
+//    public Boolean isMatch=false;
+
+//    public Boolean isMatch() {
+//        return isMatch;
+//    }
+//
+//    public void setMatch(boolean match) {
+//        isMatch = match;
+//    }
+
+
     private double latitude;
     private double longtitude;
 
     public User() {
     }
 
+    public User(String username){
+        this.username = username;
+    }
     public User(String sex, String preferSex, String user_id, String email, String username, String city, String description, String dateOfBirth, String profileImageUrl, String pic1, String pic2, String pic3) {
         this.sex = sex;
         this.user_id = user_id;
@@ -42,6 +57,7 @@ public class User implements Serializable{
         this.description = description;
         this.preferSex = preferSex;
         this.dateOfBirth = dateOfBirth;
+        this.age = age;
         this.profileImageUrl = profileImageUrl;
         this.pic1 = pic1;
         this.pic2 = pic2;
@@ -50,6 +66,48 @@ public class User implements Serializable{
         this.longtitude = longtitude;
     }
 
+    public Map<String, Object> toMap() {
+        Map<String,Object> data = new HashMap<>();
+        data.put("profileImageUrl", profileImageUrl);
+        data.put("username", username);
+        data.put("email", email);
+        data.put("gender", sex);
+        data.put("looking for", preferSex);
+        data.put("current Location",null);
+        data.put("dateOfBirth",dateOfBirth);
+//        data.put("age", age);
+        data.put("description",description);
+//        data.put("isMatch", false);
+        data.put("city",city);
+        data.put("pic1", pic1);
+        data.put("pic2", pic2);
+        data.put("pic3", pic3);
+        return data;
+    }
+
+    public void fromMap(Map<String, Object> map) {
+        setProfileImageUrl((String) map.get("profileImageUrl"));
+        setUsername((String) map.get("username"));
+        setEmail((String) map.get("email"));
+        setSex((String) map.get("gender"));
+        setPreferSex((String) map.get("looking for"));
+        currentLocation=(String) map.get("current Location");
+        setDateOfBirth((String) map.get("dateOfBirth"));
+//        setAge((String) map.get("age"));
+        setDescription((String) map.get("description"));
+        setCity((String) map.get("city"));
+        setPic1((String) map.get("pic1"));
+        pic2=(String) map.get("pic2");
+        pic3=(String) map.get("pic3");
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
     public double getLatitude() {
         return latitude;
     }

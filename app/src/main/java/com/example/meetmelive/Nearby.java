@@ -1,5 +1,6 @@
 package com.example.meetmelive;
 
+import android.app.Notification;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,11 +15,13 @@ import android.widget.Toast;
 
 import com.example.meetmelive.adapter.GridAdapter;
 import com.example.meetmelive.model.DataModel;
+import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -39,7 +42,9 @@ public class Nearby extends Fragment {
     GridView gridadapter;
     ArrayList<DataModel> dataModelArrayList;
     FirebaseFirestore db;
+    FirebaseAuth mAuth;
     View view;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +52,11 @@ public class Nearby extends Fragment {
         super.onCreate(savedInstanceState);
         //  return inflater.inflate(R.layout.fragment_nearby, container, false);  activiygrid
         view = inflater.inflate(R.layout.fragment_nearby, container, false);
+        Log.d("Nearby", "Birthday is " + User.getInstance().getDateOfBirth());
+
+        mAuth = FirebaseAuth.getInstance();
+
+//        ModelFirebase.setUserAppData(User.getInstance().getEmail());
 
         // below line is use to initialize our variables.
         gridadapter = view.findViewById(R.id.idGVCourses);
@@ -65,33 +75,65 @@ public class Nearby extends Fragment {
     private void loadDatainGridView() {
 
         db.collection("userProfileData")
-                .whereEqualTo("gender", User.getInstance().getPreferSex())
+//                .whereEqualTo("gender", User.getInstance().getPreferSex())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                // after getting this list we are passing
-                                // that list to our object class.
-                                DataModel dataModel = document.toObject(DataModel.class);
+                                Log.d("*** COLLECTION *** ", "GENDER IS " +  document.get("gender") +
+                                        "PREFER SEX IS " + User.getInstance().getPreferSex());
 
-                                // after getting data from Firebase
-                                // we are storing that data in our array list
-                                dataModelArrayList.add(dataModel);
-                                Log.d("TAG", document.getId() + " => " + document.getData());
-
+                                if (document.get("gender").equals(User.getInstance().getPreferSex()))
+                                    dataModelArrayList.add(document.toObject(DataModel.class));
                             }
 
-                            Log.d("ARRAY LIST", "" + dataModelArrayList);
-
-                            GridAdapter adapter = new GridAdapter(getActivity(), dataModelArrayList);
+                            GridAdapter adapter = new GridAdapter(getContext(), dataModelArrayList);
                             gridadapter.setAdapter(adapter);
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }
                     }
                 });
+
+//        db.collection("userProfileData")
+////                .whereEqualTo("gender", User.getInstance().getPreferSex())
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                // after getting this list we are passing
+//                                // that list to our object class.
+//                                DataModel dataModel = document.toObject(DataModel.class);
+//
+//                                if(User.getInstance().getPreferSex().equals("Female") && document.get("gender").equals("Female")) {
+//                                    dataModel = document.toObject(DataModel.class);
+//                                    dataModelArrayList.add(dataModel);
+//                                }
+//
+//                                if(User.getInstance().getPreferSex().equals("Male") && document.get("gender").equals("Male")) {
+//                                    dataModel = document.toObject(DataModel.class);
+//                                    dataModelArrayList.add(dataModel);
+//                                }
+//                                // after getting data from Firebase
+//                                // we are storing that data in our array list
+////                                dataModelArrayList.add(dataModel);
+//                                Log.d("TAG", document.getId() + " => " + document.getData());
+//
+//                            }
+//
+//                            Log.d("ARRAY LIST", "" + dataModelArrayList);
+//
+//                            GridAdapter adapter = new GridAdapter(getActivity(), dataModelArrayList);
+//                            gridadapter.setAdapter(adapter);
+//                        } else {
+//                            Log.d("TAG", "Error getting documents: ", task.getException());
+//                        }
+//                    }
+//                });
     }
 }
 

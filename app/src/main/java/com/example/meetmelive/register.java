@@ -19,6 +19,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.meetmelive.model.ModelFirebase;
+import com.example.meetmelive.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -76,6 +77,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
 
         int age = getAge(dateOfBirth.getYear(),dateOfBirth.getMonth(),dateOfBirth.getDayOfMonth());
         Log.d("REGISTER", "AGE IS " + age);
+        User.getInstance().setAge(String.valueOf(age));
 
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +104,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.YEAR, dateOfBirth.getYear());
                 cal.set(Calendar.MONTH, dateOfBirth.getMonth());

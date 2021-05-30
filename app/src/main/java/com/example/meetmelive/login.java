@@ -34,6 +34,7 @@ import com.squareup.picasso.Picasso;
 import java.util.concurrent.Executor;
 
 import static com.example.meetmelive.model.ModelFirebase.firebaseAuth;
+import static com.example.meetmelive.model.ModelFirebase.userID;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class login extends AppCompatActivity {
@@ -165,11 +166,11 @@ public class login extends AppCompatActivity {
 
             if (user.getPhotoUrl() != null){
                 String profilePic = user.getPhotoUrl().toString();
-                ModelFirebase.uploadUserData(user.getDisplayName(), user.getEmail(), "", "", "", "", "", user.getPhotoUrl());
-                User.getInstance().setProfileImageUrl(profilePic);
+                User.getInstance().setProfileImageUrl("https://graph.facebook.com/" + user.getUid());
                 User.getInstance().setUsername(user.getDisplayName());
                 User.getInstance().setEmail(user.getEmail());
                 User.getInstance().setUser_id(user.getUid());
+
 
             }
             startActivity(new Intent(login.this, MainActivity.class));

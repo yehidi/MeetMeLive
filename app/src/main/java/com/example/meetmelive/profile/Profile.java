@@ -1,5 +1,6 @@
-package com.example.meetmelive;
+package com.example.meetmelive.profile;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -17,11 +18,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.meetmelive.CalculateAge;
+import com.example.meetmelive.NotificationHelper;
+import com.example.meetmelive.R;
+import com.example.meetmelive.login;
 import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
 import com.facebook.AccessToken;
@@ -65,6 +71,8 @@ public class Profile<OnOption> extends Fragment {
     ImageSlider imageSlider;//the pictures
     View view;
     Button connection, test;
+    int age;
+    NotificationHelper notifcation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,16 +91,16 @@ public class Profile<OnOption> extends Fragment {
         test = view.findViewById(R.id.profile_test);
 
         userId = FirebaseAuth.getInstance().getUid();
-        Log.d("Profile", "Username is " + User.getInstance().getUsername() +  "userId is" + userId);
+        Log.d("Profile", "Date Of Birth is " + User.getInstance().getDateOfBirth() +  "userId is" + userId);
 
         username.setText(User.getInstance().getUsername());
         city.setText(User.getInstance().getCity());
 
-        Log.d("Profile", "dateOfBirth is " + User.getInstance().getDateOfBirth());
-//        CalculateAge cal = new CalculateAge(User.getInstance().getDateOfBirth());
-//        int age = cal.getAge();
-//        Log.d("TAG", "AGE IS " + age);
-//        dateOfBirth.setText(String.valueOf(age));
+        String[] splitDOB = User.getInstance().getDateOfBirth().split("-");
+        Log.d("Profile", "splitDOB is" + splitDOB);
+        age = getAge(Integer.parseInt(splitDOB[2]),Integer.parseInt(splitDOB[0]),Integer.parseInt(splitDOB[1]));
+        Log.d("TAG", "AGE IS " + age);
+        dateOfBirth.setText(String.valueOf(age));
 
         description.setText(User.getInstance().getDescription());
 
@@ -126,17 +134,34 @@ public class Profile<OnOption> extends Fragment {
         connection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_Profile_to_requests);
             }
         });
 
         //slides pictures
         imageSlider= view.findViewById(R.id.matchProfile_slider);
         List<SlideModel> slideModels = new ArrayList<>();
-        slideModels.add(new SlideModel("https://i.pinimg.com/originals/cf/8a/11/cf8a11b44a748c4ce286fb020f920ada.png"));
-        slideModels.add(new SlideModel("https://i.pinimg.com/originals/46/da/e5/46dae512e375bee2664a025507da8795.jpg"));
-        slideModels.add(new SlideModel("https://i.pinimg.com/564x/23/37/db/2337db3ed61500b113e0db86d0fbf9b8.jpg"));
+        if(User.getInstance().getPic1()!=null && !User.getInstance().getPic1().equals("")){
+            slideModels.add(new SlideModel(User.getInstance().getPic1()));
+        }
+        if(User.getInstance().getPic2()!=null  && !User.getInstance().getPic2().equals("")){
+            slideModels.add(new SlideModel(User.getInstance().getPic2()));
+        }
+        if(User.getInstance().getPic3()!=null  && !User.getInstance().getPic3().equals("")){
+            slideModels.add(new SlideModel(User.getInstance().getPic3()));
+        }
         imageSlider.setImageList(slideModels,true);
+
+        notifcation = new NotificationHelper(getContext());
+
+        sendNotification();
+
         return view;
+    }
+
+    private void sendNotification() {
+        NotificationCompat.Builder nb = notifcation.getChannel1Notification("BLA BLA", "WOW WOW");
+        notifcation.getManager().notify(1, nb.build());
     }
 
     @Override
@@ -155,10 +180,28 @@ public class Profile<OnOption> extends Fragment {
             case R.id.menu_signOut: {
                 ModelFirebase.signOut();
                 LoginManager.getInstance().logOut();
-                startActivity(new Intent(getActivity(),login.class));
+                startActivity(new Intent(getActivity(), login.class));
             }
             default:
                return super.onOptionsItemSelected(item);
         }
     }
+
+    public int getAge(int year, int month, int day)
+    {
+        Calendar dateOfBirth = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        dateOfBirth.set(year, month, day);
+
+        int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dateOfBirth.get(Calendar.DAY_OF_YEAR))
+        {
+            age--;
+        }
+
+        return age;
+    }
+
 }
