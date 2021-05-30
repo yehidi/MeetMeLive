@@ -2,6 +2,7 @@ package com.example.meetmelive;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,6 +10,7 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +18,23 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
+
+import com.example.meetmelive.model.ModelFirebase;
 
 import java.util.List;
 import java.util.Locale;
 
 
 public class Search extends Fragment implements LocationListener {
+
+    public static final int DEFAULT_UPDATE_INTERVAL= 5; // need to be 30
+
+
     Button button_location;
     Button button_search;
     TextView textView_location;
@@ -39,7 +48,6 @@ public class Search extends Fragment implements LocationListener {
         super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.fragment_search, container, false);
         //added
-
 
         textView_location =view.findViewById(R.id.text_location);
         button_location = view.findViewById(R.id.button_location);
@@ -60,7 +68,7 @@ public class Search extends Fragment implements LocationListener {
             @Override
             public void onClick(View v) {
                 //create method
-//                getLocation();
+                getLocation();
             }
         });
 
@@ -78,18 +86,23 @@ public class Search extends Fragment implements LocationListener {
 //added
 
 
-
+        getLocation();
 
         return view;
-
     }
 
     @SuppressLint("MissingPermission")
     private void getLocation() {
-
         try {
-//            locationManager = (LocationManager) getApplicationContext().getSystemService(LOCATION_SERVICE);
-//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,5000,5,SearchActivity.this);
+                        //fragment
+            locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000* DEFAULT_UPDATE_INTERVAL, 0, new LocationListener() {
+                @Override
+                public void onLocationChanged(@NonNull Location location) {
+                    Log.d("location","changed location: "+location.getLatitude()+ " longtitude: "+ location.getLongitude());
+                    ModelFirebase.updateLocation(location);
+                }
+            });
 
         }catch (Exception e){
             e.printStackTrace();

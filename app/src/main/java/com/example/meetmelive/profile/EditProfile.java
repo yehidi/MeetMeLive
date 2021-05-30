@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.example.meetmelive.MyApplication;
 import com.example.meetmelive.R;
 import com.example.meetmelive.model.Model;
+import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
 import com.example.meetmelive.model.UserDao;
 import com.google.android.gms.tasks.Continuation;
@@ -91,8 +92,6 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
                 User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
                 User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,User.getInstance().pic2, User.getInstance().pic3);
 
-        Log.d("initial","user"+User.getInstance());
-
 
         profilePic= view.findViewById(R.id.editProfile_profile_im);
         if(User.getInstance().profilePic!=null){
@@ -133,7 +132,7 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
         pic1 = view.findViewById(R.id.editProfile_img1);
         pic2 = view.findViewById(R.id.editProfile_img2);
         pic3 = view.findViewById(R.id.editProfile_img3);
-
+        Log.d("pic3","before pic3" + User.getInstance().pic3);
 
         pic1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,6 +158,7 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
                 picType=3;
                 Log.d("Photos", "photo: " + picType);
                 chooseImageFromGallery();
+                Log.d("pic3","pic3"+User.getInstance().pic3);
             }
         });
         if(User.getInstance().pic1!=null && !User.getInstance().pic1.equals("")){
@@ -317,18 +317,20 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
 
                             if(nameImage.contains("pic1")){
                                // Toast.makeText(MyApplication.context, "pic 1", Toast.LENGTH_SHORT).show();
-                                getImageFromFireBase("pic1");
-                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
-                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
-                                        User.getInstance().city,User.getInstance().profilePic,task.getResult().toString(),User.getInstance().pic2,User.getInstance().pic3);
-                                Model.instance.updateUserProfile(currentUser);
+                                ModelFirebase.uploadImageToFirebase("picture 1",task.getResult().toString());
+//                                getImageFromFireBase("pic1");
+//                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
+//                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
+//                                        User.getInstance().city,User.getInstance().profilePic,task.getResult().toString(),User.getInstance().pic2,User.getInstance().pic3);
+//                                Model.instance.updateUserProfile(currentUser);
                             }else if(nameImage.contains("pic2")){
-                                getImageFromFireBase(nameImage);
-                                //Toast.makeText(MyApplication.context, "pic 2", Toast.LENGTH_SHORT).show();
-                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
-                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
-                                        User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,task.getResult().toString(),User.getInstance().pic3);
-                                Model.instance.updateUserProfile(currentUser);
+                                ModelFirebase.uploadImageToFirebase("picture 2",task.getResult().toString());
+//                                getImageFromFireBase(nameImage);
+//                                //Toast.makeText(MyApplication.context, "pic 2", Toast.LENGTH_SHORT).show();
+//                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
+//                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
+//                                        User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,task.getResult().toString(),User.getInstance().pic3);
+//                                Model.instance.updateUserProfile(currentUser);
                             }else if(nameImage.contains("pic3")){
                                 getImageFromFireBase(nameImage);
                                // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();

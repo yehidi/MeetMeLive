@@ -2,6 +2,7 @@ package com.example.meetmelive.model;
 
 import android.content.ContentResolver;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -76,7 +78,7 @@ public class ModelFirebase {
 
     public static void registerUserAccount(final String name, String password, final String email,
                                            final String gender, final String lookingForGender,final String dateB,
-                                           final String currentLocation ,final String description ,final String city,final Uri profileImage,
+                                           final String description ,final String city,final Uri profileImage,
                                            final String image1,final String image2,final String image3 ,Listener<Boolean> listener){
 
         if (firebaseAuth.getCurrentUser() != null){
@@ -90,7 +92,7 @@ public class ModelFirebase {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
-                    uploadUserData(name, email, gender, lookingForGender,dateB,currentLocation,description,city,profileImage,image1,image2,image3);
+                    uploadUserData(name, email, gender, lookingForGender,dateB,description,city,profileImage,image1,image2,image3);
                     setUserAppData(email);
 
                     //add user data to local DB
@@ -118,7 +120,7 @@ public class ModelFirebase {
         }
     }
 
-    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender,final String dateB,final String currentLocation,final String description ,final String city, Uri profileImage,String image1,String image2,String image3){
+    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender,final String dateB,final String description ,final String city, Uri profileImage,String image1,String image2,String image3){
 
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
@@ -148,11 +150,13 @@ public class ModelFirebase {
                         data.put("email", email);
                         data.put("looking for", lookingForGender);
                         data.put("gender", gender);
-                        data.put("current Location",null);
                         data.put("birthDate",dateB);
+                        data.put("looking For Age","18-24");// need to be fixed
                         data.put("info",description);
                         data.put("city",city);
-
+                        data.put("latitude",0.0);//need to be fixed
+                        data.put("longtitude",0.0);//need to be fixed
+                        data.put("last Updated Location", FieldValue.serverTimestamp());
                         data.put("picture 1", "");
                         data.put("picture 2", "");
                         data.put("picture 3", "");
@@ -194,8 +198,10 @@ public class ModelFirebase {
                     User.getInstance().gender = (String) task.getResult().get("gender");
                     User.getInstance().lookingForGender = (String) task.getResult().get("looking for");
                     User.getInstance().birthday= (String) task.getResult().get("birthDate");
-                    User.getInstance().currentLocation= (String) task.getResult().get("current Location");
+                    User.getInstance().lookingForAge= (String) task.getResult().get("looking For Age");
                     User.getInstance().city= (String) task.getResult().get("city");
+                    User.getInstance().latitude= 0.0;
+                    User.getInstance().longtitude= 0.0;
                     User.getInstance().pic1= (String) task.getResult().get("picture 1");
                     User.getInstance().pic2= (String) task.getResult().get("picture 2");
                     User.getInstance().pic3= (String) task.getResult().get("picture 3");
@@ -227,16 +233,16 @@ public class ModelFirebase {
     }
 
 
-    public static void trying(){
+    public static void updateLocation(Location location){
         DocumentReference washingtonRef = db.collection("userProfileData").document(User.getInstance().email);
 
-     //   Log.d("pull data", "document: "+washingtonRef.get());
+        //update latitude
         washingtonRef
-                .update("current Location", "1")
+                .update("latitude",  location.getLatitude())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("TAG", "DocumentSnapshot successfully updated!");
+                        Log.d("location", "Location latitude successfully updated!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -245,6 +251,24 @@ public class ModelFirebase {
                         Log.w("TAG", "Error updating document", e);
                     }
                 });
+
+        //update longtitude
+        washingtonRef
+                .update("longtitude",  location.getLongitude())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("location", "Location longtitude successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error updating document", e);
+                    }
+                });
+        //last Updated Location
+        washingtonRef.update("last Updated Location",FieldValue.serverTimestamp());
     }
 
 
@@ -272,6 +296,26 @@ public class ModelFirebase {
                 });
             }
         });
+    }
+
+    public static void uploadImageToFirebase(String picName, String url){
+        DocumentReference washingtonRef = db.collection("userProfileData").document(User.getInstance().email);
+
+        //update latitude
+        washingtonRef
+                .update(picName,url)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("picture", "picture"+picName+" successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error updating document", e);
+                    }
+                });
     }
 
     public static String getExtension(Uri uri){
@@ -335,7 +379,7 @@ public class ModelFirebase {
                 .document(user.email).set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Log.d("TAG", "********* Recipe remove Successfully ************");
+                Log.d("TAG", "********* User removed Successfully ************");
             }
 
         });

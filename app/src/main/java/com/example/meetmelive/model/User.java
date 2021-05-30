@@ -6,7 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.sql.Timestamp;
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FieldValue;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -24,21 +26,20 @@ public class User {
     public String name = "";
     public String description="";// about me
     public String birthday;
+    public String lookingForAge;
     public String gender="";
     public String lookingForGender ="";
-    public String currentLocation="";
     public String email = "";
-    public long lastUpdated;
     public String password;
     public String city;
-   // List<String> listNotification;// need to be tested
-    //List<ChatMessage> listFriends;
+    public Double latitude;
+    public Double longtitude;
+    public long lastUpdatedLocation;
     public String profilePic;
     public String pic1;
     public String pic2;
     public String pic3;
 
-    public boolean isActive;
 
     public User()
     {
@@ -47,18 +48,18 @@ public class User {
         password = null;
         city = null;
         birthday=null;
+        lookingForAge="18-24";
         id = null;
         description=null;
         gender=null;
         lookingForGender =null;
-        currentLocation=null;
-//        listNotification=null;
-//        listFriends=null;
+        latitude = 0.0;
+        longtitude = 0.0;
+        lastUpdatedLocation = 0;
         profilePic=null;
         pic1=null;
         pic2=null;
         pic3=null;
-        isActive=true;
     }
 
 
@@ -71,8 +72,12 @@ public class User {
         data.put("looking for", lookingForGender);
         data.put("current Location",null);
         data.put("birthDate",birthday);
+        data.put("looking For Age",lookingForAge);
         data.put("info",description);
         data.put("city",city);
+        data.put("latitude",latitude);
+        data.put("longtitude",longtitude);
+        data.put("last Updated Location",lastUpdatedLocation);
         data.put("picture 1", pic1);
         data.put("picture 2", pic2);
         data.put("picture 3", pic3);
@@ -85,10 +90,14 @@ public class User {
         email=(String) map.get("email");
         gender=(String) map.get("gender");
         lookingForGender=(String) map.get("looking for");
-        currentLocation=(String) map.get("current Location");
         birthday=(String) map.get("birthDate");
+        lookingForAge= (String) map.get("looking For Age");
         description=(String) map.get("info");
         city=(String) map.get("city");
+        latitude= (Double) map.get("latitude");
+        longtitude= (Double) map.get("longtitude");
+        Timestamp ts = (Timestamp) map.get("last Updated Location");
+        lastUpdatedLocation=ts.getSeconds();
         pic1=(String) map.get("picture 1");
         pic2=(String) map.get("picture 2");
         pic3=(String) map.get("picture 3");
@@ -107,8 +116,6 @@ public class User {
         this.pic1=pic1;
         this.pic2=pic2;
         this.pic3=pic3;
-        this.isActive=true;
-//        lastUpdated=FieldValue.serverTimestamp();
     }
 
     // create instance of Singleton class

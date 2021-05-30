@@ -2,8 +2,12 @@ package com.example.meetmelive.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -57,6 +61,7 @@ public class login extends AppCompatActivity {
             startActivity(new Intent(login.this, MainActivity.class));
             finish();
         }
+
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -36,7 +36,6 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
     RadioGroup radioGroupGender, radioGroupLookingFor;
     Button register, choosePhoto;
     EditText dateB;
-    String currentLocation;
 
     ImageView profilePic;
 
@@ -81,7 +80,6 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                         gender,
                         lookingForGender,
                         dateB.getText().toString(),
-                        currentLocation,
                         description.getText().toString(),
                         city.getText().toString(),
                         profileImageUri,
