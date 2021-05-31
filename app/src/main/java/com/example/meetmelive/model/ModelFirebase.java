@@ -1,16 +1,18 @@
 package com.example.meetmelive.model;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.graphics.Bitmap;
-import android.location.Location;
 import android.net.Uri;
-import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.webkit.MimeTypeMap;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.MyApplication;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,6 +21,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -35,6 +40,8 @@ import com.facebook.appevents.AppEventsLogger;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -76,27 +83,33 @@ public class ModelFirebase {
         }
     }
 
-    public static void registerUserAccount(final String name, String password, final String email,
-                                           final String gender, final String lookingForGender,final String dateB,
-                                           final String description ,final String city,final Uri profileImage,
-                                           final String image1,final String image2,final String image3 ,Listener<Boolean> listener){
+
+    //check if needed to add latitude and longtitude (igal)
+
+    public static void registerUserAccount(String email, final String username,
+                                           final String city, final String description,final String gender,
+                                           final String lookingForGender, final String dateOfBirth, final Uri imageUri,
+                                           final Listener<Boolean> listener){
 
         if (firebaseAuth.getCurrentUser() != null){
             firebaseAuth.signOut();
         }
         if (firebaseAuth.getCurrentUser() == null &&
-                name != null && !name.equals("") &&
+                username != null && !username.equals("") &&
                 password != null && !password.equals("") &&
-                email != null && !email.equals("")) {
+                email != null && !email.equals("") &&
+                imageUri != null){
             firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
-                    uploadUserData(name, email, gender, lookingForGender,dateB,description,city,profileImage,image1,image2,image3);
+                    uploadUserData(email,username,city,description, gender, lookingForGender, dateOfBirth,imageUri);
+
                     setUserAppData(email);
 
                     //add user data to local DB
-                    User user =  new User(email, name, dateB, description, gender, lookingForGender, city, User.getInstance().profilePic, "","","");
+                    User user =  new User(userId,email, username, city, description, gender, lookingForGender, dateOfBirth,
+                                        User.getProfileImageUrl(),"","","",0.0,0.0, FieldValue.serverTimestamp());
                     new AsyncTask<String, String, String>() {
                         @Override
                         protected String doInBackground(String... strings) {
@@ -120,16 +133,15 @@ public class ModelFirebase {
         }
     }
 
-    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender,final String dateB,final String description ,final String city, Uri profileImage,String image1,String image2,String image3){
-
+    private static void uploadUserData(final String email,final String username,final String city, final String desctiption, final String gender, final String lookingForGender, Uri imageUri){
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
-        if (profileImage != null){
-            String imageName = username + "." + getExtension(profileImage);
+        if (imageUri != null){
+            String imageName = username + "." + getExtension(imageUri);
             final StorageReference imageRef = storageReference.child(imageName);
 
-            UploadTask uploadTask = imageRef.putFile(profileImage);
+            UploadTask uploadTask = imageRef.putFile(imageUri);
             uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                 @Override
                 public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
@@ -144,27 +156,29 @@ public class ModelFirebase {
                     if (task.isSuccessful()){
 
                         Map<String,Object> data = new HashMap<>();
-                        data.put("id",FirebaseAuth.getInstance().getCurrentUser().getUid());
-                        data.put("profileImageUrl", task.getResult().toString());
-                        data.put("username", username);
+                        data.put("userId",FirebaseAuth.getInstance().getCurrentUser().getUid());
                         data.put("email", email);
-                        data.put("looking for", lookingForGender);
-                        data.put("gender", gender);
-                        data.put("birthDate",dateB);
-                        data.put("looking For Age","18-24");// need to be fixed
-                        data.put("info",description);
+                        data.put("username", username);
                         data.put("city",city);
+                        data.put("description",description);
+                        data.put("gender", gender);
+                        data.put("lookingForGender", lookingForGender);
+                        data.put("dateOfBirth",dateOfBirth);
+                        data.put("profileImageUrl", task.getResult().toString());
+                        data.put("pic1", "");
+                        data.put("pic2", "");
+                        data.put("pic3", "");
                         data.put("latitude",0.0);//need to be fixed
                         data.put("longtitude",0.0);//need to be fixed
-                        data.put("last Updated Location", FieldValue.serverTimestamp());
-                        data.put("picture 1", "");
-                        data.put("picture 2", "");
-                        data.put("picture 3", "");
+                        data.put("lastUpdatedLocation", FieldValue.serverTimestamp());
+                        //data.put("looking For Age","18-24"); need to be fixed
 
                         db.collection("userProfileData").document(email).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                setUserAppData(email);
+                                if (firebaseAuth.getCurrentUser() != null){
+                                    firebaseAuth.signOut();
+                                }
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -185,27 +199,32 @@ public class ModelFirebase {
     }
 
     public static void setUserAppData(final String email){
-        FirebaseFirestore db = FirebaseFirestore.getInstance();;
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
         final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         db.collection("userProfileData").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){ ;
-                    User.getInstance().name = (String) task.getResult().get("username");
-                    User.getInstance().profilePic = (String) task.getResult().get("profileImageUrl");
-                    User.getInstance().description = (String) task.getResult().get("info");
+                    User.getInstance().id = firebaseAuth.getUid();
                     User.getInstance().email = email;
-                    User.getInstance().gender = (String) task.getResult().get("gender");
-                    User.getInstance().lookingForGender = (String) task.getResult().get("looking for");
-                    User.getInstance().birthday= (String) task.getResult().get("birthDate");
-                    User.getInstance().lookingForAge= (String) task.getResult().get("looking For Age");
+                    User.getInstance().username = (String) task.getResult().get("username");
                     User.getInstance().city= (String) task.getResult().get("city");
+                    User.getInstance().description = (String) task.getResult().get("description");
+                    User.getInstance().gender = (String) task.getResult().get("gender");
+                    User.getInstance().lookingForGender = (String) task.getResult().get("lookingForGender");
+                    User.getInstance().dateOfBirth= (String) task.getResult().get("dateOfBirth");
+                    User.getInstance().profileImageUrl = (String) task.getResult().get("profileImageUrl");
+                    User.getInstance().pic1= (String) task.getResult().get("pic1");
+                    User.getInstance().pic2= (String) task.getResult().get("pic2");
+                    User.getInstance().pic3= (String) task.getResult().get("pic3");
                     User.getInstance().latitude= 0.0;
                     User.getInstance().longtitude= 0.0;
-                    User.getInstance().pic1= (String) task.getResult().get("picture 1");
-                    User.getInstance().pic2= (String) task.getResult().get("picture 2");
-                    User.getInstance().pic3= (String) task.getResult().get("picture 3");
-                    User.getInstance().id = firebaseAuth.getUid();
+
+                    //need to be initialized (igal)
+                    //User.getInstance().lastUpdatedLocation=
+
+
+                    // User.getInstance().lookingForAge= (String) task.getResult().get("looking For Age");
                 }
             }
         });
@@ -357,14 +376,14 @@ public class ModelFirebase {
                     User.getInstance().profilePic=(String) document.getData().get("profileImageUrl");
                         Log.d("fire photo","profile  "+User.getInstance().profilePic);
                     }
-                    if(picName.contains("picture 1")){
-                        User.getInstance().pic1=(String) document.getData().get("picture 1");
+                    if(picName.contains("pic1")){
+                        User.getInstance().pic1=(String) document.getData().get("pic1");
                     }
-                    if(picName.contains("picture 2")){
-                        User.getInstance().pic2=(String) document.getData().get("picture 2");
+                    if(picName.contains("pic2")){
+                        User.getInstance().pic2=(String) document.getData().get("pic2");
                     }
-                    if(picName.contains("picture 3")){
-                        User.getInstance().pic3=(String) document.getData().get("picture 3");
+                    if(picName.contains("pic3")){
+                        User.getInstance().pic3=(String) document.getData().get("pic3");
                     }
                 }
             } else {
@@ -374,6 +393,7 @@ public class ModelFirebase {
     }
 
 
+    // need to be fixed (igal)
     public void deleteRecipeCollection(User user) {
         db.collection("Deleted Users")
                 .document(user.email).set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -392,6 +412,15 @@ public class ModelFirebase {
                 listener.onComplete();
             }
         });
+
+
+//    public static void checkUserSex() {
+//        db.collection("userProfileData").document().get
+//    }
+
+    public static void signOut(){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
     }
 
 }
