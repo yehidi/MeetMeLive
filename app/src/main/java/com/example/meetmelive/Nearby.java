@@ -65,7 +65,7 @@ public class Nearby extends Fragment {
     private void loadDatainGridView() {
 
         db.collection("userProfileData")
-                .whereEqualTo("gender", User.getInstance().getPreferSex())
+                .whereEqualTo("gender", User.getInstance().getLookingForGender())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override

@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.google.firebase.Timestamp;
 
 @Entity
 public class User implements Serializable{
@@ -61,13 +62,13 @@ public class User implements Serializable{
         this.pic3 = pic3;
         this.latitude = latitude;
         this.longtitude = longtitude;
-        this.lastUpdatedLocation;
+        this.lastUpdatedLocation=lastUpdatedLocation;
     }
 
 
     public Map<String, Object> toMap() {
         Map<String,Object> data = new HashMap<>();
-        userId=(String)("userId",userId);
+        data.put("userId",userId);
         data.put("email", email);
         data.put("username", username);
         data.put("city",city);
@@ -102,12 +103,139 @@ public class User implements Serializable{
         pic3=(String) map.get("pic3");
         latitude= (Double) map.get("latitude");
         longtitude= (Double) map.get("longtitude");
-        lastUpdatedLocation=ts.getSeconds();
         Timestamp ts = (Timestamp) map.get("lastUpdatedLocation");
+        lastUpdatedLocation=ts.getSeconds();
 //        lookingForAge= (String) map.get("looking For Age");
     }
 
+    public static User getMyUser() {
+        return MyUser;
+    }
 
+    public static void setMyUser(User myUser) {
+        MyUser = myUser;
+    }
+
+    @NonNull
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(@NonNull String userId) {
+        this.userId = userId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getLookingForGender() {
+        return lookingForGender;
+    }
+
+    public void setLookingForGender(String lookingForGender) {
+        this.lookingForGender = lookingForGender;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public String getPic1() {
+        return pic1;
+    }
+
+    public void setPic1(String pic1) {
+        this.pic1 = pic1;
+    }
+
+    public String getPic2() {
+        return pic2;
+    }
+
+    public void setPic2(String pic2) {
+        this.pic2 = pic2;
+    }
+
+    public String getPic3() {
+        return pic3;
+    }
+
+    public void setPic3(String pic3) {
+        this.pic3 = pic3;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLongtitude(Double longtitude) {
+        this.longtitude = longtitude;
+    }
+
+    public long getLastUpdatedLocation() {
+        return lastUpdatedLocation;
+    }
+
+    public void setLastUpdatedLocation(long lastUpdatedLocation) {
+        this.lastUpdatedLocation = lastUpdatedLocation;
+    }
 
     // create instance of Singleton class
     public static User getInstance()

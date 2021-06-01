@@ -5,7 +5,7 @@
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Near By" />
     <item
-        android:id="@+id/notificationFragment"
+        android:id="@+id/Requests"
         android:icon="@drawable/ic_baseline_notifications_24"
         android:title="Notifications" />
     <item

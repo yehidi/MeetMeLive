@@ -2,12 +2,15 @@ package com.example.meetmelive.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -82,20 +85,21 @@ public class GridAdapter extends ArrayAdapter<DataModel> {
 
                 //added
 
-                AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(v.getContext());
+                AlertDialog myAlertBuilder = new AlertDialog.Builder(v.getContext()).create();
 
                 //maya added new
                 Picasso.get().load(dataModel.getProfileImageUrl()).into(courseIV);
 
                 //maya added new
 
-                myAlertBuilder.setTitle("Hi");
-                myAlertBuilder.setMessage("Do You Want To Send A Request ?");
+                myAlertBuilder.setTitle("Send Request");
+                myAlertBuilder.setMessage(Html.fromHtml("Are you sure you want to send<br>a request to <b>" + dataModel.getUsername() + "</b>?"));
 
-                myAlertBuilder.setPositiveButton("yes, I Want To Send", new DialogInterface.OnClickListener() {
+                myAlertBuilder.setButton(AlertDialog.BUTTON_POSITIVE, "Yes, I want to send", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d("TAG", "NAME CLICK IS " + dataModel.getUsername());
+                        Log.d("GRID", "NAME CLICK IS " + dataModel.getUsername());
+                        Log.d("GRID", "NAME CLICK IS " + dataModel.getEmail());
 
                         FirebaseFirestore db = FirebaseFirestore.getInstance();
                         User user = new User();
@@ -107,28 +111,52 @@ public class GridAdapter extends ArrayAdapter<DataModel> {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful())
                                 {
-
                                 }
                             }
                         });
 
+//                        db.collection("userProfileData").document(User.getInstance().getEmail()).collection("like")
+//                                .document(dataModel.getEmail()).set(user).add(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful())
+//                                {
+//
+//                                }
+//                            }
+//                        });
 
-                        Toast.makeText(v.getContext(),"your Request sent" ,Toast.LENGTH_SHORT).show();
+
+
+
+                        Toast.makeText(v.getContext(),"Your Request has Sent from " + User.getInstance().getUsername() + "to " + dataModel.getUsername() ,Toast.LENGTH_SHORT).show();
 
                     }
                 });
 
-                myAlertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                myAlertBuilder.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(v.getContext(),"you clicked no", Toast.LENGTH_SHORT).show();
 
                     }
                 });
 
+                ImageView image = new ImageView(getContext());
+                if (dataModel.getProfileImageUrl() != null)
+                    Picasso.get().load(dataModel.getProfileImageUrl()).noPlaceholder().into(image);
+                image.setAdjustViewBounds(true);
+                image.setMaxHeight(300);
+                image.setMaxWidth(300);
+                myAlertBuilder.setView(image);
                 myAlertBuilder.show();
 
-                //added
+                Button btnPositive = myAlertBuilder.getButton(AlertDialog.BUTTON_POSITIVE);
+                Button btnNegative = myAlertBuilder.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+                layoutParams.weight = 5;
+                btnPositive.setLayoutParams(layoutParams);
+                btnNegative.setLayoutParams(layoutParams);
             }
         });
         return listitemView;

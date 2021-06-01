@@ -1,13 +1,12 @@
 package com.example.meetmelive.model;
 
 import android.content.ContentResolver;
-import android.content.Context;
 import android.graphics.Bitmap;
+import android.location.Location;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.util.Log;
+import android.os.AsyncTask;
 import android.webkit.MimeTypeMap;
-import android.widget.DatePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -86,7 +85,7 @@ public class ModelFirebase {
 
     //check if needed to add latitude and longtitude (igal)
 
-    public static void registerUserAccount(String email, final String username,
+    public static void registerUserAccount(String email, final String username, final String password,
                                            final String city, final String description,final String gender,
                                            final String lookingForGender, final String dateOfBirth, final Uri imageUri,
                                            final Listener<Boolean> listener){
@@ -104,12 +103,11 @@ public class ModelFirebase {
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
                     uploadUserData(email,username,city,description, gender, lookingForGender, dateOfBirth,imageUri);
-
                     setUserAppData(email);
 
                     //add user data to local DB
-                    User user =  new User(userId,email, username, city, description, gender, lookingForGender, dateOfBirth,
-                                        User.getProfileImageUrl(),"","","",0.0,0.0, FieldValue.serverTimestamp());
+                    User user =  new User(firebaseAuth.getUid(),email, username, city, description, gender, lookingForGender, dateOfBirth,
+                                        User.getInstance().getProfileImageUrl(),"","","",0.0,0.0, User.getInstance().getLastUpdatedLocation());
                     new AsyncTask<String, String, String>() {
                         @Override
                         protected String doInBackground(String... strings) {
@@ -133,7 +131,7 @@ public class ModelFirebase {
         }
     }
 
-    private static void uploadUserData(final String email,final String username,final String city, final String desctiption, final String gender, final String lookingForGender, Uri imageUri){
+    private static void uploadUserData(final String email,final String username,final String city, final String desctiption, final String gender, final String lookingForGender, final String dateOfBirth, Uri imageUri){
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
@@ -160,7 +158,7 @@ public class ModelFirebase {
                         data.put("email", email);
                         data.put("username", username);
                         data.put("city",city);
-                        data.put("description",description);
+                        data.put("description",desctiption);
                         data.put("gender", gender);
                         data.put("lookingForGender", lookingForGender);
                         data.put("dateOfBirth",dateOfBirth);
@@ -205,7 +203,7 @@ public class ModelFirebase {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){ ;
-                    User.getInstance().id = firebaseAuth.getUid();
+                    User.getInstance().userId = firebaseAuth.getUid();
                     User.getInstance().email = email;
                     User.getInstance().username = (String) task.getResult().get("username");
                     User.getInstance().city= (String) task.getResult().get("city");
@@ -219,10 +217,6 @@ public class ModelFirebase {
                     User.getInstance().pic3= (String) task.getResult().get("pic3");
                     User.getInstance().latitude= 0.0;
                     User.getInstance().longtitude= 0.0;
-
-                    //need to be initialized (igal)
-                    //User.getInstance().lastUpdatedLocation=
-
 
                     // User.getInstance().lookingForAge= (String) task.getResult().get("looking For Age");
                 }
@@ -287,7 +281,7 @@ public class ModelFirebase {
                     }
                 });
         //last Updated Location
-        washingtonRef.update("last Updated Location",FieldValue.serverTimestamp());
+        washingtonRef.update("lastUpdatedLocation",FieldValue.serverTimestamp());
     }
 
 
@@ -373,17 +367,17 @@ public class ModelFirebase {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     if(picName.contains("profileImageUrl")){
-                    User.getInstance().profilePic=(String) document.getData().get("profileImageUrl");
-                        Log.d("fire photo","profile  "+User.getInstance().profilePic);
+                    User.getInstance().setProfileImageUrl((String) document.getData().get("profileImageUrl"));
+                        Log.d("fire photo","profile  "+User.getInstance().getProfileImageUrl());
                     }
                     if(picName.contains("pic1")){
-                        User.getInstance().pic1=(String) document.getData().get("pic1");
+                        User.getInstance().setPic1((String) document.getData().get("pic1"));
                     }
                     if(picName.contains("pic2")){
-                        User.getInstance().pic2=(String) document.getData().get("pic2");
+                        User.getInstance().setPic2((String) document.getData().get("pic2"));
                     }
                     if(picName.contains("pic3")){
-                        User.getInstance().pic3=(String) document.getData().get("pic3");
+                        User.getInstance().setPic3((String) document.getData().get("pic3"));
                     }
                 }
             } else {
@@ -412,7 +406,7 @@ public class ModelFirebase {
                 listener.onComplete();
             }
         });
-
+    }
 
 //    public static void checkUserSex() {
 //        db.collection("userProfileData").document().get

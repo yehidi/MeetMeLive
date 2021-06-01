@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -90,6 +90,8 @@ public class login extends AppCompatActivity {
                 finish();
             }
         });
+    }
+}
 //
 //        FacebookSdk.sdkInitialize(login.this);
 //        //AppEventsLogger.activateApp(this);
@@ -183,4 +185,5 @@ public class login extends AppCompatActivity {
 //
 //        }
 //    }
-}
+
+

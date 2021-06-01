@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,11 +11,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.MainActivity;
 import com.example.meetmelive.R;
 import com.example.meetmelive.Utils;
@@ -81,23 +83,24 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, 1);
+//                Intent intent = new Intent(Intent.ACTION_PICK);
+//                intent.setType("image/*");
+//                startActivityForResult(intent, 1);
+                Utils.chooseImageFromGallery(register.this);
             }
         });
 
         choosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.chooseImageFromGallery(register.this);
+//                Utils.chooseImageFromGallery(register.this);
 
-//                Intent intent = new Intent(Intent.ACTION_PICK);
-//                intent.setType("image/*");
-//                startActivityForResult(intent, 1);
-//
-//                int age = getAge(dateOfBirth.getYear(),dateOfBirth.getMonth(),dateOfBirth.getDayOfMonth());
-//                Log.d("TAG", "BIRTHDAY IS " + age);
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, 1);
+
+                int age = getAge(dateOfBirth.getYear(),dateOfBirth.getMonth(),dateOfBirth.getDayOfMonth());
+                Log.d("TAG", "BIRTHDAY IS " + age);
             }
         });
 
@@ -113,8 +116,8 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                 String strDateOfBirth = dateFormatter.format(dateOfBirth2);
                 Log.d("TAG", "strDATEOFBIRTH IS " + strDateOfBirth);
 
-                ModelFirebase.registerUserAccount(username.getText().toString(),
-                            password.getText().toString(), email.getText().toString(), city.getText().toString(), gender, lookingForGender, strDateOfBirth, description.getText().toString(), profileImageUri, pic1, pic2, pic3, new ModelFirebase.Listener<Boolean>() {
+                ModelFirebase.registerUserAccount(email.getText().toString(), username.getText().toString(),
+                            password.getText().toString(), city.getText().toString(),description.getText().toString(), gender, lookingForGender, strDateOfBirth, profileImageUri, new ModelFirebase.Listener<Boolean>() {
 
                                 @Override
                                 public void onComplete() {

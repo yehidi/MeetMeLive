@@ -19,12 +19,14 @@ import androidx.navigation.Navigation;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
+import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.MyApplication;
 import com.example.meetmelive.R;
 import com.example.meetmelive.authentication.login;
 import com.example.meetmelive.model.Model;
 import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -35,6 +37,7 @@ import com.squareup.picasso.Picasso;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -44,10 +47,11 @@ public class    Profile<OnOption> extends Fragment {
     String userId;
     CircleImageView profilePic;
     TextView username;
-    TextView age,city,description;
+    TextView dateOfBirth,city,description;
     ImageSlider imageSlider;//the pictures
     View view;
     Button connection;
+    int age;
 
     User user;
     FirebaseUser firebaseuser ;
@@ -61,30 +65,43 @@ public class    Profile<OnOption> extends Fragment {
 
         firebaseuser = FirebaseAuth.getInstance().getCurrentUser();
 
-        user= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
-                User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
-                User.getInstance().city, User.getInstance().profilePic,User.getInstance().pic1,User.getInstance().pic2,User.getInstance().pic3);
+        user= new User(User.getInstance().getUserId(), User.getInstance().getEmail(),User.getInstance().getUsername(),User.getInstance().getCity(),
+                User.getInstance().getDescription(),User.getInstance().getGender(),User.getInstance().getLookingForGender(),
+                User.getInstance().getDateOfBirth(), User.getInstance().getProfileImageUrl(),User.getInstance().getPic1(),User.getInstance().getPic2(),User.getInstance().getPic3(),
+                User.getInstance().getLatitude(),User.getInstance().getLongtitude(),User.getInstance().getLastUpdatedLocation());
+
 
         profilePic=view.findViewById(R.id.profile_profile_im);
         username=view.findViewById(R.id.profile_username);
-        age=view.findViewById(R.id.profile_age);
+        dateOfBirth=view.findViewById(R.id.profile_age);
         city=view.findViewById(R.id.profile_city);
         description=view.findViewById(R.id.profile_aboutMe);
 
-      //  ModelFirebase.trying();
 
-        if(User.getInstance().profilePic!=null){
-            Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
+
+        Log.d("Profile", "Username is " + User.getInstance().getUsername() +  "userId is" +firebaseuser.getUid());
+
+        String[] splitDOB = User.getInstance().getDateOfBirth().split("-");
+        Log.d("Profile", "splitDOB is" + splitDOB);
+        age = getAge(Integer.parseInt(splitDOB[2]),Integer.parseInt(splitDOB[0]),Integer.parseInt(splitDOB[1]));
+        Log.d("TAG", "AGE IS " + age);
+        dateOfBirth.setText(String.valueOf(age));
+
+
+        //  ModelFirebase.trying();
+
+        if(User.getInstance().getProfileImageUrl()!=null){
+            Picasso.get().load(User.getInstance().getProfileImageUrl()).noPlaceholder().into(profilePic);
         }
 
-        Model.instance.getUser(User.getInstance().email,new Model.GetUserListener() {
+        Model.instance.getUser(User.getInstance().getEmail(),new Model.GetUserListener() {
             @Override
             public void onComplete(User user) {
 
-                username.setText(user.name);
-                age.setText(user.birthday);
-                city.setText(user.city);
-                description.setText(user.description);
+                username.setText(user.getUsername());
+                dateOfBirth.setText(user.getDateOfBirth());
+                city.setText(user.getCity());
+                description.setText(user.getDescription());
             }
         });
 
@@ -93,14 +110,14 @@ public class    Profile<OnOption> extends Fragment {
         //slides pictures
         imageSlider= view.findViewById(R.id.matchProfile_slider);
         List<SlideModel> slideModels = new ArrayList<>();
-        if(User.getInstance().pic1!=null && !User.getInstance().pic1.equals("")){
+        if(User.getInstance().getPic1()!=null && !User.getInstance().getPic1().equals("")){
             slideModels.add(new SlideModel(User.getInstance().pic1));
         }
-        if(User.getInstance().pic2!=null  && !User.getInstance().pic2.equals("")){
-            slideModels.add(new SlideModel(User.getInstance().pic2));
+        if(User.getInstance().getPic2()!=null  && !User.getInstance().getPic2().equals("")){
+            slideModels.add(new SlideModel(User.getInstance().getPic2()));
         }
-        if(User.getInstance().pic3!=null  && !User.getInstance().pic3.equals("")){
-            slideModels.add(new SlideModel(User.getInstance().pic3));
+        if(User.getInstance().getPic3()!=null  && !User.getInstance().getPic3().equals("")){
+            slideModels.add(new SlideModel(User.getInstance().getPic3()));
         }
         imageSlider.setImageList(slideModels,true);
 
@@ -121,9 +138,9 @@ public class    Profile<OnOption> extends Fragment {
                 return true;
             }
             case R.id.SignOut:{
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
-                startActivity(new Intent(getActivity(), login.class));
+                ModelFirebase.signOut();
+                LoginManager.getInstance().logOut();
+                startActivity(new Intent(getActivity(),login.class));
             }
             case R.id.DeleteAccount:{
                 Model.instance.deleteUser(user, new Model.DeleteUserListener() {
@@ -132,8 +149,9 @@ public class    Profile<OnOption> extends Fragment {
                         firebaseuser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                Navigation.findNavController(view).popBackStack();
-                                startActivity(new Intent(getActivity(), login.class));
+                                ModelFirebase.signOut();
+                                LoginManager.getInstance().logOut();
+                                startActivity(new Intent(getActivity(),login.class));
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -149,4 +167,23 @@ public class    Profile<OnOption> extends Fragment {
                return super.onOptionsItemSelected(item);
         }
     }
+
+
+    public int getAge(int year, int month, int day)
+    {
+        Calendar dateOfBirth = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        dateOfBirth.set(year, month, day);
+
+        int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+
+        if (today.get(Calendar.DAY_OF_YEAR) < dateOfBirth.get(Calendar.DAY_OF_YEAR))
+        {
+            age--;
+        }
+
+        return age;
+    }
+
 }

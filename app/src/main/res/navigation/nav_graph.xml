@@ -55,4 +55,9 @@
             android:id="@+id/action_search_to_Nearby"
             app:destination="@id/Nearby" />
     </fragment>
+    <fragment
+        android:id="@+id/Requests"
+        android:name="com.example.meetmelive.Requests"
+        android:label="fragment_requests"
+        tools:layout="@layout/fragment_requests" />
 </navigation>
