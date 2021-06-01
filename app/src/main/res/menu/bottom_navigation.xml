@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
-        android:id="@+id/nav_nearby"
+        android:id="@id/Nearby"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="NearBy" />
-
+        android:title="Near By" />
     <item
-        android:id="@+id/nav_notifications"
+        android:id="@+id/Requests"
         android:icon="@drawable/ic_baseline_notifications_24"
         android:title="Notifications" />
-
     <item
-        android:id="@+id/nav_search"
+        android:id="@id/search"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Search" />
-
     <item
-        android:id="@+id/nav_chats"
+        android:id="@+id/chatsFragment"
         android:icon="@drawable/ic_baseline_chat_24"
-        android:title="Chats" />
-
+        android:title="Chats" />.
     <item
-        android:id="@+id/nav_profile"
+        android:id="@id/Profile"
         android:icon="@drawable/ic_baseline_account_circle_24"
         android:title="Profile" />
-
 
 </menu>

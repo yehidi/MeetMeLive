@@ -3,25 +3,61 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/registerFragment">
+    app:startDestination="@id/Nearby">
+
     <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.example.meetmelive.SearchFragment"
+        android:id="@+id/Profile"
+        android:name="com.example.meetmelive.profile.Profile"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_Profile_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchProfileFragment"
+        android:name="com.example.meetmelive.MatchProfile"
+        android:label="Match Profile"
+        tools:layout="@layout/fragment_match_profile" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.meetmelive.profile.EditProfile"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile" />
+
+    <fragment
+        android:id="@+id/Nearby"
+        android:name="com.example.meetmelive.Nearby"
+        android:label="Nearby"
+        tools:layout="@layout/fragment_nearby" >
+        <action
+            android:id="@+id/action_Nearby_to_sendRequestFragment"
+            app:destination="@id/sendRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendRequestFragment"
+        android:name="com.example.meetmelive.SendRequestFragment"
+        android:label="fragment_send_request"
+        tools:layout="@layout/fragment_send_request" >
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="userimage"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/search"
+        android:name="com.example.meetmelive.Search"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_search_to_Nearby"
+            app:destination="@id/Nearby" />
+    </fragment>
     <fragment
-        android:id="@+id/nearbyFragment"
-        android:name="com.example.meetmelive.NearbyFragment"
-        android:label="fragment_nearby"
-        tools:layout="@layout/fragment_nearby" />
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.meetmelive.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.meetmelive.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
+        android:id="@+id/Requests"
+        android:name="com.example.meetmelive.Requests"
+        android:label="fragment_requests"
+        tools:layout="@layout/fragment_requests" />
 </navigation>
