@@ -6,12 +6,6 @@
     app:startDestination="@id/Nearby">
 
     <fragment
-        android:id="@+id/Search"
-        android:name="com.example.meetmelive.Search"
-        android:label="Search"
-        tools:layout="@layout/fragment_search" />
-
-    <fragment
         android:id="@+id/Profile"
         android:name="com.example.meetmelive.profile.Profile"
         android:label="Profile"
@@ -30,20 +24,40 @@
         android:name="com.example.meetmelive.profile.EditProfile"
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile" />
-    <fragment
-        android:id="@+id/deleteProfileFragment"
-        android:name="com.example.meetmelive.DeleteProfile"
-        android:label="fragment_delete_profile"
-        tools:layout="@layout/fragment_delete_profile" />
 
     <fragment
         android:id="@+id/Nearby"
         android:name="com.example.meetmelive.Nearby"
         android:label="Nearby"
-        tools:layout="@layout/fragment_nearby" />
-    <activity
-        android:id="@+id/searchActivity"
-        android:name="com.example.meetmelive.SearchActivity"
-        android:label="activity_search"
-        tools:layout="@layout/activity_search" />
+        tools:layout="@layout/fragment_nearby" >
+        <action
+            android:id="@+id/action_Nearby_to_sendRequestFragment"
+            app:destination="@id/sendRequestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sendRequestFragment"
+        android:name="com.example.meetmelive.SendRequestFragment"
+        android:label="fragment_send_request"
+        tools:layout="@layout/fragment_send_request" >
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="userimage"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/search"
+        android:name="com.example.meetmelive.Search"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_search_to_Nearby"
+            app:destination="@id/Nearby" />
+    </fragment>
+    <fragment
+        android:id="@+id/Requests"
+        android:name="com.example.meetmelive.Requests"
+        android:label="fragment_requests"
+        tools:layout="@layout/fragment_requests" />
 </navigation>

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase;
 import com.example.meetmelive.MyApplication;
 
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {User.class}, version = 4)
 abstract class AppLocalDbRepository extends RoomDatabase {
     public abstract UserDao userDao();
 }

@@ -1,27 +1,34 @@
 package com.example.meetmelive;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.Manifest;
+import android.accessibilityservice.AccessibilityService;
+import android.app.ActivityManager;
+import android.content.ComponentName;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.view.accessibility.AccessibilityEvent;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+
+import java.util.List;
 
 public class MainActivity<OnOption> extends AppCompatActivity {
 
     NavController navController;
-
 
 
     @Override
@@ -30,7 +37,7 @@ public class MainActivity<OnOption> extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Navigation menu
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.mainactivity_navhost);
         NavigationUI.setupActionBarWithNavController(this,navController);
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -38,42 +45,17 @@ public class MainActivity<OnOption> extends AppCompatActivity {
         //Navigation bar End
 
 
+        ActivityManager am = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+        ActivityManager.RunningTaskInfo task = tasks.get(0); // current task
+        ComponentName rootActivity = task.baseActivity;
 
-
-Intent intent = new Intent(this,Match_Request.class);
-startActivity(intent);
-
-
-
+//        String currentPackageName = rootActivity.getPackageName();
+//        Log.d("App","current app: "+currentPackageName);
+//        if(currentPackageName.equals("com.example.meetmelive")) {
+//            //Do whatever here
+//        }
     }
-
-
-
-    public void simpleAlert(View view) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Simple Alert");
-        builder.setMessage("We have a message");
-        builder.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(),
-                                "OK was clicked",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
-        builder.setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),
-                        android.R.string.no, Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setCancelable(false);
-        builder.show();
-    }
-
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){

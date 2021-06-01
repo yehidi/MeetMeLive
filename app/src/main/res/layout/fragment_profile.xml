@@ -63,7 +63,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="hello"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textMultiLine"
         android:textSize="14sp"
         app:layout_constraintStart_toEndOf="@+id/matchProfile_aboutMe_PlanTxt"
         app:layout_constraintTop_toBottomOf="@+id/profile_city" />
@@ -110,8 +110,18 @@
 
         app:layout_constraintTop_toBottomOf="@+id/profile_aboutMe"
         app:layout_constraintVertical_bias="0.0"
-        app:period="1000">
+        app:period="2000">
 
     </com.denzcoskun.imageslider.ImageSlider>
+
+    <Button
+        android:id="@+id/profile_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Test"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profile_unmatch_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

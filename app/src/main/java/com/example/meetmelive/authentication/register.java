@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,17 +11,32 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.meetmelive.CalculateAge;
+import com.example.meetmelive.MainActivity;
+import com.example.meetmelive.R;
+import com.example.meetmelive.Utils;
 import com.example.meetmelive.model.ModelFirebase;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class register extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
 
@@ -29,19 +44,17 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
     EditText email;
     EditText password;
     EditText city;
-    EditText description;
     String gender, lookingForGender;
     RadioGroup radioGroupGender, radioGroupLookingFor;
     Button register, choosePhoto;
-    EditText dateB;
-    String currentLocation;
+    EditText description;
 
     ImageView profilePic;
 
     Uri profileImageUri = null;
-    Uri pic1 = null;
-    Uri pic2 = null;
-    Uri pic3 = null;
+    DatePicker dateOfBirth;
+    CalculateAge calculateAge;
+    int age, age2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,58 +70,70 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         register = findViewById(R.id.register_activity_register_btn);
         radioGroupGender.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener) this);
         radioGroupLookingFor.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener)this);
-        dateB = findViewById(R.id.register_birthDate);
+        dateOfBirth = findViewById(R.id.register_birthDate);
         choosePhoto = findViewById(R.id.register_btnChoosePhoto);
         profilePic = findViewById(R.id.register_profileImageView);
-        description= findViewById(R.id.register_about);
+        description = findViewById(R.id.register_about);
+
+
+
+        int age = getAge(dateOfBirth.getYear(),dateOfBirth.getMonth(),dateOfBirth.getDayOfMonth());
+        Log.d("REGISTER", "AGE IS " + age);
+
+        profilePic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_PICK);
+//                intent.setType("image/*");
+//                startActivityForResult(intent, 1);
+                Utils.chooseImageFromGallery(register.this);
+            }
+        });
 
         choosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utils.chooseImageFromGallery(register.this);
+//                Utils.chooseImageFromGallery(register.this);
+
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, 1);
+
+                int age = getAge(dateOfBirth.getYear(),dateOfBirth.getMonth(),dateOfBirth.getDayOfMonth());
+                Log.d("TAG", "BIRTHDAY IS " + age);
             }
         });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("register","birth date:"+dateB.getText().toString());
-                ModelFirebase.registerUserAccount(username.getText().toString(),
-                        password.getText().toString(),
-                        email.getText().toString(),
-                        gender,
-                        lookingForGender,
-                        dateB.getText().toString(),
-                        currentLocation,
-                        description.toString(),
-                        city.toString(),
-                        profileImageUri,
-                        pic1,pic2,pic3,
-                        new ModelFirebase.Listener<Boolean>() {
-                            @Override
-                            public void onComplete() {
-                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(username.getText().toString())
-                                        .build();
-                                user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()){
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, dateOfBirth.getYear());
+                cal.set(Calendar.MONTH, dateOfBirth.getMonth());
+                cal.set(Calendar.DAY_OF_MONTH, dateOfBirth.getDayOfMonth());
+                Date dateOfBirth2 = cal.getTime();
+                String strDateOfBirth = dateFormatter.format(dateOfBirth2);
+                Log.d("TAG", "strDATEOFBIRTH IS " + strDateOfBirth);
+
+                ModelFirebase.registerUserAccount(email.getText().toString(), username.getText().toString(),
+                            password.getText().toString(), city.getText().toString(),description.getText().toString(), gender, lookingForGender, strDateOfBirth, profileImageUri, new ModelFirebase.Listener<Boolean>() {
+
+                                @Override
+                                public void onComplete() {
                                             startActivity(new Intent(register.this, MainActivity.class));
                                             finish();
-                                        }
-                                    }
-                                });
-                            }
+                                }
 
-                            @Override
-                            public void onFail() {
-                                Log.d("TAG", "FAILED");
-                            }
-                        });
+                                @Override
+                                public void onFail() {
+
+                                }
+                            });
             }
         });
+
+
     }
 
     @Override
@@ -134,6 +159,24 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                 break;
 
         }
+    }
+
+    public int getAge(int year, int month, int day)
+    {
+        Calendar dateOfBirth = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        dateOfBirth.set(year, month, day);
+
+        int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+        Log.d("getAge", "age is " + age);
+        if (today.get(Calendar.DAY_OF_YEAR) < dateOfBirth.get(Calendar.DAY_OF_YEAR))
+        {
+            age--;
+        }
+
+        Log.d("getAge", "age is " + age);
+        return age;
     }
 
     @Override
