@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_Profile_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
-        <action
-            android:id="@+id/action_Profile_to_requests"
-            app:destination="@id/requests" />
     </fragment>
     <fragment
         android:id="@+id/matchProfileFragment"
@@ -59,7 +56,7 @@
             app:destination="@id/Nearby" />
     </fragment>
     <fragment
-        android:id="@+id/requests"
+        android:id="@+id/Requests"
         android:name="com.example.meetmelive.Requests"
         android:label="fragment_requests"
         tools:layout="@layout/fragment_requests" />

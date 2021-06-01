@@ -1,14 +1,13 @@
-package com.example.meetmelive;
+package com.example.meetmelive.authentication;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +17,10 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.example.meetmelive.CalculateAge;
+import com.example.meetmelive.MainActivity;
+import com.example.meetmelive.R;
+import com.example.meetmelive.Utils;
 import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,8 +51,8 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
     EditText description;
 
     ImageView profilePic;
+
     Uri profileImageUri = null;
-    Uri pic1 = null, pic2 = null, pic3 = null;
     DatePicker dateOfBirth;
     CalculateAge calculateAge;
     int age, age2;
@@ -82,9 +85,10 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, 1);
+//                Intent intent = new Intent(Intent.ACTION_PICK);
+//                intent.setType("image/*");
+//                startActivityForResult(intent, 1);
+                Utils.chooseImageFromGallery(register.this);
             }
         });
 
@@ -92,6 +96,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
             @Override
             public void onClick(View v) {
 //                Utils.chooseImageFromGallery(register.this);
+
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
                 startActivityForResult(intent, 1);
@@ -113,8 +118,8 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                 String strDateOfBirth = dateFormatter.format(dateOfBirth2);
                 Log.d("TAG", "strDATEOFBIRTH IS " + strDateOfBirth);
 
-                ModelFirebase.registerUserAccount(username.getText().toString(),
-                            password.getText().toString(), email.getText().toString(), city.getText().toString(), gender, lookingForGender, strDateOfBirth, description.getText().toString(), profileImageUri, pic1, pic2, pic3, new ModelFirebase.Listener<Boolean>() {
+                ModelFirebase.registerUserAccount(email.getText().toString(), username.getText().toString(),
+                            password.getText().toString(), city.getText().toString(),description.getText().toString(), gender, lookingForGender, strDateOfBirth, profileImageUri, new ModelFirebase.Listener<Boolean>() {
 
                                 @Override
                                 public void onComplete() {

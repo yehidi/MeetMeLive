@@ -26,7 +26,7 @@ public class Requests extends Fragment {
 
     Button acceptBtn, declineBtn;
     RecyclerView list;
-//    UserViewModel viewModel;
+    //    UserViewModel viewModel;
     private FirebaseFirestore db =  FirebaseFirestore.getInstance();
     private CollectionReference notebookRef = db.collection("userProfileData")
             .document(User.getInstance().getEmail()).collection("friendRequests");
@@ -72,18 +72,21 @@ public class Requests extends Fragment {
                 Log.d("TAG", "POSITION IS " + adapter.getItem(position).getCity());
 
                 User user = new User(
-                        adapter.getItem(position).getSex(),
-                        adapter.getItem(position).getPreferSex(),
-                        adapter.getItem(position).getUser_id(),
+                        adapter.getItem(position).getUserId(),
                         adapter.getItem(position).getEmail(),
                         adapter.getItem(position).getUsername(),
                         adapter.getItem(position).getCity(),
                         adapter.getItem(position).getDescription(),
+                        adapter.getItem(position).getGender(),
+                        adapter.getItem(position).getLookingForGender(),
                         adapter.getItem(position).getDateOfBirth(),
                         adapter.getItem(position).getProfileImageUrl(),
                         adapter.getItem(position).getPic1(),
                         adapter.getItem(position).getPic2(),
-                        adapter.getItem(position).getPic3());
+                        adapter.getItem(position).getPic3(),
+                        adapter.getItem(position).getLatitude(),
+                        adapter.getItem(position).getLongtitude(),
+                        adapter.getItem(position).getLastUpdatedLocation());
 
                 acceptBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

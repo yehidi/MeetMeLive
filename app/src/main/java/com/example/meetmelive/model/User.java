@@ -1,161 +1,128 @@
 package com.example.meetmelive.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import com.google.firebase.Timestamp;
 
 @Entity
-public class User{
+public class User implements Serializable{
 
     // static variable single_instance of type Singleton
     private static User MyUser = null;
+
     @PrimaryKey
     @NonNull
-    private String user_id;
-    private String email;
-    private String username;
-    private String city;
-    private String description;
-    private String sex;
-    private String preferSex;
-    private String dateOfBirth;
-    private String age;
-    private String profileImageUrl;
-    private String pic1;
-    private String pic2;
-    private String pic3;
-    public String currentLocation="";
-//    public Boolean isMatch=false;
-
-//    public Boolean isMatch() {
-//        return isMatch;
-//    }
-//
-//    public void setMatch(boolean match) {
-//        isMatch = match;
-//    }
-
-
-    private double latitude;
-    private double longtitude;
+    public String userId;
+    public String email;
+    public String username;
+    public String city;
+    public String description;
+    public String gender;
+    public String lookingForGender;
+    public String dateOfBirth;
+    public String profileImageUrl;
+    public String pic1;
+    public String pic2;
+    public String pic3;
+    public Double latitude;
+    public Double longtitude;
+    public long lastUpdatedLocation;
+//    public String minAgeLookingFor;
+//    public String maxAgeLookingFor;
 
     public User() {
+
     }
 
-    public User(String username){
-        this.username = username;
-    }
-    public User(String sex, String preferSex, String user_id, String email, String username, String city, String description, String dateOfBirth, String profileImageUrl, String pic1, String pic2, String pic3) {
-        this.sex = sex;
-        this.user_id = user_id;
+    public User(String userId,String email,String username, String city,
+                String description,String gender,String lookingForGender,String dateOfBirth,
+                String profileImageUrl, String pic1, String pic2, String pic3,
+                Double latitude,Double longtitude, long lastUpdatedLocation) {
+
+        this.userId = userId;
         this.email = email;
         this.username = username;
         this.city = city;
         this.description = description;
-        this.preferSex = preferSex;
+        this.gender = gender;
+        this.lookingForGender = lookingForGender;
         this.dateOfBirth = dateOfBirth;
-        this.age = age;
         this.profileImageUrl = profileImageUrl;
         this.pic1 = pic1;
         this.pic2 = pic2;
         this.pic3 = pic3;
         this.latitude = latitude;
         this.longtitude = longtitude;
+        this.lastUpdatedLocation=lastUpdatedLocation;
     }
+
 
     public Map<String, Object> toMap() {
         Map<String,Object> data = new HashMap<>();
-        data.put("profileImageUrl", profileImageUrl);
-        data.put("username", username);
+        data.put("userId",userId);
         data.put("email", email);
-        data.put("gender", sex);
-        data.put("looking for", preferSex);
-        data.put("current Location",null);
-        data.put("dateOfBirth",dateOfBirth);
-//        data.put("age", age);
-        data.put("description",description);
-//        data.put("isMatch", false);
+        data.put("username", username);
         data.put("city",city);
+        data.put("description",description);
+        data.put("gender", gender);
+        data.put("lookingForGender", lookingForGender);
+        data.put("dateOfBirth",dateOfBirth);
+        data.put("profileImageUrl", profileImageUrl);
         data.put("pic1", pic1);
         data.put("pic2", pic2);
         data.put("pic3", pic3);
+        data.put("latitude",latitude);
+        data.put("longtitude",longtitude);
+        data.put("lastUpdatedLocation",lastUpdatedLocation);
+        //data.put("looking For Age",lookingForAge);
         return data;
     }
 
+
     public void fromMap(Map<String, Object> map) {
-        setProfileImageUrl((String) map.get("profileImageUrl"));
-        setUsername((String) map.get("username"));
-        setEmail((String) map.get("email"));
-        setSex((String) map.get("gender"));
-        setPreferSex((String) map.get("looking for"));
-        currentLocation=(String) map.get("current Location");
-        setDateOfBirth((String) map.get("dateOfBirth"));
-//        setAge((String) map.get("age"));
-        setDescription((String) map.get("description"));
-        setCity((String) map.get("city"));
-        setPic1((String) map.get("pic1"));
+        userId=(String) map.get("userId");
+        email=(String) map.get("email");
+        username=(String) map.get("username");
+        city=(String) map.get("city");
+        description=(String) map.get("description");
+        gender=(String) map.get("gender");
+        lookingForGender=(String) map.get("lookingForGender");
+        dateOfBirth=(String) map.get("dateOfBirth");
+        profileImageUrl=(String) map.get("profileImageUrl");
+        pic1=(String) map.get("pic1");
         pic2=(String) map.get("pic2");
         pic3=(String) map.get("pic3");
+        latitude= (Double) map.get("latitude");
+        longtitude= (Double) map.get("longtitude");
+        Timestamp ts = (Timestamp) map.get("lastUpdatedLocation");
+        lastUpdatedLocation=ts.getSeconds();
+//        lookingForAge= (String) map.get("looking For Age");
     }
 
-    public String getAge() {
-        return age;
+    public static User getMyUser() {
+        return MyUser;
     }
 
-    public void setAge(String age) {
-        this.age = age;
-    }
-    public double getLatitude() {
-        return latitude;
+    public static void setMyUser(User myUser) {
+        MyUser = myUser;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    @NonNull
+    public String getUserId() {
+        return userId;
     }
 
-    public double getLongtitude() {
-        return longtitude;
-    }
-
-    public void setLongtitude(double longtitude) {
-        this.longtitude = longtitude;
-    }
-
-    public String getProfileImageUrl() {
-        return profileImageUrl;
-    }
-
-    public void setProfileImageUrl(String profileImageUrl) { this.profileImageUrl = profileImageUrl; }
-
-    public String getPic1() { return pic1; }
-
-    public void setPic1(String pic1) { this.pic1 = pic1; }
-
-    public String getPic2() { return pic2; }
-
-    public void setPic2(String pic3) { this.pic2 = pic2; }
-
-    public String getPic3() { return pic3; }
-
-    public void setPic3(String pic3) { this.pic3 = pic3; }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setUserId(@NonNull String userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -174,27 +141,101 @@ public class User{
         this.username = username;
     }
 
-    public String getCity() { return city; }
+    public String getCity() {
+        return city;
+    }
 
-    public void setCity(String city) { this.city = city; }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public String getPreferSex() {
-        return preferSex;
+    public String getGender() {
+        return gender;
     }
 
-    public void setPreferSex(String preferSex) {
-        this.preferSex = preferSex;
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
-    // Added new attribute called date of birth.
-    public String getDateOfBirth() { return dateOfBirth; }
-    public void setDateOfBirth(String dateOfBirth) { this.dateOfBirth = dateOfBirth; }
+    public String getLookingForGender() {
+        return lookingForGender;
+    }
+
+    public void setLookingForGender(String lookingForGender) {
+        this.lookingForGender = lookingForGender;
+    }
+
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getProfileImageUrl() {
+        return profileImageUrl;
+    }
+
+    public void setProfileImageUrl(String profileImageUrl) {
+        this.profileImageUrl = profileImageUrl;
+    }
+
+    public String getPic1() {
+        return pic1;
+    }
+
+    public void setPic1(String pic1) {
+        this.pic1 = pic1;
+    }
+
+    public String getPic2() {
+        return pic2;
+    }
+
+    public void setPic2(String pic2) {
+        this.pic2 = pic2;
+    }
+
+    public String getPic3() {
+        return pic3;
+    }
+
+    public void setPic3(String pic3) {
+        this.pic3 = pic3;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
+    public Double getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLongtitude(Double longtitude) {
+        this.longtitude = longtitude;
+    }
+
+    public long getLastUpdatedLocation() {
+        return lastUpdatedLocation;
+    }
+
+    public void setLastUpdatedLocation(long lastUpdatedLocation) {
+        this.lastUpdatedLocation = lastUpdatedLocation;
+    }
 
     // create instance of Singleton class
     public static User getInstance()

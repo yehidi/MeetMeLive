@@ -42,7 +42,7 @@ public class SendRequestFragment extends Fragment {
 
 
     int position;
-    // GridAdapter adapter;
+   // GridAdapter adapter;
 
 
     //maya added

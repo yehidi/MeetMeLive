@@ -37,7 +37,7 @@ public class RequestAdapter extends FirestoreRecyclerAdapter<User, RequestAdapte
         holder.age.setText(String.valueOf(age));
     }
 
-        public interface OnItemClickListener {
+    public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
