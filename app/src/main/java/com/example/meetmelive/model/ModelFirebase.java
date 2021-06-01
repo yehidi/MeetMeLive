@@ -103,7 +103,7 @@ public class ModelFirebase {
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
                     uploadUserData(email,username,city,description, gender, lookingForGender, dateOfBirth,imageUri);
-                    setUserAppData(email);
+                   // setUserAppData(email);
 
                     //add user data to local DB
                     User user =  new User(firebaseAuth.getUid(),email, username, city, description, gender, lookingForGender, dateOfBirth,
@@ -174,9 +174,7 @@ public class ModelFirebase {
                         db.collection("userProfileData").document(email).set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                if (firebaseAuth.getCurrentUser() != null){
-                                    firebaseAuth.signOut();
-                                }
+                                setUserAppData(email);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -184,6 +182,7 @@ public class ModelFirebase {
                                 Toast.makeText(MyApplication.context, "Fails to create user and upload data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
+
                     }
                     else if (!task.isSuccessful()){
                         Toast.makeText(MyApplication.context, task.getException().toString(), Toast.LENGTH_SHORT).show();
@@ -203,7 +202,7 @@ public class ModelFirebase {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){ ;
-                    User.getInstance().userId = firebaseAuth.getUid();
+                    User.getInstance().userId = (String) task.getResult().get("userId");
                     User.getInstance().email = email;
                     User.getInstance().username = (String) task.getResult().get("username");
                     User.getInstance().city= (String) task.getResult().get("city");
@@ -387,8 +386,8 @@ public class ModelFirebase {
     }
 
 
-    // need to be fixed (igal)
-    public void deleteRecipeCollection(User user) {
+
+    public void deleteUserCollection(User user) {
         db.collection("Deleted Users")
                 .document(user.email).set(user.toMap()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

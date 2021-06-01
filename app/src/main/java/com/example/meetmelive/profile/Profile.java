@@ -85,7 +85,9 @@ public class    Profile<OnOption> extends Fragment {
         Log.d("Profile", "splitDOB is" + splitDOB);
         age = getAge(Integer.parseInt(splitDOB[2]),Integer.parseInt(splitDOB[0]),Integer.parseInt(splitDOB[1]));
         Log.d("TAG", "AGE IS " + age);
-        dateOfBirth.setText(String.valueOf(age));
+
+
+
 
 
         //  ModelFirebase.trying();
@@ -99,7 +101,7 @@ public class    Profile<OnOption> extends Fragment {
             public void onComplete(User user) {
 
                 username.setText(user.getUsername());
-                dateOfBirth.setText(user.getDateOfBirth());
+                dateOfBirth.setText(String.valueOf(age));
                 city.setText(user.getCity());
                 description.setText(user.getDescription());
             }
@@ -149,9 +151,7 @@ public class    Profile<OnOption> extends Fragment {
                         firebaseuser.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull @NotNull Task<Void> task) {
-                                ModelFirebase.signOut();
-                                LoginManager.getInstance().logOut();
-                                startActivity(new Intent(getActivity(),login.class));
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -182,7 +182,6 @@ public class    Profile<OnOption> extends Fragment {
         {
             age--;
         }
-
         return age;
     }
 

@@ -67,8 +67,9 @@ public class Model {
         void onComplete();
     }
     public void deleteUser(User user, DeleteUserListener listener){
-        modelFirebase.deleteRecipeCollection(user);
+        modelFirebase.deleteUserCollection(user);
         modelFirebase.deleteUser(user, listener);
+        modelFirebase.signOut();
         new AsyncTask<String, String, String>() {
             @Override
             protected String doInBackground(String... strings) {
