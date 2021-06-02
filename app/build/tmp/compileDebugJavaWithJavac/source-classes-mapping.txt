@@ -4,7 +4,6 @@ com/example/meetmelive/authentication/register.java
  com.example.meetmelive.authentication.register$2
  com.example.meetmelive.authentication.register$2$1
  com.example.meetmelive.authentication.register$2$1$1
- com.example.meetmelive.authentication.register$3
 com/example/meetmelive/NotificationActivity.java
  com.example.meetmelive.NotificationActivity
 com/example/meetmelive/profile/EditProfile.java

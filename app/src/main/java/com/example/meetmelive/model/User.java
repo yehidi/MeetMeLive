@@ -26,7 +26,7 @@ public class User {
     public String description="";// about me
     public String birthday;
     public String gender="";
-    public String lookingForGender ="";
+    public String lookingForGender= "";
     public String currentLocation="";
     public String email = "";
     public long lastUpdated;

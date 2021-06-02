@@ -26,6 +26,7 @@ import com.example.meetmelive.authentication.login;
 import com.example.meetmelive.model.Model;
 import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -36,6 +37,7 @@ import com.squareup.picasso.Picasso;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -46,18 +48,13 @@ public class  Profile<OnOption> extends Fragment {
     String userId;
     CircleImageView profilePic;
     TextView username;
-    TextView age,city,description;
+    TextView dateOfBirth,city,description;
     ImageSlider imageSlider;//the pictures
     View view;
     Button connection;
-
+    int age;
     User user;
     FirebaseUser firebaseuser ;
-
-
-
-
-
 
     //try
     public static final String TAG = "Profile";
@@ -89,13 +86,19 @@ public class  Profile<OnOption> extends Fragment {
 
         profilePic=view.findViewById(R.id.profile_profile_im);
         username=view.findViewById(R.id.profile_username);
-        age=view.findViewById(R.id.profile_age);
+        dateOfBirth=view.findViewById(R.id.profile_age);
         city=view.findViewById(R.id.profile_city);
         description=view.findViewById(R.id.profile_aboutMe);
+        String[] splitDOB = User.getInstance().birthday.split("-");
+        Log.d("Profile", "splitDOB is" + splitDOB);
+        age = getAge(Integer.parseInt(splitDOB[2]),Integer.parseInt(splitDOB[0]),Integer.parseInt(splitDOB[1]));
+        Log.d("TAG", "AGE IS " + age);
 
 
 
-      //  ModelFirebase.trying();
+
+
+        //  ModelFirebase.trying();
 
         if(User.getInstance().profilePic!=null){
             Picasso.get().load(User.getInstance().profilePic).noPlaceholder().into(profilePic);
@@ -107,7 +110,7 @@ public class  Profile<OnOption> extends Fragment {
             public void onComplete(User user) {
 
                 username.setText(user.name);
-                age.setText(user.birthday);
+                dateOfBirth.setText(String.valueOf(age));
                 city.setText(user.city);
                 description.setText(user.description);
             }
@@ -150,11 +153,12 @@ public class  Profile<OnOption> extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_Profile_to_editProfileFragment);
                 return true;
             }
-            case R.id.SignOut:{
-                FirebaseAuth mAuth = FirebaseAuth.getInstance();
-                mAuth.signOut();
+            case R.id.SignOut: {
+                ModelFirebase.signOut();
+                LoginManager.getInstance().logOut();
                 startActivity(new Intent(getActivity(), login.class));
             }
+
             case R.id.DeleteAccount:{
                 Model.instance.deleteUser(user, new Model.DeleteUserListener() {
                     @Override
@@ -178,5 +182,23 @@ public class  Profile<OnOption> extends Fragment {
             default:
                return super.onOptionsItemSelected(item);
         }
+    }
+
+    public int getAge(int year, int month, int day)
+    {
+        Calendar dateOfBirth = Calendar.getInstance();
+        Calendar today = Calendar.getInstance();
+
+        dateOfBirth.set(year, month, day);
+
+        int age = today.get(Calendar.YEAR) - dateOfBirth.get(Calendar.YEAR);
+        Log.d("getAge", "age is " + age);
+        if (today.get(Calendar.DAY_OF_YEAR) < dateOfBirth.get(Calendar.DAY_OF_YEAR))
+        {
+            age--;
+        }
+
+        Log.d("getAge", "age is " + age);
+        return age;
     }
 }

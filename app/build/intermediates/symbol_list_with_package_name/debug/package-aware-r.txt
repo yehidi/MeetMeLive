@@ -2190,6 +2190,8 @@ id inline
 id invisible
 id inward
 id italic
+id item1
+id item2
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -2353,7 +2355,6 @@ id register_activity_register_btn
 id register_activity_username
 id register_birthDate
 id register_btnChoosePhoto
-id register_btnDate
 id register_female_radiobutton
 id register_frag_city
 id register_gender_tv
@@ -2432,6 +2433,9 @@ id staticPostLayout
 id status_bar_latest_event_content
 id stop
 id stretch
+id subitem1
+id subitem2
+id subitem3
 id submenuarrow
 id submit_area
 id tabMode
@@ -2694,6 +2698,7 @@ layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
 menu bottom_navigation
+menu filter_menu
 menu profile_menu
 mipmap ic_launcher
 mipmap ic_launcher_foreground

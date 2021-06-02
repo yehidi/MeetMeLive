@@ -86,8 +86,8 @@ public class Model {
 
 
     //NearBy
-        public void loadDatainGridView(ArrayList<DataModel> dataModelArrayList, GridView gridadapter, Nearby near) {
-            modelFirebase.loadDatainGridView(dataModelArrayList, gridadapter,near);
+        public void loadDatainGridView(ArrayList<DataModel> dataModelArrayList, GridView gridadapter, Nearby near,Integer small,Integer big) {
+            modelFirebase.loadDatainGridView(dataModelArrayList, gridadapter,near,small,big);
 
         }
 

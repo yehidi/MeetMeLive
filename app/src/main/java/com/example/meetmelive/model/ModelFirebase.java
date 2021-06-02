@@ -5,8 +5,13 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
+import android.widget.DatePicker;
 import android.widget.GridView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -40,16 +45,17 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ModelFirebase {
+public class ModelFirebase{
 
     public static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
-
+    MenuInflater menu;
 
 
     public interface Listener<T>{
@@ -84,7 +90,7 @@ public class ModelFirebase {
     }
 
     public static void registerUserAccount(final String name, String password, final String email,
-                                           final String gender, final String lookingForGender,final String dateB,
+                                           final String gender, final String lookingForGender,final String dateOfBirth,
                                            final String currentLocation ,final String description ,final String city,final Uri profileImage,
                                            final String image1,final String image2,final String image3 ,Listener<Boolean> listener){
 
@@ -99,11 +105,11 @@ public class ModelFirebase {
                 @Override
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
-                    uploadUserData(name, email, gender, lookingForGender,dateB,currentLocation,description,city,profileImage,image1,image2,image3);
+                    uploadUserData(name, email, gender, lookingForGender,dateOfBirth,currentLocation,description,city,profileImage,image1,image2,image3);
                     setUserAppData(email);
 
                     //add user data to local DB
-                    User user =  new User(email, name, dateB, description, gender, lookingForGender, city, User.getInstance().profilePic, "","","");
+                    User user =  new User(email, name, dateOfBirth, description, gender, lookingForGender, city, User.getInstance().profilePic, "","","");
                     new AsyncTask<String, String, String>() {
                         @Override
                         protected String doInBackground(String... strings) {
@@ -127,7 +133,7 @@ public class ModelFirebase {
         }
     }
 
-    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender,final String dateB,final String currentLocation,final String description ,final String city, Uri profileImage,String image1,String image2,String image3){
+    private static void uploadUserData(final String username, final String email, final String gender, final String lookingForGender,final String dateOfBirth,final String currentLocation,final String description ,final String city, Uri profileImage,String image1,String image2,String image3){
 
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
@@ -158,7 +164,7 @@ public class ModelFirebase {
                         data.put("looking for", lookingForGender);
                         data.put("gender", gender);
                         data.put("current Location",null);
-                        data.put("birthDate",dateB);
+                        data.put("dateOfBirth",dateOfBirth);
                         data.put("info",description);
                         data.put("city",city);
 
@@ -202,7 +208,7 @@ public class ModelFirebase {
                     User.getInstance().email = email;
                     User.getInstance().gender = (String) task.getResult().get("gender");
                     User.getInstance().lookingForGender = (String) task.getResult().get("looking for");
-                    User.getInstance().birthday= (String) task.getResult().get("birthDate");
+                    User.getInstance().birthday= (String) task.getResult().get("dateOfBirth");
                     User.getInstance().currentLocation= (String) task.getResult().get("current Location");
                     User.getInstance().city= (String) task.getResult().get("city");
                     User.getInstance().pic1= (String) task.getResult().get("picture 1");
@@ -295,6 +301,11 @@ public class ModelFirebase {
         }
     }
 
+    public static void signOut(){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signOut();
+    }
+
 
     public void getUser(String email, Model.GetUserListener listener) {
         db.collection("userProfileData").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -361,7 +372,8 @@ public class ModelFirebase {
 
 
     //NearBy
-    public void loadDatainGridView(ArrayList<DataModel> dataModelArrayList,GridView gridadapter,Nearby near) {
+    int age;
+    public void loadDatainGridView(ArrayList<DataModel> dataModelArrayList,GridView gridadapter,Nearby near,Integer small,Integer big) {
         // below line is use to get data from Firebase
         // firestore using collection in android.
         db.collection("userProfileData").get()
@@ -380,28 +392,56 @@ public class ModelFirebase {
                                 //try
                                 setUserAppData(User.getInstance().email);
                                 //try
-
                                 // after getting this list we are passing
-                                // that list to our object class.
-
+                                // that list to our object class
+                                Log.d("TAG","the gender is:"+User.getInstance().gender);
                                 //from datamodel to user
-                                if(User.getInstance().lookingForGender.equals("Female") && d.get("gender").equals("Female")) {
+
+                                if(User.getInstance().lookingForGender.equals(d.get("gender")) ) {
                                     DataModel dataModel = d.toObject(DataModel.class);
                                     dataModelArrayList.add(dataModel);
                                 }
 
-                                if(User.getInstance().lookingForGender.equals("Male") && d.get("gender").equals("Male")) {
+                                if(User.getInstance().lookingForGender.equals(d.get("gender")) ) {
                                     DataModel dataModel = d.toObject(DataModel.class);
                                     dataModelArrayList.add(dataModel);
                                 }
-//                                if(d.get("birthDate").)
 
+
+
+                                //new try
+                                Calendar today = Calendar.getInstance();
+                                Object s = d.get("dateOfBirth");
+                                String string=String.valueOf(s);
+                                String[] split = string.split("-");
+
+//                                int s= d.get("dateOfBirth").equals();
+                                        //.toString().split("-");
+
+                                Log.d("TAG","the dateeeeeeeeee is:"+ split);
+//                                Log.d("TAG","the age is:"+ split[2]);
+//                                 while((small!=null)&&(big!=null))
+//                                 {
+//                                     if(age>=small && age<=big)
+//                                     {
+//                                         DataModel dataModel = d.toObject(DataModel.class);
+//                                         dataModelArrayList.add(dataModel);
+//                                     }
+//
+//                                 }
+
+
+
+
+
+//                                DataModel dataModel = d.toObject(DataModel.class);
+//                                    dataModelArrayList.add(dataModel);
 
                                 //try
 //                                if(User.getInstance().lookingForGender.equals("Female"))
 //                                {
 //                                    if(dataModel.equals("Female"))
-//                                        dataModelArrayList.add(user);
+//                                      dataModelArrayList.add(user);
 //                                }
                                 //try
 //                                        dataModelArrayList.add(dataModel);
@@ -432,9 +472,8 @@ public class ModelFirebase {
     }
 
 
-//    public void loadDatainGridView_filteringByAge(RadioGroup group)
-//    {
-//
-//    }
+//new try
+
+
 
 }
