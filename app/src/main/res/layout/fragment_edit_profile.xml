@@ -166,9 +166,9 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:scaleType="fitXY"
+                    android:src="@drawable/pic"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/EditProfile_choosePhotos"
-                    tools:src="@drawable/addphotopng"
                     tools:visibility="visible" />
 
                 <ImageView
@@ -179,9 +179,9 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:scaleType="fitXY"
+                    android:src="@drawable/pic"
                     app:layout_constraintStart_toEndOf="@+id/editProfile_img1"
                     app:layout_constraintTop_toBottomOf="@+id/EditProfile_choosePhotos"
-                    tools:src="@drawable/addphotopng"
                     tools:visibility="visible" />
 
                 <ImageView
@@ -192,9 +192,9 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:scaleType="fitXY"
+                    android:src="@drawable/pic"
                     app:layout_constraintStart_toEndOf="@+id/editProfile_img2"
                     app:layout_constraintTop_toBottomOf="@+id/EditProfile_choosePhotos"
-                    tools:src="@drawable/addphotopng"
                     tools:visibility="visible" />
 
                 <EditText
@@ -215,10 +215,12 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
                     android:layout_marginTop="8dp"
-                    android:text="Info:"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="Description:"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/editProfile_aboutme"
@@ -261,6 +263,54 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/editProfile_img2" />
+
+                <ImageButton
+                    android:id="@+id/EditProfile_delete_btn2"
+                    android:layout_width="34dp"
+                    android:layout_height="33dp"
+                    android:src="@android:drawable/ic_menu_delete"
+                    app:layout_constraintBottom_toBottomOf="@+id/editProfile_img2"
+                    app:layout_constraintEnd_toEndOf="@+id/editProfile_img2" />
+
+                <ImageButton
+                    android:id="@+id/EditProfile_delete_btn1"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:src="@android:drawable/ic_menu_delete"
+                    app:layout_constraintBottom_toBottomOf="@+id/editProfile_img1"
+                    app:layout_constraintEnd_toEndOf="@+id/editProfile_img1" />
+
+                <ImageButton
+                    android:id="@+id/EditProfile_delete_btn3"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:src="@android:drawable/ic_menu_delete"
+                    app:layout_constraintBottom_toBottomOf="@+id/editProfile_img3"
+                    app:layout_constraintEnd_toEndOf="@+id/editProfile_img3" />
+
+                <ImageButton
+                    android:id="@+id/EditProfile_edit_btn1"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    app:layout_constraintBottom_toBottomOf="@+id/editProfile_img1"
+                    app:layout_constraintStart_toStartOf="@+id/editProfile_img1" />
+
+                <ImageButton
+                    android:id="@+id/EditProfile_edit_btn2"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    app:layout_constraintBottom_toBottomOf="@+id/editProfile_img2"
+                    app:layout_constraintStart_toStartOf="@+id/editProfile_img2" />
+
+                <ImageButton
+                    android:id="@+id/EditProfile_edit_btn3"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:src="@android:drawable/ic_menu_edit"
+                    app:layout_constraintBottom_toBottomOf="@+id/editProfile_img3"
+                    app:layout_constraintStart_toStartOf="@+id/editProfile_img3" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

@@ -80,15 +80,15 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         int age = getAge(dateOfBirth.getYear(),dateOfBirth.getMonth(),dateOfBirth.getDayOfMonth());
         Log.d("REGISTER", "AGE IS " + age);
 
-        profilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_PICK);
-//                intent.setType("image/*");
-//                startActivityForResult(intent, 1);
-                Utils.chooseImageFromGallery(register.this);
-            }
-        });
+//        profilePic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent intent = new Intent(Intent.ACTION_PICK);
+////                intent.setType("image/*");
+////                startActivityForResult(intent, 1);
+//                Utils.chooseImageFromGallery(register.this);
+//            }
+//        });
 
         choosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
