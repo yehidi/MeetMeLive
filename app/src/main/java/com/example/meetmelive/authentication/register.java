@@ -91,7 +91,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                 Utils.chooseImageFromGallery(register.this);
             }
         });
-
+//a
         choosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
