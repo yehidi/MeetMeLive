@@ -22,7 +22,6 @@ import com.example.meetmelive.MainActivity;
 import com.example.meetmelive.R;
 import com.example.meetmelive.Utils;
 import com.example.meetmelive.model.ModelFirebase;
-import com.example.meetmelive.model.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -80,7 +79,6 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
 
         int age = getAge(dateOfBirth.getYear(),dateOfBirth.getMonth(),dateOfBirth.getDayOfMonth());
         Log.d("REGISTER", "AGE IS " + age);
-        User.getInstance().setAge(String.valueOf(age));
 
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,7 +89,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                 Utils.chooseImageFromGallery(register.this);
             }
         });
-//a
+
         choosePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,19 +117,19 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                 Log.d("TAG", "strDATEOFBIRTH IS " + strDateOfBirth);
 
                 ModelFirebase.registerUserAccount(email.getText().toString(), username.getText().toString(),
-                            password.getText().toString(), city.getText().toString(),description.getText().toString(), gender, lookingForGender, strDateOfBirth, profileImageUri, new ModelFirebase.Listener<Boolean>() {
+                        password.getText().toString(), city.getText().toString(),description.getText().toString(), gender, lookingForGender, strDateOfBirth, profileImageUri, new ModelFirebase.Listener<Boolean>() {
 
-                                @Override
-                                public void onComplete() {
-                                            startActivity(new Intent(register.this, MainActivity.class));
-                                            finish();
-                                }
+                            @Override
+                            public void onComplete() {
+                                startActivity(new Intent(register.this, MainActivity.class));
+                                finish();
+                            }
 
-                                @Override
-                                public void onFail() {
+                            @Override
+                            public void onFail() {
 
-                                }
-                            });
+                            }
+                        });
             }
         });
 

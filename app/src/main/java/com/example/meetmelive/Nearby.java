@@ -114,7 +114,7 @@ public class Nearby extends Fragment {
 
                                 // after getting data from Firebase
                                 // we are storing that data in our array list
-                                if (document.get("email") != User.getInstance().getEmail())
+                                if (!document.get("email").equals(User.getInstance().getEmail()))
                                 {
                                     Log.d("@@@@@@@@@@@@@@@@@@@@", "datamodel email is " + document.get("email")
                                             + " || " + User.getInstance().getEmail());
