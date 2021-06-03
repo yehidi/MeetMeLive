@@ -62,12 +62,13 @@
             android:textColor="#070606"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/list_row_chats_btn_view_profile"
+            app:layout_constraintEnd_toStartOf="@+id/list_row_requests_accept"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/list_row_chats_username" />
+            app:layout_constraintStart_toEndOf="@+id/list_row_chats_username"
+            android:layout_marginLeft="5dp" />
 
         <Button
-            android:id="@+id/list_row_chats_btn_view_profile"
+            android:id="@+id/list_row_requests_accept"
             style="@style/Widget.AppCompat.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
