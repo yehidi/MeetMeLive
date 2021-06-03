@@ -112,28 +112,28 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
         name.setText(User.getMyUser().getUsername());
 
         city= view.findViewById(R.id.editProfile_city);
-        city.setText(User.getInstance().city);
+        city.setText(User.getInstance().getCity());
 
         radioGroupLookingFor = view.findViewById(R.id.editProfile_ratioLookingFor);
         radioGroupLookingFor.setOnCheckedChangeListener((RadioGroup.OnCheckedChangeListener)this);
 
 
 
-        if(User.getInstance().lookingForGender.equals("Male")){
+        if(User.getInstance().getLookingForGender().equals("Male")){
             radioGroupLookingFor.check(R.id.editProfile_male_radiobutton);
         }
-        if(User.getInstance().lookingForGender.equals("Female")){
+        if(User.getInstance().getLookingForGender().equals("Female")){
             radioGroupLookingFor.check(R.id.editProfile_female_radiobutton);
         }
 
 
         description= view.findViewById(R.id.editProfile_aboutme);
-        description.setText(User.getInstance().description);
+        description.setText(User.getInstance().getDescription());
 
         pic1 = view.findViewById(R.id.editProfile_img1);
         pic2 = view.findViewById(R.id.editProfile_img2);
         pic3 = view.findViewById(R.id.editProfile_img3);
-        Log.d("pic3","before pic3" + User.getInstance().pic3);
+        Log.d("pic3","before pic3" + User.getInstance().getPic3());
 
         pic1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -159,17 +159,17 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
                 picType=3;
                 Log.d("Photos", "photo: " + picType);
                 chooseImageFromGallery();
-                Log.d("pic3","pic3"+User.getInstance().pic3);
+                Log.d("pic3","pic3"+User.getInstance().getPic3());
             }
         });
-        if(User.getInstance().pic1!=null && !User.getInstance().pic1.equals("")){
-            Picasso.get().load(User.getInstance().pic1).noPlaceholder().into(pic1);
+        if(User.getInstance().getPic1()!=null && !User.getInstance().getPic1().equals("")){
+            Picasso.get().load(User.getInstance().getPic1()).noPlaceholder().into(pic1);
         }
-        if(User.getInstance().pic2!=null && !User.getInstance().pic2.equals("")){
-            Picasso.get().load(User.getInstance().pic2).noPlaceholder().into(pic2);
+        if(User.getInstance().getPic2()!=null && !User.getInstance().getPic2().equals("")){
+            Picasso.get().load(User.getInstance().getPic2()).noPlaceholder().into(pic2);
         }
-        if(User.getInstance().pic3!=null && !User.getInstance().pic3.equals("")){
-            Picasso.get().load(User.getInstance().pic3).noPlaceholder().into(pic3);
+        if(User.getInstance().getPic3()!=null && !User.getInstance().getPic3().equals("")){
+            Picasso.get().load(User.getInstance().getPic3()).noPlaceholder().into(pic3);
         }
 
 
@@ -199,13 +199,13 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
     private void updateUserProfile() {
 
         profileUpdates = new UserProfileChangeRequest.Builder()
-                    .setDisplayName(name.getText().toString())
-                    .build();
+                .setDisplayName(name.getText().toString())
+                .build();
         getImageFromFireBase("pic1");
         getImageFromFireBase("pic2");
         getImageFromFireBase("pict3");
         getImageFromFireBase("profileImageUrl");
-        Log.d("user photo","pic 1 "+User.getInstance().pic1);
+        Log.d("user photo","pic 1 "+User.getInstance().getPic1());
         Log.d("user photo","pic 1 "+User.getInstance().getProfileImageUrl());
         currentUser= new User(User.getInstance().getUserId(), User.getInstance().getEmail(),User.getInstance().getUsername(),User.getInstance().getCity(),
                 User.getInstance().getDescription(),User.getInstance().getGender(),User.getInstance().getLookingForGender(),
@@ -298,69 +298,69 @@ public class EditProfile extends Fragment implements RadioGroup.OnCheckedChangeL
     }
 
     public void SavePic(Uri image,String nameImage){
-            StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference("images");
 
-            if (image != null){
-                String imageName = User.getInstance().email + "." +nameImage+"."+ getExtension(image);
-                final StorageReference imageRef = storageReference.child(imageName);
+        if (image != null){
+            String imageName = User.getInstance().getEmail() + "." +nameImage+"."+ getExtension(image);
+            final StorageReference imageRef = storageReference.child(imageName);
 
-                UploadTask uploadTask = imageRef.putFile(image);
-                uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                    @Override
-                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        if (!task.isSuccessful()){
-                            throw task.getException();
-                        }
-                        return imageRef.getDownloadUrl();
+            UploadTask uploadTask = imageRef.putFile(image);
+            uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                @Override
+                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                    if (!task.isSuccessful()){
+                        throw task.getException();
                     }
-                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Uri> task) {
-                        if (task.isSuccessful()){
+                    return imageRef.getDownloadUrl();
+                }
+            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                @Override
+                public void onComplete(@NonNull Task<Uri> task) {
+                    if (task.isSuccessful()){
 
-                            if(nameImage.contains("pic1")){
-                               // Toast.makeText(MyApplication.context, "pic 1", Toast.LENGTH_SHORT).show();
-                                ModelFirebase.uploadImageToFirebase("picture 1",task.getResult().toString());
+                        if(nameImage.contains("pic1")){
+                            // Toast.makeText(MyApplication.context, "pic 1", Toast.LENGTH_SHORT).show();
+                            ModelFirebase.uploadImageToFirebase("picture 1",task.getResult().toString());
 //                                getImageFromFireBase("pic1");
 //                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
 //                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
 //                                        User.getInstance().city,User.getInstance().profilePic,task.getResult().toString(),User.getInstance().pic2,User.getInstance().pic3);
 //                                Model.instance.updateUserProfile(currentUser);
-                            }else if(nameImage.contains("pic2")){
-                                ModelFirebase.uploadImageToFirebase("picture 2",task.getResult().toString());
+                        }else if(nameImage.contains("pic2")){
+                            ModelFirebase.uploadImageToFirebase("picture 2",task.getResult().toString());
 //                                getImageFromFireBase(nameImage);
 //                                //Toast.makeText(MyApplication.context, "pic 2", Toast.LENGTH_SHORT).show();
 //                                currentUser= new User(User.getInstance().email,User.getInstance().name,User.getInstance().birthday,
 //                                        User.getInstance().description,User.getInstance().gender,User.getInstance().lookingForGender,
 //                                        User.getInstance().city,User.getInstance().profilePic,User.getInstance().pic1,task.getResult().toString(),User.getInstance().pic3);
 //                                Model.instance.updateUserProfile(currentUser);
-                            }else if(nameImage.contains("pic3")){
-                                getImageFromFireBase(nameImage);
-                               // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
-                                currentUser= new User(User.getInstance().getUserId(), User.getInstance().getEmail(),User.getInstance().getUsername(),User.getInstance().getDateOfBirth(),
-                                        User.getInstance().getDescription(),User.getInstance().getGender(),User.getInstance().getLookingForGender(),
-                                        User.getInstance().getCity(), User.getInstance().getProfileImageUrl(),User.getInstance().getPic1(),User.getInstance().getPic2(),User.getInstance().getPic3(),
-                                        User.getInstance().getLatitude(),User.getInstance().getLongtitude(),User.getInstance().getLastUpdatedLocation());
+                        }else if(nameImage.contains("pic3")){
+                            getImageFromFireBase(nameImage);
+                            // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
+                            currentUser= new User(User.getInstance().getUserId(), User.getInstance().getEmail(),User.getInstance().getUsername(),User.getInstance().getDateOfBirth(),
+                                    User.getInstance().getDescription(),User.getInstance().getGender(),User.getInstance().getLookingForGender(),
+                                    User.getInstance().getCity(), User.getInstance().getProfileImageUrl(),User.getInstance().getPic1(),User.getInstance().getPic2(),User.getInstance().getPic3(),
+                                    User.getInstance().getLatitude(),User.getInstance().getLongtitude(),User.getInstance().getLastUpdatedLocation());
 
-                                Model.instance.updateUserProfile(currentUser);
-                            }
-                            else if(nameImage.contains("profileImageUrl")){
-                                getImageFromFireBase(nameImage);
-                                // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
-                                currentUser= new User(User.getInstance().getUserId(), User.getInstance().getEmail(),User.getInstance().getUsername(),User.getInstance().getDateOfBirth(),
-                                        User.getInstance().getDescription(),User.getInstance().getGender(),User.getInstance().getLookingForGender(),
-                                        User.getInstance().getCity(), User.getInstance().getProfileImageUrl(),User.getInstance().getPic1(),User.getInstance().getPic2(),User.getInstance().getPic3(),
-                                        User.getInstance().getLatitude(),User.getInstance().getLongtitude(),User.getInstance().getLastUpdatedLocation());
-
-                                Model.instance.updateUserProfile(currentUser);
-                            }
+                            Model.instance.updateUserProfile(currentUser);
                         }
-                        else if (!task.isSuccessful()){
-                            Toast.makeText(MyApplication.context, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                        else if(nameImage.contains("profileImageUrl")){
+                            getImageFromFireBase(nameImage);
+                            // Toast.makeText(MyApplication.context, "pic 3", Toast.LENGTH_SHORT).show();
+                            currentUser= new User(User.getInstance().getUserId(), User.getInstance().getEmail(),User.getInstance().getUsername(),User.getInstance().getDateOfBirth(),
+                                    User.getInstance().getDescription(),User.getInstance().getGender(),User.getInstance().getLookingForGender(),
+                                    User.getInstance().getCity(), User.getInstance().getProfileImageUrl(),User.getInstance().getPic1(),User.getInstance().getPic2(),User.getInstance().getPic3(),
+                                    User.getInstance().getLatitude(),User.getInstance().getLongtitude(),User.getInstance().getLastUpdatedLocation());
+
+                            Model.instance.updateUserProfile(currentUser);
                         }
                     }
-                });
-            }
+                    else if (!task.isSuccessful()){
+                        Toast.makeText(MyApplication.context, task.getException().toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
     }
 }
 

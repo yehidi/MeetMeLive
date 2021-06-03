@@ -94,7 +94,7 @@ public class Search extends Fragment implements LocationListener {
     @SuppressLint("MissingPermission")
     private void getLocation() {
         try {
-                        //fragment
+            //fragment
             locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000* DEFAULT_UPDATE_INTERVAL, 0, new LocationListener() {
                 @Override

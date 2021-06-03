@@ -156,7 +156,7 @@ public class    Profile<OnOption> extends Fragment {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull @NotNull Exception e) {
-                                 Toast.makeText(MyApplication.context, "Failed To Delete Account", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MyApplication.context, "Failed To Delete Account", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -164,7 +164,7 @@ public class    Profile<OnOption> extends Fragment {
 
             }
             default:
-               return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
     }
 
