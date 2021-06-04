@@ -99,7 +99,7 @@ public class GridAdapter extends ArrayAdapter<DataModel> {
 //                            }
 //                        });
 
-                        Toast.makeText(v.getContext(),"Your Request has Sent from " + User.getInstance().getUsername() + "to " + dataModel.getUsername() ,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(v.getContext(),"Your request has sent from " + User.getInstance().getUsername() + " to " + dataModel.getUsername() ,Toast.LENGTH_SHORT).show();
                     }
                 });
 
