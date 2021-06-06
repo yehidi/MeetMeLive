@@ -21,7 +21,7 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.meetmelive.MyApplication;
 import com.example.meetmelive.R;
-import com.example.meetmelive.login;
+import com.example.meetmelive.authentication.login;
 import com.example.meetmelive.model.Model;
 import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
@@ -41,7 +41,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Profile<OnOption> extends Fragment {
+public class    Profile<OnOption> extends Fragment {
 
     String userId;
     CircleImageView profilePic;
@@ -49,7 +49,7 @@ public class Profile<OnOption> extends Fragment {
     TextView dateOfBirth,city,description;
     ImageSlider imageSlider;//the pictures
     View view;
-    Button connections;
+    Button connection;
     int age;
 
     User user;
@@ -75,14 +75,6 @@ public class Profile<OnOption> extends Fragment {
         dateOfBirth=view.findViewById(R.id.profile_age);
         city=view.findViewById(R.id.profile_city);
         description=view.findViewById(R.id.profile_aboutMe);
-        connections=view.findViewById(R.id.connectionsBtn);
-
-        connections.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_Profile_to_connectionsFragment);
-            }
-        });
 
 
 
@@ -149,7 +141,7 @@ public class Profile<OnOption> extends Fragment {
             case R.id.SignOut:{
                 ModelFirebase.signOut();
                 LoginManager.getInstance().logOut();
-                startActivity(new Intent(getActivity(), login.class));
+                startActivity(new Intent(getActivity(),login.class));
             }
             case R.id.DeleteAccount:{
                 Model.instance.deleteUser(user, new Model.DeleteUserListener() {

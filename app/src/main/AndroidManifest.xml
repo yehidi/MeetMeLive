@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MeetMeLive">
         <activity android:name=".chat.ChatActivity"></activity>
-        <activity android:name=".login">
+        <activity android:name=".authentication.login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,7 +23,7 @@
         </activity>
         <activity android:name=".SearchActivity" />
         <activity android:name=".MainActivity"></activity>
-        <activity android:name=".register" />
+        <activity android:name=".authentication.register" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
