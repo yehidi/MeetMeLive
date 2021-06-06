@@ -8,6 +8,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -15,8 +16,11 @@ public interface UserDao {
     @Query("select * from User")
     LiveData<List<User>> getAllActiveUsers();
 
-//    @Query("select * from User where userId = :userId")
-//    LiveData<List<User>> getUserRecipes(String userId);
+    @Query("select * from User")
+    LiveData<List<User>> getAllRequests();
+
+//    @Query("select * from User where gender = :gender")
+//    LiveData<ArrayList<String>> getUserMatch(String gender);
 
 //    @Query("select * from User where category= :category")
 //    LiveData<List<User>> getRecipesByCategory(String category);

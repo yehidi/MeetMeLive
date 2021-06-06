@@ -1,5 +1,10 @@
 package com.example.meetmelive.authentication;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.Navigation;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,18 +17,26 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.MainActivity;
 import com.example.meetmelive.R;
 import com.example.meetmelive.Utils;
 import com.example.meetmelive.model.ModelFirebase;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class register extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener{
 
@@ -94,7 +107,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.YEAR, dateOfBirth.getYear());
                 cal.set(Calendar.MONTH, dateOfBirth.getMonth());

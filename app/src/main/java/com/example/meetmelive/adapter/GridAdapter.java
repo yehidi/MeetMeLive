@@ -2,11 +2,15 @@ package com.example.meetmelive.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,100 +18,117 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
+import com.example.meetmelive.Nearby;
 import com.example.meetmelive.R;
 import com.example.meetmelive.model.DataModel;
+import com.example.meetmelive.model.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class GridAdapter extends ArrayAdapter<DataModel> {
-    //maya added
 
-
-    //maya added
-
-
+    Context context;
     public GridAdapter(@NonNull Context context,  ArrayList<DataModel> dataModalArrayList) {
         super(context,0, dataModalArrayList);
+        this.context = context;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
-        // below line is use to inflate the
-        // layout for our item of list view.
         View listitemView = convertView;
-        if (listitemView == null) {
-            listitemView = LayoutInflater.from(getContext()).inflate(R.layout.item_grid, parent, false);
+        GridAdapter holder = null;
+
+        if (listitemView == null && getContext()!= null) {
+            listitemView = LayoutInflater.from(context).inflate(R.layout.item_grid, parent, false);
+
         }
 
-        // after inflating an item of listview item
-        // we are getting data from array list inside
-        // our modal class.
         DataModel dataModel = getItem(position);
-
-        // initializing our UI components of list view item.
         TextView nameTV = listitemView.findViewById(R.id.idTVtext);
         ImageView courseIV = listitemView.findViewById(R.id.idIVimage);
 
-        // after initializing our items we are
-        // setting data to our view.
-        // below line is use to set data to our text view.
         nameTV.setText(dataModel.getUsername());
+        if (dataModel.getProfileImageUrl()!=null) {
+            Picasso.get().load(dataModel.getProfileImageUrl()).into(courseIV);
+        }
 
-        // in below line we are using Picasso to load image
-        // from URL in our Image VIew.
-        Picasso.get().load(dataModel.getProfileImageUrl()).into(courseIV);
-
-        // below line is use to add item
-        // click listener for our item of list view.
         listitemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // on the item click on our list view.
-                // we are displaying a toast message.
-                Toast.makeText(getContext(), "Item clicked is : " + dataModel.getUsername(), Toast.LENGTH_SHORT).show();
+                Log.d("TAG", "Item clicked is : " + dataModel.getUsername());
 
-
-
-                //added
-
-                AlertDialog.Builder myAlertBuilder = new AlertDialog.Builder(v.getContext());
-
-                //maya added new
+                AlertDialog myAlertBuilder = new AlertDialog.Builder(v.getContext()).create();
                 Picasso.get().load(dataModel.getProfileImageUrl()).into(courseIV);
-
-                //maya added new
-
-                myAlertBuilder.setTitle("Hi");
-                myAlertBuilder.setMessage("Do You Want To Send A Request ?");
-
-
-
-
-                myAlertBuilder.setPositiveButton("yes, I Want To Send", new DialogInterface.OnClickListener() {
+                myAlertBuilder.setTitle("Send Request");
+                myAlertBuilder.setMessage(Html.fromHtml("Are you sure you want to send<br>a request to <b>" + dataModel.getUsername() + "</b>?"));
+                myAlertBuilder.setButton(AlertDialog.BUTTON_POSITIVE, "Yes, I want to send", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(v.getContext(),"your Request sent" ,Toast.LENGTH_SHORT).show();
+                        Log.d("@ GRID @", "Username CLICK IS " + dataModel.getUsername());
+                        Log.d("@ GRID @", "Email CLICK IS " + dataModel.getEmail());
+
+                        FirebaseFirestore db = FirebaseFirestore.getInstance();
+                        User user = new User();
+                        user = User.getInstance();
+                        Log.d("@ GRID @", "user is: " + user);
+
+                        db.collection("userProfileData").document(dataModel.getEmail()).collection("friendRequests")
+                                .document(User.getInstance().getEmail()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful())
+                                {
+                                }
+                            }
+                        });
+
+//                        db.collection("userProfileData").document(User.getInstance().getEmail()).collection("like")
+//                                .document(dataModel.getEmail()).set(user).add(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful())
+//                                {
+//
+//                                }
+//                            }
+//                        });
+
+                        Toast.makeText(v.getContext(),"Your request has sent from " + User.getInstance().getUsername() + " to " + dataModel.getUsername() ,Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                myAlertBuilder.setButton(AlertDialog.BUTTON_NEGATIVE, "No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
                     }
                 });
 
-                myAlertBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(v.getContext(),"you clicked no", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
+                ImageView image = new ImageView(getContext());
+                if (dataModel.getProfileImageUrl() != null)
+                    Picasso.get().load(dataModel.getProfileImageUrl()).noPlaceholder().into(image);
+                image.setAdjustViewBounds(true);
+                image.setMaxHeight(300);
+                image.setMaxWidth(300);
+                myAlertBuilder.setView(image);
                 myAlertBuilder.show();
 
-                //added
+                Button btnPositive = myAlertBuilder.getButton(AlertDialog.BUTTON_POSITIVE);
+                Button btnNegative = myAlertBuilder.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+                layoutParams.weight = 5;
+                btnPositive.setLayoutParams(layoutParams);
+                btnNegative.setLayoutParams(layoutParams);
             }
         });
         return listitemView;
     }
-
 }
+

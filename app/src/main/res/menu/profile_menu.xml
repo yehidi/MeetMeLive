@@ -7,5 +7,7 @@
     <item
         android:id="@+id/SignOut"
         android:title="Signout" />
-    <item android:title="Delete Account" />
+    <item
+        android:id="@+id/DeleteAccount"
+        android:title="Delete Account" />
 </menu>

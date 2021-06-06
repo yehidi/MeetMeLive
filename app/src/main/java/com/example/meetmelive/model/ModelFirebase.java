@@ -4,13 +4,14 @@ import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.util.Log;
+import android.os.AsyncTask;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.MyApplication;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,19 +20,27 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.util.Listener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -207,7 +216,7 @@ public class ModelFirebase {
                     User.getInstance().pic3= (String) task.getResult().get("pic3");
                     User.getInstance().latitude= 0.0;
                     User.getInstance().longtitude= 0.0;
-
+                    Log.d("SetUserAppData", "@@@");
                     // User.getInstance().lookingForAge= (String) task.getResult().get("looking For Age");
                 }
             }
@@ -408,3 +417,4 @@ public class ModelFirebase {
     }
 
 }
+

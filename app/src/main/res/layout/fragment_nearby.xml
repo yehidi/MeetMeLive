@@ -12,6 +12,9 @@
         android:id="@+id/idGVCourses"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="2" />
+        android:minHeight="100dp"
+        android:stretchMode="columnWidth"
+        android:numColumns="3" />
 
 </RelativeLayout>
+

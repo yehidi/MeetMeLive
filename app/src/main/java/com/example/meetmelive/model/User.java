@@ -1,14 +1,17 @@
 package com.example.meetmelive.model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import com.google.firebase.Timestamp;
-
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import com.google.firebase.Timestamp;
 
 @Entity
 public class User implements Serializable{
