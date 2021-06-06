@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.chat;
 
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.meetmelive.R;
 import com.example.meetmelive.model.ChatMessage;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

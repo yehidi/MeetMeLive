@@ -1,4 +1,4 @@
-package com.example.meetmelive;
+package com.example.meetmelive.chat;
 
 public class Friends {
 

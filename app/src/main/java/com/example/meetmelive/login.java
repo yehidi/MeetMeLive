@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.meetmelive.chat.ChatActivity;
 import com.example.meetmelive.model.ModelFirebase;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;

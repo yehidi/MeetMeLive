@@ -48,12 +48,12 @@
         tools:layout="@layout/activity_search" />
     <activity
         android:id="@+id/chatActivity"
-        android:name="com.example.meetmelive.ChatActivity"
+        android:name="com.example.meetmelive.chat.ChatActivity"
         android:label="activity_chat"
         tools:layout="@layout/activity_chat" />
     <fragment
         android:id="@+id/connectionsFragment"
-        android:name="com.example.meetmelive.ConnectionsFragment"
+        android:name="com.example.meetmelive.chat.ConnectionsFragment"
         android:label="fragment_connections"
         tools:layout="@layout/fragment_connections" />
 </navigation>
