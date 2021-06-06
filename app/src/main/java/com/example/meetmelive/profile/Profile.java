@@ -19,7 +19,6 @@ import androidx.navigation.Navigation;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.MyApplication;
 import com.example.meetmelive.R;
 import com.example.meetmelive.authentication.login;
@@ -50,7 +49,7 @@ public class    Profile<OnOption> extends Fragment {
     TextView dateOfBirth,city,description;
     ImageSlider imageSlider;//the pictures
     View view;
-    Button connection;
+    Button connections;
     int age;
 
     User user;
@@ -76,8 +75,14 @@ public class    Profile<OnOption> extends Fragment {
         dateOfBirth=view.findViewById(R.id.profile_age);
         city=view.findViewById(R.id.profile_city);
         description=view.findViewById(R.id.profile_aboutMe);
+        connections=view.findViewById(R.id.connectionsBtn);
 
-
+        connections.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_Profile_to_connectionsFragment);
+            }
+        });
 
         Log.d("Profile", "Username is " + User.getInstance().getUsername() +  "userId is" +firebaseuser.getUid());
 

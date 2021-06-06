@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -37,6 +38,8 @@ public class ConnectionsFragment extends Fragment {
     private View myMainView;
     ImageView userprofilePic;
     Spinner spinner;
+    private Button message,unmatch;
+    User currentUser;
 
     public ConnectionsFragment() {
         // Required empty public constructor
@@ -66,6 +69,17 @@ public class ConnectionsFragment extends Fragment {
         myFrirendsList.setAdapter(adapter);
         spinner =myMainView.findViewById(R.id.list_row_connections_progressBar);
         //spinner.setEnabled();
+        message=myMainView.findViewById(R.id.list_row_connections_message);
+        unmatch=myMainView.findViewById(R.id.list_row_connections_unmatch);
+//להחזיר כשהצאט יעבוד
+//        message.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Navigation.findNavController(view).navigate(R.id.action_connectionsFragment_to_chatActivity);
+//            }
+//        });
+
+
 
         //image
         //userprofilePic= myMainView.findViewById(R.id.list_row_chats_image_view);
@@ -104,6 +118,12 @@ public class ConnectionsFragment extends Fragment {
                         adapter.getItem(position).getLongtitude(),
                         adapter.getItem(position).getLastUpdatedLocation());
 
+
+                currentUser = new User(User.getInstance().getUserId(), User.getInstance().getEmail(), User.getInstance().getUsername(), User.getInstance().getDateOfBirth(),
+                        User.getInstance().getDescription(), User.getInstance().getGender(), User.getInstance().getLookingForGender(),
+                        User.getInstance().getCity(), User.getInstance().getProfileImageUrl(), User.getInstance().getPic1(), User.getInstance().getPic2(), User.getInstance().getPic3(),
+                        User.getInstance().getLatitude(), User.getInstance().getLongtitude(), User.getInstance().getLastUpdatedLocation());
+
                 db.collection("connections").document(User.getInstance().getEmail()).collection("chats")
                         .document(user.getEmail()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -120,6 +140,20 @@ public class ConnectionsFragment extends Fragment {
                                     });
                             Toast.makeText(getContext(), "Chats  has created", Toast.LENGTH_SHORT).show();
                         }
+                    }
+                });
+                unmatch.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        db.collection("userProfileData").document(User.getInstance().getEmail())
+                                .collection("connections").document(currentUser.getEmail()).delete()
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                    }
+                                });
+                        Toast.makeText(getContext(), "Connection has deleted", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

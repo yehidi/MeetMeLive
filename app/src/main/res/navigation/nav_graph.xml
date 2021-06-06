@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_Profile_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_Profile_to_connectionsFragment"
+            app:destination="@id/connectionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/matchProfileFragment"
@@ -60,4 +63,31 @@
         android:name="com.example.meetmelive.Requests"
         android:label="fragment_requests"
         tools:layout="@layout/fragment_requests" />
+    <fragment
+        android:id="@+id/connectionsFragment"
+        android:name="com.example.meetmelive.chat.ConnectionsFragment"
+        android:label="ConnectionsFragment" >
+        <action
+            android:id="@+id/action_connectionsFragment_to_chatActivity"
+            app:destination="@id/chatActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/chatActivity"
+        android:name="com.example.meetmelive.chat.ChatActivity"
+        android:label="ChatActivity" />
+    <activity
+        android:id="@+id/login"
+        android:name="com.example.meetmelive.authentication.login"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/register"
+        android:name="com.example.meetmelive.authentication.register"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.example.meetmelive.chat.ChatListFragment"
+        android:label="fragment_chat_list"
+        tools:layout="@layout/fragment_chat_list" />
 </navigation>

@@ -9,7 +9,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.R;
 import com.example.meetmelive.model.User;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -27,14 +26,14 @@ public class ConnectionsAdapter extends FirestoreRecyclerAdapter<User, Connectio
 
     @Override
     protected void onBindViewHolder(@NonNull UserHolder holder, int position, @NonNull User model) {
-        holder.nickname.setText(model.getUsername() + ", ");
+        holder.userName.setText(model.getUsername());
         if (model.getProfileImageUrl() != null) {
-            Picasso.get().load(model.getProfileImageUrl()).noPlaceholder().into(holder.userprofilePic);
+            Picasso.get().load(model.getProfileImageUrl()).noPlaceholder().into(holder.userProfileImage);
         }
 
-        CalculateAge calculateAge = new CalculateAge(model.getDateOfBirth());
-        int age = calculateAge.getAge();
-        holder.age.setText(String.valueOf(age));
+        //CalculateAge calculateAge = new CalculateAge(model.getDateOfBirth());
+        //int age = calculateAge.getAge();
+        //holder.age.setText(String.valueOf(age));
     }
 
     public interface OnItemClickListener {
@@ -49,16 +48,16 @@ public class ConnectionsAdapter extends FirestoreRecyclerAdapter<User, Connectio
     }
 
     class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        ImageView userprofilePic;
-        TextView nickname;
-        TextView age;
+        ImageView userProfileImage;
+        TextView userName;
+        //TextView age;
 
         public UserHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             itemView.setOnClickListener(this);
-            userprofilePic=itemView.findViewById(R.id.list_row_chats_image_view);
-            nickname = itemView.findViewById(R.id.list_row_chats_username);
-            age=itemView.findViewById(R.id.list_row_chats_age);
+            userProfileImage=itemView.findViewById(R.id.list_row_chats_image_view);
+            userName = itemView.findViewById(R.id.list_row_chats_username);
+            //age=itemView.findViewById(R.id.list_row_chats_age);
         }
 
         @Override

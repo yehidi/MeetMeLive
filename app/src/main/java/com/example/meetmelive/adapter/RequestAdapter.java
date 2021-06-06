@@ -63,7 +63,7 @@ public class RequestAdapter extends FirestoreRecyclerAdapter<User, RequestAdapte
             nickname = itemView.findViewById(R.id.list_row_chats_username);
             age=itemView.findViewById(R.id.list_row_chats_age);
 
-            itemView.findViewById(R.id.list_row_requests_accept).setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.list_row_connections_unmatch).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
