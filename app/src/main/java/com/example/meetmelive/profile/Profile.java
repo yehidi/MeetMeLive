@@ -21,7 +21,7 @@ import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.meetmelive.MyApplication;
 import com.example.meetmelive.R;
-import com.example.meetmelive.authentication.login;
+import com.example.meetmelive.login;
 import com.example.meetmelive.model.Model;
 import com.example.meetmelive.model.ModelFirebase;
 import com.example.meetmelive.model.User;
@@ -149,7 +149,7 @@ public class Profile<OnOption> extends Fragment {
             case R.id.SignOut:{
                 ModelFirebase.signOut();
                 LoginManager.getInstance().logOut();
-                startActivity(new Intent(getActivity(),login.class));
+                startActivity(new Intent(getActivity(), login.class));
             }
             case R.id.DeleteAccount:{
                 Model.instance.deleteUser(user, new Model.DeleteUserListener() {
