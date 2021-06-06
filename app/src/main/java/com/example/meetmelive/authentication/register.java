@@ -107,7 +107,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.YEAR, dateOfBirth.getYear());
                 cal.set(Calendar.MONTH, dateOfBirth.getMonth());
@@ -117,19 +117,19 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                 Log.d("TAG", "strDATEOFBIRTH IS " + strDateOfBirth);
 
                 ModelFirebase.registerUserAccount(email.getText().toString(), username.getText().toString(),
-                            password.getText().toString(), city.getText().toString(),description.getText().toString(), gender, lookingForGender, strDateOfBirth, profileImageUri, new ModelFirebase.Listener<Boolean>() {
+                        password.getText().toString(), city.getText().toString(),description.getText().toString(), gender, lookingForGender, strDateOfBirth, profileImageUri, new ModelFirebase.Listener<Boolean>() {
 
-                                @Override
-                                public void onComplete() {
-                                            startActivity(new Intent(register.this, MainActivity.class));
-                                            finish();
-                                }
+                            @Override
+                            public void onComplete() {
+                                startActivity(new Intent(register.this, MainActivity.class));
+                                finish();
+                            }
 
-                                @Override
-                                public void onFail() {
+                            @Override
+                            public void onFail() {
 
-                                }
-                            });
+                            }
+                        });
             }
         });
 

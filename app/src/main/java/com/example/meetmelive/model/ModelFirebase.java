@@ -105,11 +105,11 @@ public class ModelFirebase {
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
                     uploadUserData(email,username,city,description, gender, lookingForGender, dateOfBirth,imageUri);
-                   // setUserAppData(email);
+                    // setUserAppData(email);
 
                     //add user data to local DB
                     User user =  new User(firebaseAuth.getUid(),email, username, city, description, gender, lookingForGender, dateOfBirth,
-                                        User.getInstance().getProfileImageUrl(),"","","",0.0,0.0, User.getInstance().getLastUpdatedLocation());
+                            User.getInstance().getProfileImageUrl(),"","","",0.0,0.0, User.getInstance().getLastUpdatedLocation());
                     new AsyncTask<String, String, String>() {
                         @Override
                         protected String doInBackground(String... strings) {
@@ -218,7 +218,7 @@ public class ModelFirebase {
                     User.getInstance().pic3= (String) task.getResult().get("pic3");
                     User.getInstance().latitude= 0.0;
                     User.getInstance().longtitude= 0.0;
-
+                    Log.d("SetUserAppData", "@@@");
                     // User.getInstance().lookingForAge= (String) task.getResult().get("looking For Age");
                 }
             }
@@ -227,23 +227,23 @@ public class ModelFirebase {
 
     public static  void updateUserProfile(User user){
 
-            db.collection("userProfileData").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("userProfileData").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
 
-                            if(document.getData().get("email").equals(user.email)){
-                                db.collection("userProfileData")
-                                        .document(User.getInstance().email).set(user.toMap());
-                            }
+                        if(document.getData().get("email").equals(user.email)){
+                            db.collection("userProfileData")
+                                    .document(User.getInstance().email).set(user.toMap());
                         }
-                    } else {
-                        Log.d("TAG", "Error getting documents: ", task.getException());
                     }
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
                 }
-            });
+            }
+        });
     }
 
 
@@ -404,7 +404,7 @@ public class ModelFirebase {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     if(picName.contains("profileImageUrl")){
-                    User.getInstance().setProfileImageUrl((String) document.getData().get("profileImageUrl"));
+                        User.getInstance().setProfileImageUrl((String) document.getData().get("profileImageUrl"));
                         Log.d("fire photo","profile  "+User.getInstance().getProfileImageUrl());
                     }
                     if(picName.contains("pic1")){
@@ -455,3 +455,4 @@ public class ModelFirebase {
     }
 
 }
+
