@@ -1,17 +1,17 @@
 package com.example.meetmelive;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.meetmelive.adapter.RequestAdapter;
 import com.example.meetmelive.model.User;
@@ -88,42 +88,45 @@ public class Requests extends Fragment {
                         adapter.getItem(position).getLongtitude(),
                         adapter.getItem(position).getLastUpdatedLocation());
 
-                acceptBtn.setOnClickListener(new View.OnClickListener() {
+                db.collection("userProfileData").document(User.getInstance().getEmail()).collection("connections")
+                        .document(user.getEmail()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onClick(View v) {
-                        db.collection("userProfileData").document(User.getInstance().getEmail()).collection("connections")
-                                .document(user.getEmail()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                    public void onComplete(@NonNull Task<Void> task) {
 
-                                if (task.isSuccessful()){
-                                    db.collection("userProfileData").document(User.getInstance().getEmail())
-                                            .collection("friendRequests").document(user.getEmail()).delete()
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            db.collection("userProfileData").document(User.getInstance().getEmail())
+                                    .collection("friendRequests").document(user.getEmail()).delete()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
 
-                                                }
-                                            });
-                                }
-                            }
-                        });
+                                        }
+                                    });
+                            Toast.makeText(getContext(), "Connection has created", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
-                declineBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        db.collection("userProfileData").document(User.getInstance().getEmail())
-                                .collection("friendRequests").document(user.getEmail()).delete()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
+//                acceptBtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//
+//                    }
+//                });
 
-                                    }
-                                });
-                    }
-                });
+//                declineBtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        db.collection("userProfileData").document(User.getInstance().getEmail())
+//                                .collection("friendRequests").document(user.getEmail()).delete()
+//                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                                    @Override
+//                                    public void onComplete(@NonNull Task<Void> task) {
+//
+//                                    }
+//                                });
+//                    }
+//                });
             }
         });
 

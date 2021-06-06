@@ -17,6 +17,8 @@ public class Model {
     private Model(){
     }
 
+
+
     public interface Listener<T>{
         void onComplete(T result);
     }
@@ -30,7 +32,9 @@ public class Model {
         modelFirebase.getUser(email, listener);
     }
 
-
+    public void UpdateUserSuggestions(String ageRange) {
+        modelFirebase.UpdateUserSuggestions(ageRange);
+    }
 
     public interface GetAllActiveUsersListener{
         void onComplete();

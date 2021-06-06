@@ -360,6 +360,18 @@ public class ModelFirebase {
         });
     }
 
+    public void UpdateUserSuggestions(String ageRange) {
+        DocumentReference washingtonRef = db.collection("userProfileData").document(User.getInstance().email);
+        washingtonRef.update("perferAge",ageRange).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Log.d("perfer", "age "+ageRange);
+            }
+        });
+    }
+
+
+
     public static void getImageFromFireBase(String picName){
 
         db.collection("userProfileData").whereEqualTo("email",User.getInstance().email).get().addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
