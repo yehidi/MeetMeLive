@@ -35,9 +35,10 @@ public class ConnectionsAdapter extends FirestoreRecyclerAdapter<User, Connectio
         //int age = calculateAge.getAge();
         //holder.age.setText(String.valueOf(age));
     }
-
     public interface OnItemClickListener {
         void onItemClick(int position);
+        void onItemClick2(int position);
+
     }
 
     @NonNull
@@ -58,8 +59,23 @@ public class ConnectionsAdapter extends FirestoreRecyclerAdapter<User, Connectio
             userProfileImage=itemView.findViewById(R.id.list_row_chats_image_view);
             userName = itemView.findViewById(R.id.list_row_chats_username);
             //age=itemView.findViewById(R.id.list_row_chats_age);
-        }
 
+            itemView.findViewById(R.id.list_row_connections_message).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    listener.onItemClick(position);
+                }
+            });
+
+            itemView.findViewById(R.id.list_row_connections_unmatch).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    listener.onItemClick2(position);
+                }
+            });
+        }
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
@@ -70,7 +86,5 @@ public class ConnectionsAdapter extends FirestoreRecyclerAdapter<User, Connectio
 //            Navigation.findNavController(v).navigate(action);
             //image
         }
-
-
     }
 }

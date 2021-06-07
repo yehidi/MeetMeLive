@@ -1,37 +1,29 @@
 package com.example.meetmelive;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.meetmelive.adapter.GridAdapter;
 import com.example.meetmelive.model.DataModel;
-import com.example.meetmelive.model.ModelFirebase;
+import com.example.meetmelive.model.Model;
 import com.example.meetmelive.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class Nearby extends Fragment {
 
@@ -42,6 +34,7 @@ public class Nearby extends Fragment {
     ArrayList<DataModel> dataModelArrayList;
     FirebaseFirestore db;
     View view;
+    NearByViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,7 +53,19 @@ public class Nearby extends Fragment {
 
         setUser(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         Log.d("NearBy", "!!!!!!!!!!!!!!!!!!!");
-
+        //Odeya added- swipeToRefresh
+        final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.nearby_fragment_swipe_refresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                viewModel.refresh(new Model.CompListener() {
+                    @Override
+                    public void onComplete() {
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        });
         // here we are calling a method
         // to load data in our list view.
 //        loadDatainGridView();

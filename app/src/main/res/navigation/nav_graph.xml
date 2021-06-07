@@ -68,8 +68,8 @@
         android:name="com.example.meetmelive.chat.ConnectionsFragment"
         android:label="ConnectionsFragment" >
         <action
-            android:id="@+id/action_connectionsFragment_to_chatActivity"
-            app:destination="@id/chatActivity" />
+            android:id="@+id/action_connectionsFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
     </fragment>
     <activity
         android:id="@+id/chatActivity"
@@ -86,8 +86,17 @@
         android:label="activity_register"
         tools:layout="@layout/activity_register" />
     <fragment
-        android:id="@+id/chatListFragment"
-        android:name="com.example.meetmelive.chat.ChatListFragment"
-        android:label="fragment_chat_list"
-        tools:layout="@layout/fragment_chat_list" />
+        android:id="@+id/usersFragment"
+        android:name="com.example.meetmelive.UsersFragment"
+        android:label="fragment_users"
+        tools:layout="@layout/fragment_users" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.meetmelive.chat.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" >
+        <argument
+            android:name="sendersEmail"
+            app:argType="string" />
+    </fragment>
 </navigation>

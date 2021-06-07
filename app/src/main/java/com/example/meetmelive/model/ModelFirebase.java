@@ -4,44 +4,38 @@ import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
-import android.util.Log;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.MyApplication;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.util.Listener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class ModelFirebase {
@@ -414,6 +408,28 @@ public class ModelFirebase {
     public static void signOut(){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.signOut();
+    }
+
+    //Refresh - Odeya Added
+    public static void getAllUsersSince(long since, final Model.Listener<List<User>> listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        Timestamp ts = new Timestamp(since, 0);
+
+        db.collection("userProfileData").whereGreaterThanOrEqualTo("lastUpdatedLocation", ts).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                List<User> usersData = null;
+                if (task.isSuccessful()){
+                    usersData = new LinkedList<User>();
+                    for(QueryDocumentSnapshot doc : task.getResult()){
+                        Map<String,Object> json = doc.getData();
+                        User user;
+                    }
+                }
+                listener.onComplete(usersData);
+                Log.d("TAG","refresh " + usersData.size());
+            }
+        });
     }
 
 }

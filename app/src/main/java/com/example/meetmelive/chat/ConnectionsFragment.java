@@ -2,6 +2,7 @@ package com.example.meetmelive.chat;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -71,15 +73,6 @@ public class ConnectionsFragment extends Fragment {
         //spinner.setEnabled();
         message=myMainView.findViewById(R.id.list_row_connections_message);
         unmatch=myMainView.findViewById(R.id.list_row_connections_unmatch);
-//להחזיר כשהצאט יעבוד
-//        message.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Navigation.findNavController(view).navigate(R.id.action_connectionsFragment_to_chatActivity);
-//            }
-//        });
-
-
 
         //image
         //userprofilePic= myMainView.findViewById(R.id.list_row_chats_image_view);
@@ -101,6 +94,55 @@ public class ConnectionsFragment extends Fragment {
             public void onItemClick(int position) {
                 //Log.d("TAG", "POSITION IS " + adapter.getItem(position).getCity());
 
+               User userClicked  = new User(
+                        adapter.getItem(position).getUserId(),
+                        adapter.getItem(position).getEmail(),
+                        adapter.getItem(position).getUsername(),
+                        adapter.getItem(position).getCity(),
+                        adapter.getItem(position).getDescription(),
+                        adapter.getItem(position).getGender(),
+                        adapter.getItem(position).getLookingForGender(),
+                        adapter.getItem(position).getDateOfBirth(),
+                        adapter.getItem(position).getProfileImageUrl(),
+                        adapter.getItem(position).getPic1(),
+                        adapter.getItem(position).getPic2(),
+                        adapter.getItem(position).getPic3(),
+                        adapter.getItem(position).getLatitude(),
+                        adapter.getItem(position).getLongtitude(),
+                        adapter.getItem(position).getLastUpdatedLocation());
+
+                currentUser = new User(User.getInstance().getUserId(), User.getInstance().getEmail(), User.getInstance().getUsername(), User.getInstance().getDateOfBirth(),
+                        User.getInstance().getDescription(), User.getInstance().getGender(), User.getInstance().getLookingForGender(),
+                        User.getInstance().getCity(), User.getInstance().getProfileImageUrl(), User.getInstance().getPic1(), User.getInstance().getPic2(), User.getInstance().getPic3(),
+                        User.getInstance().getLatitude(), User.getInstance().getLongtitude(), User.getInstance().getLastUpdatedLocation());
+
+                db.collection("connections").document(User.getInstance().getEmail()).collection("chats")
+                        .document(userClicked.getEmail()).set(userClicked).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()) {
+                            db.collection("userProfileData").document(User.getInstance().getEmail())
+                                    .collection("connections").document(userClicked.getEmail()).set(userClicked) //delete()
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                        }
+                                    });
+                            Toast.makeText(getContext(), "Chats  has created", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                ConnectionsFragmentDirections.ActionConnectionsFragmentToChatFragment direction= ConnectionsFragmentDirections.actionConnectionsFragmentToChatFragment(userClicked.getEmail());
+                Log.d("MESSAGE",userClicked.getEmail());
+                Navigation.findNavController(getActivity(),R.id.mainactivity_navhost).navigate(direction);
+            }
+
+            @Override
+            public void onItemClick2(int position) {
+                Log.d("TAG", "Email IS " + adapter.getItem(position).getEmail());
+
                 User user = new User(
                         adapter.getItem(position).getUserId(),
                         adapter.getItem(position).getEmail(),
@@ -118,48 +160,19 @@ public class ConnectionsFragment extends Fragment {
                         adapter.getItem(position).getLongtitude(),
                         adapter.getItem(position).getLastUpdatedLocation());
 
+                //unmatch - Delete the connection
+                db.collection("userProfileData").document(User.getInstance().getEmail())
+                        .collection("connections").document(user.getEmail()).delete()
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
 
-                currentUser = new User(User.getInstance().getUserId(), User.getInstance().getEmail(), User.getInstance().getUsername(), User.getInstance().getDateOfBirth(),
-                        User.getInstance().getDescription(), User.getInstance().getGender(), User.getInstance().getLookingForGender(),
-                        User.getInstance().getCity(), User.getInstance().getProfileImageUrl(), User.getInstance().getPic1(), User.getInstance().getPic2(), User.getInstance().getPic3(),
-                        User.getInstance().getLatitude(), User.getInstance().getLongtitude(), User.getInstance().getLastUpdatedLocation());
-
-                db.collection("connections").document(User.getInstance().getEmail()).collection("chats")
-                        .document(user.getEmail()).set(user).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-
-                        if (task.isSuccessful()) {
-                            db.collection("userProfileData").document(User.getInstance().getEmail())
-                                    .collection("connections").document(user.getEmail()).set(user) //delete()
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-
-                                        }
-                                    });
-                            Toast.makeText(getContext(), "Chats  has created", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-                unmatch.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        db.collection("userProfileData").document(User.getInstance().getEmail())
-                                .collection("connections").document(currentUser.getEmail()).delete()
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-
-                                    }
-                                });
-                        Toast.makeText(getContext(), "Connection has deleted", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            }
+                        });
+                Toast.makeText(getContext(), "Connection has been removed", Toast.LENGTH_SHORT).show();
             }
         });
-    }
-
+        }
     @Override
     public void onStart() {
         super.onStart();

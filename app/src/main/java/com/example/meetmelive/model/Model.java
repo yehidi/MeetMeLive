@@ -1,10 +1,14 @@
 package com.example.meetmelive.model;
 
-import android.app.Application;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.meetmelive.MyApplication;
 
 import java.util.List;
 
@@ -79,4 +83,41 @@ public class Model {
         }.execute();
     }
 
-}
+    //Refresh - Odeya added
+    public interface CompListener{
+        void onComplete();
+    }
+    public void refreshAllUsers(final CompListener listener){
+        long lastUpdated = MyApplication.context.getSharedPreferences("TAG", Context.MODE_PRIVATE).getLong("UsersLastUpdateDate",0);
+
+        ModelFirebase.getAllUsersSince(lastUpdated,new Listener<List<User>>() {
+            @SuppressLint("StaticFieldLeak")
+            @Override
+            public void onComplete(final List<User> data) {
+                new AsyncTask<String,String,String>(){
+                    @Override
+                    protected String doInBackground(String... strings) {
+                        long lastUpdated = 0;
+                        for(User user : data){
+                            AppLocalDb.db.userDao().insertAll(user);
+                            if (user.lastUpdatedLocation > lastUpdated){
+                                lastUpdated = user.lastUpdatedLocation;
+                            }
+                        }
+                        SharedPreferences.Editor edit = MyApplication.context.getSharedPreferences("TAG",Context.MODE_PRIVATE).edit();
+                        edit.putLong("UsersLastUpdateLocation",lastUpdated);
+                        edit.commit();
+                        return "";
+                    }
+                    @Override
+                    protected void onPostExecute(String s) {
+                        super.onPostExecute(s);
+                        //cleanLocalDb();
+                        if (listener!=null)  listener.onComplete();
+                    }
+                }.execute("");
+            }
+        });
+    }
+    }
+
