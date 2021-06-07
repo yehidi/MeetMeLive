@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.example.meetmelive.R;
+import com.example.meetmelive.model.User;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,6 +24,7 @@ import com.google.firebase.database.Query;
 
 public class ChatFragment extends Fragment {
     EditText input;
+    String sendersEmail;
     View view;
     private FirebaseListAdapter<ChatMessage> adapter;
     public ChatFragment(){ }
@@ -32,7 +34,7 @@ public class ChatFragment extends Fragment {
         view= inflater.inflate(R.layout.fragment_chat, container, false);
         input =view.findViewById(R.id.chatFragment_input);
         // Inflate the layout for this fragment
-        String sendersEmail=ChatFragmentArgs.fromBundle(getArguments()).getSendersEmail();
+        sendersEmail=ChatFragmentArgs.fromBundle(getArguments()).getSendersEmail();
         Log.d("CHATS", sendersEmail);
         FloatingActionButton fab =view.findViewById(R.id.fab);
 
@@ -43,6 +45,20 @@ public class ChatFragment extends Fragment {
 //                // of ChatMessage to the Firebase database
                 FirebaseDatabase.getInstance()
                         .getReference()
+                        .child("chats")
+                        .child(User.getInstance().getUsername())
+                        .child(sendersEmail)
+                        .push()
+                        .setValue(new ChatMessage(input.getText().toString(),
+                                FirebaseAuth.getInstance()
+                                        .getCurrentUser()
+                                        .getDisplayName())
+                        );
+                FirebaseDatabase.getInstance()
+                        .getReference()
+                        .child("chats")
+                        .child(sendersEmail)
+                        .child(User.getInstance().getUsername())
                         .push()
                         .setValue(new ChatMessage(input.getText().toString(),
                                 FirebaseAuth.getInstance()
@@ -61,7 +77,7 @@ public class ChatFragment extends Fragment {
     void displayChatMessages() {
         ListView listOfMessages = view.findViewById(R.id.list_of_messages);
         //RecyclerView listOfMessages = (RecyclerView)findViewById(R.id.list_of_messages);
-        Query query = FirebaseDatabase.getInstance().getReference();//.child("chats")
+        Query query = FirebaseDatabase.getInstance().getReference().child("chats").child(User.getInstance().getUsername()).child(sendersEmail);
         FirebaseListOptions<ChatMessage> options = new FirebaseListOptions.Builder<ChatMessage>()
                 .setQuery(query, ChatMessage.class)
                 .setLayout(R.layout.chat_message)
@@ -76,7 +92,9 @@ public class ChatFragment extends Fragment {
                 TextView messageUser = v.findViewById(R.id.message_user);
                 // Set their text
                 messageText.setText(model.getMessageText());
-                messageUser.setText(model.getMessageUser());
+                messageUser.setText(FirebaseAuth.getInstance()
+                        .getCurrentUser()
+                        .getDisplayName());//model.getMessageUser()
                 // Format the date before showing it
                 messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
                 Log.d("TAG","the message is: "+messageText);

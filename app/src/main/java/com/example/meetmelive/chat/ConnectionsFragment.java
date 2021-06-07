@@ -134,8 +134,8 @@ public class ConnectionsFragment extends Fragment {
                         }
                     }
                 });
-                ConnectionsFragmentDirections.ActionConnectionsFragmentToChatFragment direction= ConnectionsFragmentDirections.actionConnectionsFragmentToChatFragment(userClicked.getEmail());
-                Log.d("MESSAGE",userClicked.getEmail());
+                ConnectionsFragmentDirections.ActionConnectionsFragmentToChatFragment direction= ConnectionsFragmentDirections.actionConnectionsFragmentToChatFragment(userClicked.getUsername());
+                Log.d("MESSAGE",userClicked.getUsername());
                 Navigation.findNavController(getActivity(),R.id.mainactivity_navhost).navigate(direction);
             }
 

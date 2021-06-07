@@ -17,7 +17,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -34,8 +33,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 
 public class ModelFirebase {
@@ -411,26 +408,26 @@ public class ModelFirebase {
     }
 
     //Refresh - Odeya Added
-    public static void getAllUsersSince(long since, final Model.Listener<List<User>> listener) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Timestamp ts = new Timestamp(since, 0);
-
-        db.collection("userProfileData").whereGreaterThanOrEqualTo("lastUpdatedLocation", ts).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                List<User> usersData = null;
-                if (task.isSuccessful()){
-                    usersData = new LinkedList<User>();
-                    for(QueryDocumentSnapshot doc : task.getResult()){
-                        Map<String,Object> json = doc.getData();
-                        User user;
-                    }
-                }
-                listener.onComplete(usersData);
-                Log.d("TAG","refresh " + usersData.size());
-            }
-        });
-    }
+//    public static void getAllUsersSince(long since, final Model.Listener<List<User>> listener) {
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        Timestamp ts = new Timestamp(since, 0);
+//
+//        db.collection("userProfileData").whereGreaterThanOrEqualTo("lastUpdatedLocation", ts).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                List<User> usersData = null;
+//                if (task.isSuccessful()){
+//                    usersData = new LinkedList<User>();
+//                    for(QueryDocumentSnapshot doc : task.getResult()){
+//                        Map<String,Object> json = doc.getData();
+//                        User user;
+//                    }
+//                }
+//                listener.onComplete(usersData);
+//                Log.d("TAG","refresh " + usersData.size());
+//            }
+//        });
+//    }
 
 }
 

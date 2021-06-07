@@ -9,11 +9,9 @@ import android.widget.GridView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.meetmelive.adapter.GridAdapter;
 import com.example.meetmelive.model.DataModel;
-import com.example.meetmelive.model.Model;
 import com.example.meetmelive.model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,7 +32,7 @@ public class Nearby extends Fragment {
     ArrayList<DataModel> dataModelArrayList;
     FirebaseFirestore db;
     View view;
-    NearByViewModel viewModel;
+    //NearByViewModel viewModel;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -54,18 +52,18 @@ public class Nearby extends Fragment {
         setUser(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         Log.d("NearBy", "!!!!!!!!!!!!!!!!!!!");
         //Odeya added- swipeToRefresh
-        final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.nearby_fragment_swipe_refresh);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                viewModel.refresh(new Model.CompListener() {
-                    @Override
-                    public void onComplete() {
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                });
-            }
-        });
+//        final SwipeRefreshLayout swipeRefreshLayout = view.findViewById(R.id.nearby_fragment_swipe_refresh);
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//                viewModel.refresh(new Model.CompListener() {
+//                    @Override
+//                    public void onComplete() {
+//                        swipeRefreshLayout.setRefreshing(false);
+//                    }
+//                });
+//            }
+//        });
         // here we are calling a method
         // to load data in our list view.
 //        loadDatainGridView();
