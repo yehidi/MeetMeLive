@@ -61,6 +61,17 @@ public class Model {
         }.execute();
     }
 
+    public void DeleteImage(String name) {
+        ModelFirebase.DeleteImage(name);
+//        new AsyncTask<String, String, String>() {
+//            @Override
+//            protected String doInBackground(String... strings) {
+//                AppLocalDb.db.userDao().insertAll(user);
+//                return "";
+//            }
+//        }.execute();
+    }
+
 
     //Delete
     public interface DeleteUserListener {

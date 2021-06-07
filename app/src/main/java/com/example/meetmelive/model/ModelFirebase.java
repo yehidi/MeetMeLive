@@ -51,6 +51,8 @@ public class ModelFirebase {
     FirebaseStorage storage = FirebaseStorage.getInstance();
 
 
+
+
     public interface Listener<T>{
         void onComplete();
         void onFail();
@@ -245,6 +247,26 @@ public class ModelFirebase {
     }
 
 
+    public static void DeleteImage(String name) {
+        DocumentReference washingtonRef = db.collection("userProfileData").document(User.getInstance().email);
+
+        washingtonRef
+                .update(name,null)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("picture", "picture"+name+" successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error deleting document", e);
+                    }
+                });
+    }
+
+
     public static void updateLocation(Location location){
         DocumentReference washingtonRef = db.collection("userProfileData").document(User.getInstance().email);
 
@@ -254,6 +276,8 @@ public class ModelFirebase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        User.getInstance().setLatitude(location.getLatitude());
+                        User.getInstance().setLongtitude(location.getLongitude());
                         Log.d("location", "Location latitude successfully updated!");
                     }
                 })
@@ -313,13 +337,27 @@ public class ModelFirebase {
     public static void uploadImageToFirebase(String picName, String url){
         DocumentReference washingtonRef = db.collection("userProfileData").document(User.getInstance().email);
 
-        //update latitude
         washingtonRef
                 .update(picName,url)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("picture", "picture"+picName+" successfully updated!");
+                        if(picName.contains("pic1")){
+                            User.getInstance().setPic1(url);
+                        }
+                        else if(picName.contains("pic2")){
+                            User.getInstance().setPic2(url);
+                        }
+                        else if(picName.contains("pic3")){
+                            User.getInstance().setPic3(url);
+                            Log.d("pic3 ","url "+ url);
+                            Log.d("pic3 ","pic 3 "+User.getInstance().getPic3());
+                        }
+                        else {
+                            User.getInstance().setProfileImageUrl(url);
+                        }
+
+                        Log.d("picture", "picture "+picName+" successfully updated!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

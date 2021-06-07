@@ -106,6 +106,7 @@ public class    Profile<OnOption> extends Fragment {
                 dateOfBirth.setText(String.valueOf(age));
                 city.setText(user.getCity());
                 description.setText(user.getDescription());
+                User.getInstance().setLastUpdatedLocation(user.getLastUpdatedLocation());
             }
         });
 
