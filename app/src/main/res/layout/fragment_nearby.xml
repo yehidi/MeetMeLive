@@ -12,6 +12,9 @@
         android:id="@+id/idGVCourses"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/t6"
         android:numColumns="2" />
 
 </RelativeLayout>

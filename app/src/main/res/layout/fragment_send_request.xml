@@ -13,6 +13,7 @@
         android:id="@+id/userImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#00910F0F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

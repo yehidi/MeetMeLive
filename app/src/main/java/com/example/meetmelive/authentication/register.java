@@ -5,7 +5,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.Navigation;
 
+import android.app.DirectAction;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -101,6 +103,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
 
                 int age = getAge(dateOfBirth.getYear(),dateOfBirth.getMonth(),dateOfBirth.getDayOfMonth());
                 Log.d("TAG", "BIRTHDAY IS " + age);
+
             }
         });
 

@@ -4,12 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/logo"
     tools:context=".authentication.register">
 
     <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbarSize="10dp">
+        android:layout_width="426dp"
+        android:layout_height="683dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:background="@drawable/logo2"
+        android:clickable="false"
+        android:scrollbarSize="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.495">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,13 +28,17 @@
                 android:id="@+id/register_activity_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
                 android:layout_marginTop="5dp"
                 android:ems="10"
+                android:fontFamily="casual"
                 android:hint="Password"
                 android:inputType="textPassword"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_activity_email_edit_text" />
 
@@ -33,13 +46,16 @@
                 android:id="@+id/register_activity_email_edit_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="8dp"
                 android:ems="10"
+                android:fontFamily="casual"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
+                android:text="Email"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_activity_username" />
 
@@ -47,13 +63,17 @@
                 android:id="@+id/register_activity_username"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="196dp"
                 android:ems="10"
+                android:fontFamily="casual"
                 android:hint="Username"
                 android:inputType="textPersonName"
+                android:text="Username"
+                android:textColorHint="#000000"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,14 +81,18 @@
                 android:id="@+id/register_frag_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="4dp"
                 android:ems="10"
+                android:fontFamily="casual"
                 android:hint="City"
                 android:inputType="textPersonName"
                 android:singleLine="true"
+                android:textColor="#000000"
+                android:textColorHint="#131313"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_activity_password" />
 
@@ -76,9 +100,9 @@
                 android:id="@+id/register_radiogroupGender"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="8dp"
                 android:orientation="horizontal"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_frag_city">
@@ -87,24 +111,23 @@
                     android:id="@+id/register_gender_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="casual"
                     android:text="Gender:"
-                    android:textSize="16sp" />
+                    android:textColor="#000000"
+                    android:textColorHint="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <RadioButton
                     android:id="@+id/register_male_radiobutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4sp"
+                    android:fontFamily="casual"
                     android:text="Male"
-                    android:textSize="12sp" />
-
-                <RadioButton
-                    android:id="@+id/register_female_radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4sp"
-                    android:text="Female"
-                    android:textSize="12sp" />
+                    android:textColor="#000000"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
 
             </RadioGroup>
 
@@ -119,41 +142,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_radiogroupGender">
 
-                <TextView
-                    android:id="@+id/register_lookingfor_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Looking For:"
-                    android:textSize="16sp" />
-
-                <RadioButton
-                    android:id="@+id/register_lookingfor_male_radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4sp"
-                    android:text="Male"
-                    android:textSize="12sp" />
-
-                <RadioButton
-                    android:id="@+id/register_lookingfor_female_radiobutton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="4sp"
-                    android:text="Female"
-                    android:textSize="12sp" />
             </RadioGroup>
 
             <EditText
                 android:id="@+id/register_about"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
                 android:layout_marginTop="5dp"
                 android:ems="10"
+                android:fontFamily="casual"
                 android:hint="About me"
                 android:inputType="textPersonName"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_birthDate" />
 
@@ -163,12 +168,13 @@
                 android:layout_height="57dp"
                 android:layout_marginStart="156dp"
                 android:layout_marginLeft="156dp"
-                android:layout_marginTop="31dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="156dp"
                 android:layout_marginRight="156dp"
                 android:src="@drawable/pic"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_about" />
 
@@ -179,7 +185,9 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="100dp"
+                android:background="#E91E63"
                 android:text="CHOOSE A PHOTO"
+                app:backgroundTint="#C4EA5D8D"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +203,7 @@
                 android:background="#F5F5F5"
                 android:text="SIGN UP"
                 android:textSize="18sp"
-                app:backgroundTint="#AE9E83CD"
+                app:backgroundTint="#9FE4618D"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_btnChoosePhoto" />
@@ -204,14 +212,131 @@
                 android:id="@+id/register_birthDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="8dp"
                 android:calendarViewShown="false"
                 android:datePickerMode="spinner"
                 android:endYear="2003"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_radiogroupLookingFor" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="346dp"
+                android:layout_height="36dp"
+                android:fontFamily="casual"
+                android:text="Thank You For Your Desicion  To Join Meet Me Live "
+                android:textColor="#E91E63"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView6"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                app:layout_constraintVertical_bias="0.207" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="245dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="casual"
+                android:text="Hi You !"
+                android:textColor="#E91E63"
+                android:textSize="26dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.911"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="288dp"
+                android:layout_height="29dp"
+                android:layout_marginBottom="44dp"
+                android:fontFamily="casual"
+                android:text="Please Fill Up Ypur Details:"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/register_activity_username"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.758"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <RadioButton
+                android:id="@+id/register_lookingfor_female_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="casual"
+                android:text="Female"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.586"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/register_frag_city" />
+
+            <RadioButton
+                android:id="@+id/register_female_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:fontFamily="casual"
+                android:text="Female"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/register_lookingfor_tv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.503" />
+
+            <RadioButton
+                android:id="@+id/register_lookingfor_male_radiobutton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="casual"
+                android:text="Male"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/register_lookingfor_tv"
+                app:layout_constraintTop_toBottomOf="@+id/register_radiogroupGender" />
+
+            <TextView
+                android:id="@+id/register_lookingfor_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="28dp"
+                android:layout_marginLeft="28dp"
+                android:fontFamily="casual"
+                android:text="Looking For:"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/register_radiogroupLookingFor"
+                app:layout_constraintTop_toBottomOf="@+id/register_radiogroupGender"
+                app:layout_constraintVertical_bias="0.022" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="25dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="344dp"
+                android:layout_marginLeft="344dp"
+                android:layout_marginBottom="52dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/logo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

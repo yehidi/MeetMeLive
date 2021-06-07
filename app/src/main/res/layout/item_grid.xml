@@ -14,7 +14,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_margin="4dp"
-        android:background="@color/white"
+        android:background="@color/purple_200"
         android:backgroundTint="@color/white"
         android:padding="3dp" />
 
@@ -24,10 +24,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center_horizontal"
         android:padding="3dp"
         android:text="Category Text"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:gravity="center_horizontal" />
+        android:textColor="@color/white"
+        android:textSize="17dp"
+        android:textStyle="bold" />
 
 </LinearLayout>
