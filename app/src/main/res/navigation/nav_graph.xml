@@ -78,7 +78,7 @@
         android:label="ConnectionsFragment" >
         <action
             android:id="@+id/action_connectionsFragment_to_chatActivity"
-            app:destination="@id/chatActivity" />
+            app:destination="@id/chatFragment" />
     </fragment>
     <activity
         android:id="@+id/login"
@@ -110,7 +110,7 @@
     </fragment>
     <fragment
         android:id="@+id/cityFragment"
-        android:name="com.example.meetmelive.CityFragment"
+        android:name="com.example.meetmelive.City"
         android:label="fragment_city"
         tools:layout="@layout/fragment_city" />
         android:id="@+id/chatListFragment"

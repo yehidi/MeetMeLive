@@ -98,9 +98,7 @@ public class ChatFragment extends Fragment {
                 //TextView messageUserSender=v.findViewById(R.id.message_user_sender);
                 // Set their text
                 messageText.setText(model.getMessageText());
-                messageUser.setText(FirebaseAuth.getInstance()
-                        .getCurrentUser()
-                        .getDisplayName());//model.getMessageUser()
+                messageUser.setText(model.getMessageUser());//model.getMessageUser()
                 Log.d("messageUser", String.valueOf(messageUser));
                 //messageUser.setText(sendersEmail);//
                 //messageUserSender.setText(sendersEmail);
