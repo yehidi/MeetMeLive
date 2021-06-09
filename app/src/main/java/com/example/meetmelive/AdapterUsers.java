@@ -1,4 +1,4 @@
-package com.example.meetmelive.chat;
+package com.example.meetmelive;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,17 +9,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.meetmelive.R;
 import com.example.meetmelive.model.User;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.squareup.picasso.Picasso;
 
-public class ConnectionsAdapter extends FirestoreRecyclerAdapter<User, ConnectionsAdapter.UserHolder> {
+public class AdapterUsers extends FirestoreRecyclerAdapter<User, AdapterUsers.UserHolder> {
 
     final private OnItemClickListener listener;
 
-    public ConnectionsAdapter(@NonNull FirestoreRecyclerOptions<User> options, OnItemClickListener listener) {
+    public AdapterUsers(@NonNull FirestoreRecyclerOptions<User> options, OnItemClickListener listener) {
         super(options);
         this.listener = listener;
     }
@@ -44,13 +43,14 @@ public class ConnectionsAdapter extends FirestoreRecyclerAdapter<User, Connectio
     @NonNull
     @Override
     public UserHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row_connections, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row_chats, parent, false);
         return new UserHolder(v, listener);
     }
 
     class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView userProfileImage;
         TextView userName;
+        //TextView userNameChats;
         //TextView age;
 
         public UserHolder(@NonNull View itemView, OnItemClickListener listener) {
@@ -58,6 +58,8 @@ public class ConnectionsAdapter extends FirestoreRecyclerAdapter<User, Connectio
             itemView.setOnClickListener(this);
             userProfileImage=itemView.findViewById(R.id.list_row_chats_image_view);
             userName = itemView.findViewById(R.id.list_row_chats_username);
+            //userNameChats=itemView.findViewById(R.id.user_name);
+            //userNameChats.setText();
             //age=itemView.findViewById(R.id.list_row_chats_age);
 
             itemView.findViewById(R.id.list_row_connections_message).setOnClickListener(new View.OnClickListener() {

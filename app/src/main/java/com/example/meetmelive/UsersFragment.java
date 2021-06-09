@@ -1,4 +1,4 @@
-package com.example.meetmelive.chat;
+package com.example.meetmelive;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,7 +19,6 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.meetmelive.R;
 import com.example.meetmelive.model.User;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,22 +29,22 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
 
-public class ConnectionsFragment extends Fragment {
+public class UsersFragment extends Fragment {
     private RecyclerView myFrirendsList;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference FriendsReference;
     private CollectionReference UsersReference;
     private FirebaseAuth mAuth;
-    private ConnectionsAdapter adapter;
+    private AdapterUsers adapter;
     String online_user_id;
     private View myMainView;
     ImageView userprofilePic;
     Spinner spinner;
-    public Button message,unmatch;
+    public Button message;
     User currentUser;
-    //User userClicked;
+    public TextView userNameChat;
 
-    public ConnectionsFragment() {
+    public UsersFragment() {
         // Required empty public constructor
 
     }
@@ -54,8 +54,8 @@ public class ConnectionsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        myMainView = inflater.inflate(R.layout.fragment_connections, container, false);
-        myFrirendsList = (RecyclerView) myMainView.findViewById(R.id.friends_list);
+        myMainView = inflater.inflate(R.layout.fragment_users, container, false);
+        myFrirendsList = (RecyclerView) myMainView.findViewById(R.id.users_recyclerView);
 
         mAuth = FirebaseAuth.getInstance();
         online_user_id = mAuth.getCurrentUser().getUid();
@@ -73,7 +73,11 @@ public class ConnectionsFragment extends Fragment {
         spinner =myMainView.findViewById(R.id.list_row_connections_progressBar);
         //spinner.setEnabled();
         message=myMainView.findViewById(R.id.list_row_connections_message);
-        unmatch=myMainView.findViewById(R.id.list_row_connections_unmatch);
+        //userNameChat=myMainView.findViewById(R.id.user_name);
+        //unmatch=myMainView.findViewById(R.id.list_row_connections_unmatch);
+
+        //message.setVisibility(View.VISIBLE);
+        //unmatch.setVisibility(View.INVISIBLE);
 
         //image
         //userprofilePic= myMainView.findViewById(R.id.list_row_chats_image_view);
@@ -90,7 +94,7 @@ public class ConnectionsFragment extends Fragment {
                 .setQuery(query, User.class)
                 .build();
 
-        adapter = new ConnectionsAdapter(options, new ConnectionsAdapter.OnItemClickListener() {
+        adapter = new AdapterUsers(options, new AdapterUsers.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
                 //Log.d("TAG", "POSITION IS " + adapter.getItem(position).getCity());
@@ -131,12 +135,13 @@ public class ConnectionsFragment extends Fragment {
 
                                         }
                                     });
-                            Toast.makeText(getContext(), "Chats", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Welcome to chat", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-                ConnectionsFragmentDirections.ActionConnectionsFragmentToChatFragment direction= ConnectionsFragmentDirections.actionConnectionsFragmentToChatFragment(userClicked.getUsername());
-                Log.d("MESSAGE",userClicked.getUsername());
+                //userNameChat.setText(userClicked.getUsername());
+                UsersFragmentDirections.ActionUsersFragmentToChatFragment direction= UsersFragmentDirections.actionUsersFragmentToChatFragment(userClicked.getUsername());
+                Log.d("UsersFragment",userClicked.getUsername());
                 Navigation.findNavController(getActivity(),R.id.mainactivity_navhost).navigate(direction);
             }
 
@@ -173,7 +178,7 @@ public class ConnectionsFragment extends Fragment {
                 Toast.makeText(getContext(), "Connection has been removed", Toast.LENGTH_SHORT).show();
             }
         });
-        }
+    }
     @Override
     public void onStart() {
         super.onStart();

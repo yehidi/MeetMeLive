@@ -7,6 +7,11 @@
     android:orientation="vertical"
     tools:context=".Nearby">
 
+<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--        android:id="@+id/nearby_fragment_swipe_refresh"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent">-->
+
     <!--Grid View for displaying our data from Firebase-->
     <GridView
         android:id="@+id/idGVCourses"
@@ -15,6 +20,8 @@
         android:minHeight="100dp"
         android:stretchMode="columnWidth"
         android:numColumns="3" />
+
+<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 
 </RelativeLayout>
 
