@@ -1,78 +1,92 @@
 package com.example.meetmelive;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.meetmelive.model.DataModel;
+import com.example.meetmelive.model.User;
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
+public class AdapterUsers extends FirestoreRecyclerAdapter<User, AdapterUsers.UserHolder> {
 
-public class AdapterUsers extends RecyclerView.Adapter<AdapterUsers.MyHolder> {
-    Context context;
-    ArrayList<DataModel> userList;
+    final private OnItemClickListener listener;
 
-    public AdapterUsers(Context context, ArrayList<DataModel> userList) {
-        this.context = context;
-        this.userList = userList;
+    public AdapterUsers(@NonNull FirestoreRecyclerOptions<User> options, OnItemClickListener listener) {
+        super(options);
+        this.listener = listener;
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull UserHolder holder, int position, @NonNull User model) {
+        holder.userName.setText(model.getUsername());
+        if (model.getProfileImageUrl() != null) {
+            Picasso.get().load(model.getProfileImageUrl()).noPlaceholder().into(holder.userProfileImage);
+        }
+
+        //CalculateAge calculateAge = new CalculateAge(model.getDateOfBirth());
+        //int age = calculateAge.getAge();
+        //holder.age.setText(String.valueOf(age));
+    }
+    public interface OnItemClickListener {
+        void onItemClick(int position);
+        void onItemClick2(int position);
+
     }
 
     @NonNull
     @Override
-    public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //inflate layout(list_row_chats)
-        View view= LayoutInflater.from(context).inflate(R.layout.list_row_chats, parent,false);
-
-        return new MyHolder(view);
+    public UserHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_row_chats, parent, false);
+        return new UserHolder(v, listener);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull MyHolder myHolder, int position) {
-        String userImage=userList.get(position).getProfileImageUrl();
-        String userName=userList.get(position).getUsername();
-        String userEmail=userList.get(position).getEmail();
+    class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        ImageView userProfileImage;
+        TextView userName;
+        //TextView userNameChats;
+        //TextView age;
 
-        myHolder.mNameTv.setText(userName);
-        myHolder.mEmailTv.setText(userEmail);
-        try{
-            Picasso.get().load(userImage).placeholder(R.drawable.ic_default_img_white).into(myHolder.mAvatarIv);
-        }catch (Exception e){
-
-        }
-
-        //handle item click
-        myHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,""+userEmail,Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    @Override
-    public int getItemCount() {
-        return userList.size();
-    }
-
-    class MyHolder extends RecyclerView.ViewHolder{
-        ImageView mAvatarIv;
-        TextView mNameTv, mEmailTv;
-
-
-        public MyHolder(@NonNull View itemView) {
+        public UserHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
+            itemView.setOnClickListener(this);
+            userProfileImage=itemView.findViewById(R.id.list_row_chats_image_view);
+            userName = itemView.findViewById(R.id.list_row_chats_username);
+            //userNameChats=itemView.findViewById(R.id.user_name);
+            //userNameChats.setText();
+            //age=itemView.findViewById(R.id.list_row_chats_age);
 
-            mAvatarIv=itemView.findViewById(R.id.avatarIv);
-            mNameTv=itemView.findViewById(R.id.nameTv);
-            mEmailTv=itemView.findViewById(R.id.emailTv);
+            itemView.findViewById(R.id.list_row_connections_message).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    listener.onItemClick(position);
+                }
+            });
+
+            itemView.findViewById(R.id.list_row_connections_unmatch).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    listener.onItemClick2(position);
+                }
+            });
+        }
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            listener.onItemClick(position);
+            //image
+//            String image= User.getInstance().getProfileImageUrl();
+//            RequestsDirections.ActionRequestsToConnectionsFragment action=RequestsDirections.actionRequestsToConnectionsFragment(image);
+//            Navigation.findNavController(v).navigate(action);
+            //image
         }
     }
 }

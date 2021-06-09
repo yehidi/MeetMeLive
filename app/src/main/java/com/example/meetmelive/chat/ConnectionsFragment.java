@@ -40,8 +40,9 @@ public class ConnectionsFragment extends Fragment {
     private View myMainView;
     ImageView userprofilePic;
     Spinner spinner;
-    private Button message,unmatch;
+    public Button message,unmatch;
     User currentUser;
+    //User userClicked;
 
     public ConnectionsFragment() {
         // Required empty public constructor
@@ -94,7 +95,7 @@ public class ConnectionsFragment extends Fragment {
             public void onItemClick(int position) {
                 //Log.d("TAG", "POSITION IS " + adapter.getItem(position).getCity());
 
-               User userClicked  = new User(
+                User userClicked  = new User(
                         adapter.getItem(position).getUserId(),
                         adapter.getItem(position).getEmail(),
                         adapter.getItem(position).getUsername(),
@@ -130,7 +131,7 @@ public class ConnectionsFragment extends Fragment {
 
                                         }
                                     });
-                            Toast.makeText(getContext(), "Chats  has created", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Chats", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -6,13 +6,17 @@ public class ChatMessage {
     private String messageText;
     private String messageUser; //User sender
     private long messageTime;
+    //private long ts;
 
     public ChatMessage(String messageText, String messageUser) {
         this.messageText = messageText;
         this.messageUser = messageUser;
 
         // Initialize to current time
-        messageTime = new Date().getTime();
+        long ts=System.currentTimeMillis()/1000;
+        messageTime=new Date().getTime();
+        //ts=messageTime.toString();
+
     }
 
     public ChatMessage(){
@@ -42,5 +46,6 @@ public class ChatMessage {
     public void setMessageTime(long messageTime) {
         this.messageTime = messageTime;
     }
+
 }
 

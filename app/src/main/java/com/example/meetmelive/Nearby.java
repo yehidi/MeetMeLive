@@ -70,27 +70,28 @@ public class Nearby extends Fragment {
         return view;
     }
 
-    private void setUser(final String email){
+    private void setUser(final String email) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         db.collection("userProfileData").document(email).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()){ ;
+                if (task.isSuccessful()) {
+                    ;
                     User.getInstance().userId = (String) task.getResult().get("userId");
                     User.getInstance().email = email;
                     User.getInstance().username = (String) task.getResult().get("username");
-                    User.getInstance().city= (String) task.getResult().get("city");
+                    User.getInstance().city = (String) task.getResult().get("city");
                     User.getInstance().description = (String) task.getResult().get("description");
                     User.getInstance().gender = (String) task.getResult().get("gender");
                     User.getInstance().lookingForGender = (String) task.getResult().get("lookingForGender");
-                    User.getInstance().dateOfBirth= (String) task.getResult().get("dateOfBirth");
+                    User.getInstance().dateOfBirth = (String) task.getResult().get("dateOfBirth");
                     User.getInstance().profileImageUrl = (String) task.getResult().get("profileImageUrl");
-                    User.getInstance().pic1= (String) task.getResult().get("pic1");
-                    User.getInstance().pic2= (String) task.getResult().get("pic2");
-                    User.getInstance().pic3= (String) task.getResult().get("pic3");
-                    User.getInstance().latitude= 0.0;
-                    User.getInstance().longtitude= 0.0;
+                    User.getInstance().pic1 = (String) task.getResult().get("pic1");
+                    User.getInstance().pic2 = (String) task.getResult().get("pic2");
+                    User.getInstance().pic3 = (String) task.getResult().get("pic3");
+                    User.getInstance().latitude = 0.0;
+                    User.getInstance().longtitude = 0.0;
                     Log.d("SetUser", "******************");
 
                     loadDatainGridView();
@@ -99,6 +100,7 @@ public class Nearby extends Fragment {
             }
         });
     }
+
     private void loadDatainGridView() {
 
         Log.d("LoadDataInGridView", "#####################");
@@ -117,8 +119,7 @@ public class Nearby extends Fragment {
 
                                 // after getting data from Firebase
                                 // we are storing that data in our array list
-                                if (!document.get("email").equals(User.getInstance().getEmail()))
-                                {
+                                if (!document.get("email").equals(User.getInstance().getEmail())) {
                                     Log.d("@@@@@@@@@@@@@@@@@@@@", "datamodel email is " + document.get("email")
                                             + " || " + User.getInstance().getEmail());
                                     dataModelArrayList.add(dataModel);
@@ -129,9 +130,10 @@ public class Nearby extends Fragment {
 
                             Log.d("ARRAY LIST", "" + dataModelArrayList);
 
-                            if (getActivity()!= null){
+                            if (getActivity() != null) {
                                 GridAdapter adapter = new GridAdapter(getActivity(), dataModelArrayList);
-                                gridadapter.setAdapter(adapter);}
+                                gridadapter.setAdapter(adapter);
+                            }
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }

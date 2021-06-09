@@ -25,6 +25,7 @@ import com.google.firebase.database.Query;
 public class ChatFragment extends Fragment {
     EditText input;
     String sendersEmail;
+    //TextView userName;
     View view;
     private FirebaseListAdapter<ChatMessage> adapter;
     public ChatFragment(){ }
@@ -33,6 +34,10 @@ public class ChatFragment extends Fragment {
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_chat, container, false);
         input =view.findViewById(R.id.chatFragment_input);
+        //userName=view.findViewById(R.id.user_name);
+        //String name=ChatFragmentArgs.fromBundle(getArguments()).getUserName();
+        //Log.d("Name",name);
+        //userName.setText(name);
         // Inflate the layout for this fragment
         sendersEmail=ChatFragmentArgs.fromBundle(getArguments()).getSendersEmail();
         Log.d("CHATS", sendersEmail);
@@ -90,11 +95,16 @@ public class ChatFragment extends Fragment {
                 TextView messageText = v.findViewById(R.id.message_text);
                 TextView messageTime = v.findViewById(R.id.message_time);
                 TextView messageUser = v.findViewById(R.id.message_user);
+                //TextView messageUserSender=v.findViewById(R.id.message_user_sender);
                 // Set their text
                 messageText.setText(model.getMessageText());
                 messageUser.setText(FirebaseAuth.getInstance()
                         .getCurrentUser()
                         .getDisplayName());//model.getMessageUser()
+                Log.d("messageUser", String.valueOf(messageUser));
+                //messageUser.setText(sendersEmail);//
+                //messageUserSender.setText(sendersEmail);
+                //Log.d("messageUserSender", String.valueOf(messageUserSender));
                 // Format the date before showing it
                 messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
                 Log.d("TAG","the message is: "+messageText);

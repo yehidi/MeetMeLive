@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_Nearby_to_sendRequestFragment"
             app:destination="@id/sendRequestFragment" />
+        <action
+            android:id="@+id/action_Nearby_to_cityFragment"
+            app:destination="@id/cityFragment" />
     </fragment>
     <fragment
         android:id="@+id/sendRequestFragment"
@@ -72,10 +75,6 @@
             app:destination="@id/chatFragment" />
     </fragment>
     <activity
-        android:id="@+id/chatActivity"
-        android:name="com.example.meetmelive.chat.ChatActivity"
-        android:label="ChatActivity" />
-    <activity
         android:id="@+id/login"
         android:name="com.example.meetmelive.authentication.login"
         android:label="activity_login"
@@ -89,14 +88,23 @@
         android:id="@+id/usersFragment"
         android:name="com.example.meetmelive.UsersFragment"
         android:label="fragment_users"
-        tools:layout="@layout/fragment_users" />
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/action_usersFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.meetmelive.chat.ChatFragment"
-        android:label="fragment_chat"
-        tools:layout="@layout/fragment_chat" >
+        android:label="chat"
+        tools:layout="@layout/fragment_chat">
         <argument
             android:name="sendersEmail"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/cityFragment"
+        android:name="com.example.meetmelive.CityFragment"
+        android:label="fragment_city"
+        tools:layout="@layout/fragment_city" />
 </navigation>
