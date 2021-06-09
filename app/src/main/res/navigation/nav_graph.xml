@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_Nearby_to_sendRequestFragment"
             app:destination="@id/sendRequestFragment" />
+        <action
+            android:id="@+id/action_Nearby_to_city"
+            app:destination="@id/city" />
     </fragment>
     <fragment
         android:id="@+id/sendRequestFragment"
@@ -60,4 +63,9 @@
         android:name="com.example.meetmelive.Requests"
         android:label="fragment_requests"
         tools:layout="@layout/fragment_requests" />
+    <fragment
+        android:id="@+id/city"
+        android:name="com.example.meetmelive.City"
+        android:label="fragment_city"
+        tools:layout="@layout/fragment_city" />
 </navigation>

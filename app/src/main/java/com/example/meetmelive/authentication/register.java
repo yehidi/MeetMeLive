@@ -29,10 +29,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.wx.wheelview.adapter.ArrayWheelAdapter;
+import com.wx.wheelview.widget.WheelView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -55,6 +58,8 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
     DatePicker dateOfBirth;
     CalculateAge calculateAge;
     int age, age2;
+
+    String[] listItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +137,11 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                         });
             }
         });
-
+//        listItems = getResources().getStringArray(R.array.cities);
+//        WheelView wheelView = (WheelView) findViewById(R.id.wheelview);
+//        wheelView.setWheelAdapter(new ArrayWheelAdapter(this));
+//        wheelView.setSkin(WheelView.Skin.Common); // common
+//        wheelView.setWheelData(Arrays.asList(listItems));
 
     }
 
