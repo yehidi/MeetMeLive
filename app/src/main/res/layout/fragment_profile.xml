@@ -118,10 +118,12 @@
         android:id="@+id/profile_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginBottom="56dp"
         android:text="Test"
+        app:layout_constraintBottom_toTopOf="@+id/matchProfile_slider"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_unmatch_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

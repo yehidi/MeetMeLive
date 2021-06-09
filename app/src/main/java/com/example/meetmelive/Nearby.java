@@ -27,19 +27,29 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.Source;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 
 import static android.content.ContentValues.TAG;
 
@@ -112,16 +122,16 @@ public class Nearby extends Fragment {
             }
         });
     }
-    private void loadDatainGridView(int first, int second) {
+    public void loadDatainGridView(int first, int second) {
 
-        Log.d("LoadDataInGridView", "#####################");
+        Log.d("LoadDataInGridView",FirebaseAuth.getInstance().getCurrentUser().getEmail());
 
-        db.collection("userProfileData").document("tamir@gmail.com").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        db.collection("userProfileData").document(FirebaseAuth.getInstance().getCurrentUser().getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NotNull Task<DocumentSnapshot> task) {
                 String range=(String) task.getResult().get("perferAge");
-                minPrefer=fromStr_toInt1(range);
-                maxPrefer=fromStr_toInt2(range);
+                //minPrefer=fromStr_toInt1(range);
+                //maxPrefer=fromStr_toInt2(range);
                 Log.d("preferrrrrr","min : "+minPrefer);
                 Log.d("preferrrrrr","max: "+maxPrefer);
             }
@@ -149,7 +159,61 @@ public class Nearby extends Fragment {
 //                                }
 //                                Log.d("TAG", document.getId() + " => " + document.getData());
 
+
+
+                                TimeZone timeZone = TimeZone.getTimeZone("Israel");
                                 Calendar today = Calendar.getInstance();
+
+                                DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                                timeFormat.setTimeZone(TimeZone.getTimeZone("Asia/Jerusalem"));
+                                String curTime = timeFormat.format(new Date());
+
+                                //try
+                                DateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                String curday = dayFormat.format(new Date());
+                                //try
+
+
+                                //last updated locaion from fb
+//                                Object c=document.get("lastUpdatedLocation");
+//                                String g = String.valueOf(c);
+//                                String substring=g.substring(18,28);
+//                                Log.d("lll","new rrrrrrrrrrrrr "+substring);
+//
+//                                long l=Long.parseLong(substring);
+//                               // long l1=Long.parseLong(substring1);
+//                                Log.d("lll","seconddddd "+l);
+//                               // Log.d("lll","new yyyyyy "+l1);
+//
+//                                long ts = System.currentTimeMillis()/1000;
+//                                Log.d("lll","firsttttt "+ts);
+//                                long res=ts-l;
+//                                Log.d("lll","mmmmmmmmmmm "+res);
+//
+//                                long minutes = TimeUnit.MILLISECONDS.toMinutes(res);
+//                                Log.d("lll","resssssssss "+minutes);
+
+
+//                                String stringToConvert = String.valueOf(c);
+//                                Long convertedLong = Long.parseLong(stringToConvert);
+//                                Log.d("lll","new tttttttttttt "+convertedLong);
+
+
+//                                Log.d("Timeee", " timeeeeeee: "+ts );
+
+
+//                                Timestamp tsr = (Timestamp)c ;
+//                                Log.d("new time","new time"+tsr);
+
+
+                                //long l=fromfuck_toFinish(g);
+
+//                                Log.d("lll","new rrrrrrrrrr "+g);
+////                                Character ch=g.charAt(1);
+////
+
+
+                                today.setTimeZone(timeZone);
                                 Object s = document.get("dateOfBirth");
                                 Object date = document.get("email");
                                 String dateb = String.valueOf(date);
@@ -162,6 +226,15 @@ public class Nearby extends Fragment {
                                 Log.d("TAG", " the age is: " + age);
                                 Log.d("TAG", " the first is: " + first);
                                 Log.d("TAG", " the second is: " + second);
+                                Log.d("time", " the current time is : " +curTime);
+
+
+
+
+                                Log.d("time", " the day is : " +curday);
+
+
+
                                 if (first == 0 && second == 0) {
                                     if(age >= minPrefer && age <= maxPrefer){
                                         dataModelArrayList.add(0,dataModel);
@@ -217,6 +290,7 @@ public class Nearby extends Fragment {
                     }
                 });
     }
+
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
@@ -301,4 +375,16 @@ public class Nearby extends Fragment {
 
         return age2;
     }
+
+
+//    public long fromfuck_toFinish(String str)
+//    {
+//        long age1;
+//        String[] split =str.split("=,");
+//        age1 =Long.parseLong(split[0]);
+//
+//        return age1;
+//    }
+
+
 }

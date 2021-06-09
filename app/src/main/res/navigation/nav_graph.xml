@@ -18,7 +18,11 @@
         android:id="@+id/matchProfileFragment"
         android:name="com.example.meetmelive.MatchProfile"
         android:label="Match Profile"
-        tools:layout="@layout/fragment_match_profile" />
+        tools:layout="@layout/fragment_match_profile" >
+        <argument
+            android:name="userEmail"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.meetmelive.profile.EditProfile"
@@ -36,6 +40,9 @@
         <action
             android:id="@+id/action_Nearby_to_city"
             app:destination="@id/city" />
+        <action
+            android:id="@+id/action_Nearby_self"
+            app:destination="@id/Nearby" />
     </fragment>
     <fragment
         android:id="@+id/sendRequestFragment"
