@@ -31,6 +31,10 @@ public class Model {
     }
 
 
+    public void UpdateUserSuggestions(String ageRange) {
+        modelFirebase.UpdateUserSuggestions(ageRange);
+    }
+
 
     public interface GetAllActiveUsersListener{
         void onComplete();
