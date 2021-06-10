@@ -49,8 +49,8 @@ public class Search extends Fragment implements LocationListener {
         view = inflater.inflate(R.layout.fragment_search, container, false);
         //added
 
-        textView_location =view.findViewById(R.id.text_location);
-        button_location = view.findViewById(R.id.button_location);
+//        textView_location =view.findViewById(R.id.text_location);
+//        button_location = view.findViewById(R.id.button_location);
         button_search = view.findViewById(R.id.button_search);
         //Runtime permissions
         if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
@@ -64,13 +64,13 @@ public class Search extends Fragment implements LocationListener {
         }
 
 
-        button_location.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //create method
-                getLocation();
-            }
-        });
+//        button_location.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //create method
+//                getLocation();
+//            }
+//        });
 
 
 //added
@@ -79,6 +79,7 @@ public class Search extends Fragment implements LocationListener {
             @Override
             public void onClick(View v)
             {
+                getLocation();
                 Navigation.findNavController(v).navigate(R.id.action_search_to_Nearby);
             }
 

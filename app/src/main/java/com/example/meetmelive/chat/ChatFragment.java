@@ -104,7 +104,8 @@ public class ChatFragment extends Fragment {
                 //messageUserSender.setText(sendersEmail);
                 //Log.d("messageUserSender", String.valueOf(messageUserSender));
                 // Format the date before showing it
-                messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+               // messageTime.setText(DateFormat.format("dd-MM-yyyy (HH:mm:ss)", model.getMessageTime()));
+                messageTime.setText(model.getMessageTime());
                 Log.d("TAG","the message is: "+messageText);
             }
         };
