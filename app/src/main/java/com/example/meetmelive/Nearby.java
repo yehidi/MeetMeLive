@@ -163,20 +163,9 @@ public class Nearby extends Fragment {
 
                                     // after getting this list we are passing
                                     // that list to our object class.
-
                                     DataModel dataModel = document.toObject(DataModel.class);
-
-
-                                    // after getting data from Firebase
-                                    // we are storing that data in our array list
-//                                if (!document.get("email").equals(User.getInstance().getEmail()))
-//                                {
-//                                    Log.d("@@@@@@@@@@@@@@@@@@@@", "datamodel email is " + document.get("email")
-//                                            + " || " + User.getInstance().getEmail());
-//                                    dataModelArrayList.add(dataModel);
-//                                }
-//                                Log.d("TAG", document.getId() + " => " + document.getData());
-
+                                    dataModelArrayList.clear();
+                                    dataModelArrayList2.clear();
 
                                     TimeZone timeZone = TimeZone.getTimeZone("Israel");
                                     Calendar today = Calendar.getInstance();
@@ -250,14 +239,21 @@ public class Nearby extends Fragment {
                                     if (first == 0 && second == 0) {
                                         if (age >= minPrefer && age <= maxPrefer) {
                                             dataModelArrayList.add(0, dataModel);
-                                        } else {
+                                        }
+                                        else {
                                             dataModelArrayList.add(dataModel);
                                         }
 
+                                        GridAdapter adapter = new GridAdapter(getActivity(), dataModelArrayList);
+                                        gridadapter.setAdapter(adapter);
 
-                                    } else {
+
+                                    }
+                                    else {
                                         if (age >= first && age <= second) {
                                             dataModelArrayList2.add(dataModel);
+                                            GridAdapter adapter = new GridAdapter(getActivity(), dataModelArrayList2);
+                                            gridadapter.setAdapter(adapter);
 
                                         }
 //                                    }
@@ -275,18 +271,18 @@ public class Nearby extends Fragment {
                             Log.d("ARRAY LIST", "" + dataModelArrayList);
 
 
-                            if (first== 0 && second== 0)
-                            {
-                                GridAdapter adapter = new GridAdapter(getActivity(), dataModelArrayList);
-                                gridadapter.setAdapter(adapter);
-                            }
+//                            if (first== 0 && second== 0)
+//                            {
+//                                GridAdapter adapter = new GridAdapter(getActivity(), dataModelArrayList);
+//                                gridadapter.setAdapter(adapter);
+//                            }
 
-                            else
-                            {
-                                GridAdapter adapter = new GridAdapter(getActivity(), dataModelArrayList2);
-
-                                gridadapter.setAdapter(adapter);
-                            }
+//                            else
+//                            {
+//                                GridAdapter adapter = new GridAdapter(getActivity(), dataModelArrayList2);
+//
+//                                gridadapter.setAdapter(adapter);
+//                            }
 
 
 
