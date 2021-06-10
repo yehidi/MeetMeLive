@@ -24,7 +24,6 @@
         </activity>
         <activity android:name=".MainActivity"> </activity>
         <activity android:name=".authentication.register" />
-        <activity android:name=".chat.ChatActivity" />
 <!--        <meta-data-->
 <!--            android:name="com.facebook.sdk.ApplicationId"-->
 <!--            android:value="@string/facebook_app_id" />-->

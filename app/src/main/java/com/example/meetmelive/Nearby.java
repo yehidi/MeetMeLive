@@ -65,6 +65,8 @@ public class Nearby extends Fragment {
     int Age1,Age2;
     int minPrefer=0,maxPrefer=0;
 
+    User user = new User();
+
     FirebaseFirestore db;
     View view;
 
@@ -100,20 +102,22 @@ public class Nearby extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()){ ;
-                    User.getInstance().userId = (String) task.getResult().get("userId");
-                    User.getInstance().email = email;
-                    User.getInstance().username = (String) task.getResult().get("username");
-                    User.getInstance().city= (String) task.getResult().get("city");
-                    User.getInstance().description = (String) task.getResult().get("description");
-                    User.getInstance().gender = (String) task.getResult().get("gender");
-                    User.getInstance().lookingForGender = (String) task.getResult().get("lookingForGender");
-                    User.getInstance().dateOfBirth= (String) task.getResult().get("dateOfBirth");
-                    User.getInstance().profileImageUrl = (String) task.getResult().get("profileImageUrl");
-                    User.getInstance().pic1= (String) task.getResult().get("pic1");
-                    User.getInstance().pic2= (String) task.getResult().get("pic2");
-                    User.getInstance().pic3= (String) task.getResult().get("pic3");
-                    User.getInstance().latitude= 0.0;
-                    User.getInstance().longtitude= 0.0;
+
+                   user.userId = (String) task.getResult().get("userId");
+                    user.getInstance().setEmail(email);
+                    User.getInstance().setUsername((String) task.getResult().get("username"));
+                    User.getInstance().setCity((String) task.getResult().get("city"));
+                    User.getInstance().setDescription((String) task.getResult().get("description"));
+                    User.getInstance().setGender((String) task.getResult().get("gender"));
+                    User.getInstance().setLookingForGender((String) task.getResult().get("lookingForGender"));
+                    User.getInstance().setDateOfBirth((String) task.getResult().get("dateOfBirth"));
+                    User.getInstance().setProfileImageUrl((String) task.getResult().get("profileImageUrl"));
+                    User.getInstance().setPic1((String) task.getResult().get("pic1"));
+                    User.getInstance().setPic2((String) task.getResult().get("pic2"));
+                    User.getInstance().setPic3((String) task.getResult().get("pic3"));
+                    User.getInstance().setLatitude((double) task.getResult().get("latitude"));
+                    User.getInstance().setLongtitude((double) task.getResult().get("longtitude"));
+
                     Log.d("SetUser", "******************");
 
                     loadDatainGridView(Age1,Age2);
@@ -145,12 +149,26 @@ public class Nearby extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                // after getting this list we are passing
-                                // that list to our object class.
-                                DataModel dataModel = document.toObject(DataModel.class);
 
-                                // after getting data from Firebase
-                                // we are storing that data in our array list
+                                Log.d("user", " my lat: " + (double) User.getInstance().getLatitude());
+                                //                              double myLat=(double)User.getInstance().getLatitude();
+                                Log.d("user", " my lon: " + (double) User.getInstance().getLongtitude());
+                                Log.d("user", " their lat: " + (double) document.get("latitude"));
+                                Log.d("user", " their lon " + (double) document.get("longtitude"));
+                                double dis = distance((double) User.getInstance().getLatitude(), (double) User.getInstance().getLongtitude(), (double) document.get("latitude"), (double) document.get("longtitude"));
+                                Log.d("distance", " the distance is : " + dis);
+
+                                if (dis <= 0.4) {
+
+
+                                    // after getting this list we are passing
+                                    // that list to our object class.
+
+                                    DataModel dataModel = document.toObject(DataModel.class);
+
+
+                                    // after getting data from Firebase
+                                    // we are storing that data in our array list
 //                                if (!document.get("email").equals(User.getInstance().getEmail()))
 //                                {
 //                                    Log.d("@@@@@@@@@@@@@@@@@@@@", "datamodel email is " + document.get("email")
@@ -160,21 +178,20 @@ public class Nearby extends Fragment {
 //                                Log.d("TAG", document.getId() + " => " + document.getData());
 
 
+                                    TimeZone timeZone = TimeZone.getTimeZone("Israel");
+                                    Calendar today = Calendar.getInstance();
 
-                                TimeZone timeZone = TimeZone.getTimeZone("Israel");
-                                Calendar today = Calendar.getInstance();
+                                    DateFormat timeFormat = new SimpleDateFormat("HH:mm");
+                                    timeFormat.setTimeZone(TimeZone.getTimeZone("Asia/Jerusalem"));
+                                    String curTime = timeFormat.format(new Date());
 
-                                DateFormat timeFormat = new SimpleDateFormat("HH:mm");
-                                timeFormat.setTimeZone(TimeZone.getTimeZone("Asia/Jerusalem"));
-                                String curTime = timeFormat.format(new Date());
-
-                                //try
-                                DateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
-                                String curday = dayFormat.format(new Date());
-                                //try
+                                    //try
+                                    DateFormat dayFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                    String curday = dayFormat.format(new Date());
+                                    //try
 
 
-                                //last updated locaion from fb
+                                    //last updated locaion from fb
 //                                Object c=document.get("lastUpdatedLocation");
 //                                String g = String.valueOf(c);
 //                                String substring=g.substring(18,28);
@@ -206,59 +223,53 @@ public class Nearby extends Fragment {
 //                                Log.d("new time","new time"+tsr);
 
 
-                                //long l=fromfuck_toFinish(g);
-
 //                                Log.d("lll","new rrrrrrrrrr "+g);
 ////                                Character ch=g.charAt(1);
 ////
 
 
-                                today.setTimeZone(timeZone);
-                                Object s = document.get("dateOfBirth");
-                                Object date = document.get("email");
-                                String dateb = String.valueOf(date);
-                                Log.d("email","email is: "+dateb);
-                                String string = String.valueOf(s);
-                                String[] split = string.split("-");
-                                int i = Integer.parseInt(split[2]);
-                                int age = today.get(Calendar.YEAR) - i;
-                                Log.d("TAG", " the date is: " + split[2]);
-                                Log.d("TAG", " the age is: " + age);
-                                Log.d("TAG", " the first is: " + first);
-                                Log.d("TAG", " the second is: " + second);
-                                Log.d("time", " the current time is : " +curTime);
+                                    today.setTimeZone(timeZone);
+                                    Object s = document.get("dateOfBirth");
+                                    Object date = document.get("email");
+                                    String dateb = String.valueOf(date);
+                                    Log.d("email", "email is: " + dateb);
+                                    String string = String.valueOf(s);
+                                    String[] split = string.split("-");
+                                    int i = Integer.parseInt(split[2]);
+                                    int age = today.get(Calendar.YEAR) - i;
+                                    Log.d("TAG", " the date is: " + split[2]);
+                                    Log.d("TAG", " the age is: " + age);
+                                    Log.d("TAG", " the first is: " + first);
+                                    Log.d("TAG", " the second is: " + second);
+                                    Log.d("time", " the current time is : " + curTime);
 
 
+                                    Log.d("time", " the day is : " + curday);
 
 
-                                Log.d("time", " the day is : " +curday);
+                                    if (first == 0 && second == 0) {
+                                        if (age >= minPrefer && age <= maxPrefer) {
+                                            dataModelArrayList.add(0, dataModel);
+                                        } else {
+                                            dataModelArrayList.add(dataModel);
+                                        }
 
 
+                                    } else {
+                                        if (age >= first && age <= second) {
+                                            dataModelArrayList2.add(dataModel);
 
-                                if (first == 0 && second == 0) {
-                                    if(age >= minPrefer && age <= maxPrefer){
-                                        dataModelArrayList.add(0,dataModel);
-                                    }else{
-                                        dataModelArrayList.add(dataModel);
-                                    }
-
-
-                                }
-                                else {
-                                    if (age >= first && age <= second) {
-                                        dataModelArrayList2.add(dataModel);
-
-                                    }
+                                        }
 //                                    }
 
-                                }
+                                    }
 
-                                //try
-                                // after getting data from Firebase
-                                // we are storing that data in our array list
+                                    //try
+                                    // after getting data from Firebase
+                                    // we are storing that data in our array list
 //                                dataModelArrayList.add(dataModel);
-                                Log.d("TAG", document.getId() + " => " + document.getData());
-
+                                    Log.d("TAG", document.getId() + " => " + document.getData());
+                                }
                             }
 
                             Log.d("ARRAY LIST", "" + dataModelArrayList);
@@ -376,15 +387,26 @@ public class Nearby extends Fragment {
         return age2;
     }
 
+    public double distance(double lat1, double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1))
+                * Math.sin(deg2rad(lat2))
+                + Math.cos(deg2rad(lat1))
+                * Math.cos(deg2rad(lat2))
+                * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        return (dist);
+    }
 
-//    public long fromfuck_toFinish(String str)
-//    {
-//        long age1;
-//        String[] split =str.split("=,");
-//        age1 =Long.parseLong(split[0]);
-//
-//        return age1;
-//    }
+    public double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    public double rad2deg(double rad) {
+        return (rad * 180.0 / Math.PI);
+    }
 
 
 }
