@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/Nearby">
+    app:startDestination="@id/search">
 
     <fragment
         android:id="@+id/Profile"
@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_Profile_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_Profile_to_connectionsFragment"
+            app:destination="@id/connectionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/matchProfileFragment"
@@ -33,6 +36,15 @@
         <action
             android:id="@+id/action_Nearby_to_sendRequestFragment"
             app:destination="@id/sendRequestFragment" />
+        <action
+            android:id="@+id/action_Nearby_to_cityFragment"
+            app:destination="@id/cityFragment" />
+        <action
+            android:id="@+id/action_Nearby_to_city"
+            app:destination="@id/city" />
+        <action
+            android:id="@+id/action_Nearby_self"
+            app:destination="@id/Nearby" />
     </fragment>
     <fragment
         android:id="@+id/sendRequestFragment"
@@ -60,4 +72,54 @@
         android:name="com.example.meetmelive.Requests"
         android:label="fragment_requests"
         tools:layout="@layout/fragment_requests" />
+    <fragment
+        android:id="@+id/connectionsFragment"
+        android:name="com.example.meetmelive.chat.ConnectionsFragment"
+        android:label="ConnectionsFragment" >
+        <action
+            android:id="@+id/action_connectionsFragment_to_chatActivity"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/login"
+        android:name="com.example.meetmelive.authentication.login"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/register"
+        android:name="com.example.meetmelive.authentication.register"
+        android:label="activity_register"
+        tools:layout="@layout/activity_register" />
+    <fragment
+        android:id="@+id/usersFragment"
+        android:name="com.example.meetmelive.UsersFragment"
+        android:label="fragment_users"
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/action_usersFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.meetmelive.chat.ChatFragment"
+        android:label="chat"
+        tools:layout="@layout/fragment_chat">
+        <argument
+            android:name="sendersEmail"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/cityFragment"
+        android:name="com.example.meetmelive.City"
+        android:label="fragment_city"
+        tools:layout="@layout/fragment_city" />
+        android:id="@+id/chatListFragment"
+        android:name="com.example.meetmelive.chat.ChatListFragment"
+        android:label="fragment_chat_list"
+        tools:layout="@layout/fragment_chat_list" />
+    <fragment
+        android:id="@+id/city"
+        android:name="com.example.meetmelive.City"
+        android:label="fragment_city"
+        tools:layout="@layout/fragment_city" />
 </navigation>

@@ -15,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.meetmelive.CalculateAge;
@@ -29,10 +30,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.wx.wheelview.adapter.ArrayWheelAdapter;
+import com.wx.wheelview.widget.WheelView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -48,13 +52,15 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
     RadioGroup radioGroupGender, radioGroupLookingFor;
     Button register, choosePhoto;
     EditText description;
-
+    TextView moveToLoginBtn;
     ImageView profilePic;
 
     Uri profileImageUri = null;
     DatePicker dateOfBirth;
     CalculateAge calculateAge;
     int age, age2;
+
+    String[] listItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,13 +86,22 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         int age = getAge(dateOfBirth.getYear(),dateOfBirth.getMonth(),dateOfBirth.getDayOfMonth());
         Log.d("REGISTER", "AGE IS " + age);
 
-        profilePic.setOnClickListener(new View.OnClickListener() {
+//        profilePic.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Intent intent = new Intent(Intent.ACTION_PICK);
+////                intent.setType("image/*");
+////                startActivityForResult(intent, 1);
+//                Utils.chooseImageFromGallery(register.this);
+//            }
+//        });
+
+        moveToLoginBtn = findViewById(R.id.register_login_btn);
+        moveToLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_PICK);
-//                intent.setType("image/*");
-//                startActivityForResult(intent, 1);
-                Utils.chooseImageFromGallery(register.this);
+                Intent intent = new Intent(register.this, login.class);
+                startActivity(intent);
             }
         });
 
@@ -107,7 +122,7 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy");
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.YEAR, dateOfBirth.getYear());
                 cal.set(Calendar.MONTH, dateOfBirth.getMonth());
@@ -117,22 +132,26 @@ public class register extends AppCompatActivity implements RadioGroup.OnCheckedC
                 Log.d("TAG", "strDATEOFBIRTH IS " + strDateOfBirth);
 
                 ModelFirebase.registerUserAccount(email.getText().toString(), username.getText().toString(),
-                            password.getText().toString(), city.getText().toString(),description.getText().toString(), gender, lookingForGender, strDateOfBirth, profileImageUri, new ModelFirebase.Listener<Boolean>() {
+                        password.getText().toString(), city.getText().toString(),description.getText().toString(), gender, lookingForGender, strDateOfBirth, profileImageUri, new ModelFirebase.Listener<Boolean>() {
 
-                                @Override
-                                public void onComplete() {
-                                            startActivity(new Intent(register.this, MainActivity.class));
-                                            finish();
-                                }
+                            @Override
+                            public void onComplete() {
+                                startActivity(new Intent(register.this, MainActivity.class));
+                                finish();
+                            }
 
-                                @Override
-                                public void onFail() {
+                            @Override
+                            public void onFail() {
 
-                                }
-                            });
+                            }
+                        });
             }
         });
-
+//        listItems = getResources().getStringArray(R.array.cities);
+//        WheelView wheelView = (WheelView) findViewById(R.id.wheelview);
+//        wheelView.setWheelAdapter(new ArrayWheelAdapter(this));
+//        wheelView.setSkin(WheelView.Skin.Common); // common
+//        wheelView.setWheelData(Arrays.asList(listItems));
 
     }
 

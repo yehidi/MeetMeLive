@@ -4,4 +4,170 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="facebook_app_id">2049924838498343</string>
     <string name="fb_login_protocol_scheme">fb2049924838498343</string>
+    <string name="dialog_title">List Of Cities</string>
+    <string name="ok_label">OK</string>
+    <string name="dismiss_label">dismiss</string>
+    <string name="clear_all_label">clear all</string>
+
+    <string-array name="cities">
+        <item>Lod</item>
+        <item>Tel Aviv</item>
+        <item>Jerusalem</item>
+        <item>Kfar Saba</item>
+        <item>Or Yehuda</item>
+        <item>Azor</item>
+        <item>Bat Yam</item>
+        <item>Ramat Gan</item>
+        <item>Holon</item>
+        <item>Ashdod</item>
+        <item>Beersheba</item>
+        <item>Yehud</item>
+        <item>Rishon LeZion</item>
+        <item>Hazav</item>
+        <item>Ness Ziona</item>
+        <item>Eilat</item>
+        <item>Rehovot</item>
+        <item>Herzliya</item>
+        <item>Nahariya</item>
+        <item>Haifa</item>
+        <item>Shave Ziyyon</item>
+        <item>Ramat HaSharon</item>
+        <item>Ramat Poleg</item>
+        <item>Kadima</item>
+        <item>Karmiel</item>
+        <item>Pardesiyya</item>
+        <item>Netanya</item>
+        <item>Gan Yavne</item>
+        <item>Petah Tikwah</item>
+        <item>Ashqelon</item>
+        <item>Savyon</item>
+        <item>Naham</item>
+        <item>Mazkeret Batya</item>
+        <item>Arugot</item>
+        <item>Ofaqim</item>
+        <item>Shetulim</item>
+        <item>Hadera</item>
+        <item>Qiryat Bialik</item>
+        <item>Tel Mond</item>
+        <item>Hod HaSharon</item>
+        <item>Qiryat Yam</item>
+        <item>Shelomi</item>
+        <item> Binyamina</item>
+        <item>Liman</item>
+        <item>Alma</item>
+        <item>Ramla</item>
+        <item>Nazareth</item>
+        <item>Et Taiyiba</item>
+        <item>Rinnatya</item>
+        <item>Yavne</item>
+        <item>Acre</item>
+        <item>Nazerat</item>
+        <item>Illit</item>
+        <item>Baraq</item>
+        <item>Even Yehuda</item>
+        <item>Nesher</item>
+        <item>Pardes Hanna Karkur</item>
+        <item>Netivot</item>
+        <item>Tirat Karmel</item>
+        <item>Or Aqiva</item>
+        <item>Kefar Yona</item>
+        <item>Bet Oren</item>
+        <item>Haluz</item>
+        <item>Biriyya</item>
+        <item>Gan Hayyim</item>
+        <item>Qiryat Tivon</item>
+        <item>Qiryat Gat</item>
+        <item>Beer Toviyya</item>
+        <item>En Ayyala</item>
+        <item>Misgav Regional Council</item>
+        <item>Safed</item>
+        <item>Gedera</item>
+        <item>Dimona</item>
+        <item>Bet Shemesh</item>
+        <item>En HaShelosha</item>
+        <item>Herut</item>
+        <item>Mazor</item>
+        <item>Shamir</item>
+        <item>Raanana</item>
+        <item>Bat Hadar</item>
+        <item>Rosh HaAyin</item>
+        <item>Zoran</item>
+        <item>Tirat Yehuda</item>
+        <item>Bareqet</item>
+        <item>Elyakhin</item>
+        <item>Hadid</item>
+        <item>Hadar Ramatayim</item>
+        <item>Modiin</item>
+        <item>Hazor Ashdod</item>
+        <item>Kefar Daniyyel</item>
+        <item>Newe Efrayim</item>
+        <item>Talme Menashe</item>
+        <item>Kefar Netter</item>
+        <item>Mazliah</item>
+        <item>Moran</item>
+        <item>Shoval</item>
+        <item>Ramat Aviv</item>
+        <item>Afiqim</item>
+        <item>Ramat Dawid</item>
+        <item>Sde Warburg</item>
+        <item>Magen</item>
+        <item>Karkur</item>
+        <item>Qiryat Ata</item>
+        <item>Maghar</item>
+        <item>Timrat</item>
+        <item>Elyaqim</item>
+        <item>Bet Dagan</item>
+        <item>Ginnosar</item>
+        <item>Qiryat Malakhi</item>
+        <item>Hadar Am</item>
+        <item>maalot Tarshiha</item>
+        <item>Ahituv</item>
+        <item>Qiryat Motzkin</item>
+        <item>Migdal</item>
+        <item>Bat Hefer</item>
+        <item>Ben Shemen-Kefar Hanoar</item>
+        <item>Emunim</item>
+        <item>Tiberias</item>
+        <item>Mikhmoret</item>
+        <item>Hever</item>
+        <item>Ramat Yishay</item>
+        <item>Sderot</item>
+        <item>Gimzo</item>
+        <item>Mesillat Ziyyon</item>
+        <item>Pasuta</item>
+        <item>Bet Shean</item>
+        <item>Newe Yamin</item>
+        <item>Nordiyya</item>
+        <item>HaKarmel</item>
+        <item>Gibbeton</item>
+        <item>Qiryat Ono</item>
+        <item>Sarid</item>
+        <item>Nir Zevi</item>
+        <item>Ramat Efal</item>
+        <item>Bene Ziyyon</item>
+        <item>Hurfeish</item>
+        <item>Shefayim</item>
+        <item>Dabburiya</item>
+        <item>Rishpon</item>
+        <item>Mizpe Netofa</item>
+        <item>Sde Boker</item>
+        <item>Yaqum</item>
+        <item>Bahan</item>
+        <item>Jaffa</item>
+        <item>Allonim</item>
+        <item>Evron</item>
+        <item>Hazor HaGelilit</item>
+        <item>Ramot Naftali</item>
+        <item>Givat Hayyim</item>
+        <item>Urim</item>
+        <item>Sedot Yam</item>
+        <item>Aseret</item>
+        <item>Nirim</item>
+        <item>Amir</item>
+        <item>Ganne Tiqwa</item>
+        <item>Maagan Mikhael</item>
+        <item>Qiryat Hayyim</item>
+        <item>Kefar Witqin</item>
+    </string-array>
+
 </resources>

@@ -4,71 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg1"
     tools:context=".authentication.register">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbarSize="10dp">
+        android:scrollbarSize="10dp"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/register_activity_password"
+            <TextView
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textSize="14sp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/bold"
+                android:text="Sign In"
+                android:textSize="34sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/register_activity_email_edit_text" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/register_activity_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:hint="Username"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
             <EditText
                 android:id="@+id/register_activity_email_edit_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_activity_username" />
 
             <EditText
-                android:id="@+id/register_activity_username"
-                android:layout_width="0dp"
+                android:id="@+id/register_activity_password"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="5dp"
                 android:ems="10"
-                android:hint="Username"
-                android:inputType="textPersonName"
+                android:hint="Password"
+                android:inputType="textPassword"
                 android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/register_activity_email_edit_text" />
 
             <EditText
                 android:id="@+id/register_frag_city"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="5dp"
                 android:ems="10"
                 android:hint="City"
                 android:inputType="textPersonName"
                 android:singleLine="true"
                 android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_activity_password" />
 
@@ -76,10 +87,9 @@
                 android:id="@+id/register_radiogroupGender"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_frag_city">
 
@@ -112,10 +122,9 @@
                 android:id="@+id/register_radiogroupLookingFor"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
                 android:layout_marginTop="5dp"
                 android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_radiogroupGender">
 
@@ -143,20 +152,6 @@
                     android:textSize="12sp" />
             </RadioGroup>
 
-            <EditText
-                android:id="@+id/register_about"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="5dp"
-                android:ems="10"
-                android:hint="About me"
-                android:inputType="textPersonName"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/register_birthDate" />
-
             <ImageView
                 android:id="@+id/register_profileImageView"
                 android:layout_width="99dp"
@@ -172,6 +167,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_about" />
 
+            <DatePicker
+                android:id="@+id/register_birthDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:endYear="2003"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/register_radiogroupLookingFor" />
+
+            <EditText
+                android:id="@+id/register_about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:ems="10"
+                android:hint="About me"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/register_birthDate" />
+
             <Button
                 android:id="@+id/register_btnChoosePhoto"
                 android:layout_width="0dp"
@@ -179,7 +199,11 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="100dp"
-                android:text="CHOOSE A PHOTO"
+                android:fontFamily="@font/light"
+                android:text="Choose A Photo"
+                android:textAllCaps="false"
+                app:backgroundTint="#AD040404"
+                app:cornerRadius="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -187,31 +211,33 @@
 
             <Button
                 android:id="@+id/register_activity_register_btn"
-                android:layout_width="207dp"
-                android:layout_height="42dp"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
                 android:layout_marginStart="100dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="100dp"
-                android:background="#F5F5F5"
-                android:text="SIGN UP"
-                android:textSize="18sp"
-                app:backgroundTint="#AE9E83CD"
+                android:fontFamily="@font/light"
+                android:text="Register"
+                android:textAllCaps="false"
+                app:cornerRadius="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/register_btnChoosePhoto" />
 
-            <DatePicker
-                android:id="@+id/register_birthDate"
+            <TextView
+                android:id="@+id/register_login_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="5dp"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"
-                android:endYear="2003"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/regular"
+                android:text="Alreay signued up? Click Login"
+                android:textAllCaps="false"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/register_radiogroupLookingFor" />
+                app:layout_constraintTop_toBottomOf="@+id/register_activity_register_btn" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

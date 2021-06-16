@@ -4,14 +4,13 @@ import android.content.ContentResolver;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.net.Uri;
-import android.util.Log;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.MyApplication;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,27 +19,19 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.util.Listener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.ByteArrayOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +40,8 @@ public class ModelFirebase {
     public static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     public static FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseStorage storage = FirebaseStorage.getInstance();
+
+
 
 
     public interface Listener<T>{
@@ -103,11 +96,11 @@ public class ModelFirebase {
                 public void onSuccess(AuthResult authResult) {
                     Toast.makeText(MyApplication.context, "User registered", Toast.LENGTH_SHORT).show();
                     uploadUserData(email,username,city,description, gender, lookingForGender, dateOfBirth,imageUri);
-                   // setUserAppData(email);
+                    // setUserAppData(email);
 
                     //add user data to local DB
                     User user =  new User(firebaseAuth.getUid(),email, username, city, description, gender, lookingForGender, dateOfBirth,
-                                        User.getInstance().getProfileImageUrl(),"","","",0.0,0.0, User.getInstance().getLastUpdatedLocation());
+                            User.getInstance().getProfileImageUrl(),"","","",0.0,0.0, User.getInstance().getLastUpdatedLocation());
                     new AsyncTask<String, String, String>() {
                         @Override
                         protected String doInBackground(String... strings) {
@@ -216,7 +209,7 @@ public class ModelFirebase {
                     User.getInstance().pic3= (String) task.getResult().get("pic3");
                     User.getInstance().latitude= 0.0;
                     User.getInstance().longtitude= 0.0;
-
+                    Log.d("SetUserAppData", "@@@");
                     // User.getInstance().lookingForAge= (String) task.getResult().get("looking For Age");
                 }
             }
@@ -225,23 +218,43 @@ public class ModelFirebase {
 
     public static  void updateUserProfile(User user){
 
-            db.collection("userProfileData").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("userProfileData").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
 
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        for (QueryDocumentSnapshot document : task.getResult()) {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
 
-                            if(document.getData().get("email").equals(user.email)){
-                                db.collection("userProfileData")
-                                        .document(User.getInstance().email).set(user.toMap());
-                            }
+                        if(document.getData().get("email").equals(user.email)){
+                            db.collection("userProfileData")
+                                    .document(User.getInstance().email).set(user.toMap());
                         }
-                    } else {
-                        Log.d("TAG", "Error getting documents: ", task.getException());
                     }
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
                 }
-            });
+            }
+        });
+    }
+
+
+    public static void DeleteImage(String name) {
+        DocumentReference washingtonRef = db.collection("userProfileData").document(User.getInstance().email);
+
+        washingtonRef
+                .update(name,null)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("picture", "picture"+name+" successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error deleting document", e);
+                    }
+                });
     }
 
 
@@ -254,6 +267,8 @@ public class ModelFirebase {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        User.getInstance().setLatitude(location.getLatitude());
+                        User.getInstance().setLongtitude(location.getLongitude());
                         Log.d("location", "Location latitude successfully updated!");
                     }
                 })
@@ -313,13 +328,27 @@ public class ModelFirebase {
     public static void uploadImageToFirebase(String picName, String url){
         DocumentReference washingtonRef = db.collection("userProfileData").document(User.getInstance().email);
 
-        //update latitude
         washingtonRef
                 .update(picName,url)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d("picture", "picture"+picName+" successfully updated!");
+                        if(picName.contains("pic1")){
+                            User.getInstance().setPic1(url);
+                        }
+                        else if(picName.contains("pic2")){
+                            User.getInstance().setPic2(url);
+                        }
+                        else if(picName.contains("pic3")){
+                            User.getInstance().setPic3(url);
+                            Log.d("pic3 ","url "+ url);
+                            Log.d("pic3 ","pic 3 "+User.getInstance().getPic3());
+                        }
+                        else {
+                            User.getInstance().setProfileImageUrl(url);
+                        }
+
+                        Log.d("picture", "picture "+picName+" successfully updated!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -370,15 +399,13 @@ public class ModelFirebase {
         });
     }
 
-
-
     public static void getImageFromFireBase(String picName){
 
         db.collection("userProfileData").whereEqualTo("email",User.getInstance().email).get().addOnCompleteListener((OnCompleteListener<QuerySnapshot>) task -> {
             if (task.isSuccessful()) {
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     if(picName.contains("profileImageUrl")){
-                    User.getInstance().setProfileImageUrl((String) document.getData().get("profileImageUrl"));
+                        User.getInstance().setProfileImageUrl((String) document.getData().get("profileImageUrl"));
                         Log.d("fire photo","profile  "+User.getInstance().getProfileImageUrl());
                     }
                     if(picName.contains("pic1")){
@@ -428,4 +455,27 @@ public class ModelFirebase {
         mAuth.signOut();
     }
 
+    //Refresh - Odeya Added
+//    public static void getAllUsersSince(long since, final Model.Listener<List<User>> listener) {
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        Timestamp ts = new Timestamp(since, 0);
+//
+//        db.collection("userProfileData").whereGreaterThanOrEqualTo("lastUpdatedLocation", ts).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                List<User> usersData = null;
+//                if (task.isSuccessful()){
+//                    usersData = new LinkedList<User>();
+//                    for(QueryDocumentSnapshot doc : task.getResult()){
+//                        Map<String,Object> json = doc.getData();
+//                        User user;
+//                    }
+//                }
+//                listener.onComplete(usersData);
+//                Log.d("TAG","refresh " + usersData.size());
+//            }
+//        });
+//    }
+
 }
+

@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.FieldValue;
 
 @Entity
 public class User implements Serializable{
@@ -82,7 +83,7 @@ public class User implements Serializable{
         data.put("pic3", pic3);
         data.put("latitude",latitude);
         data.put("longtitude",longtitude);
-        data.put("lastUpdatedLocation",lastUpdatedLocation);
+        data.put("lastUpdatedLocation", FieldValue.serverTimestamp());
         //data.put("looking For Age",lookingForAge);
         return data;
     }

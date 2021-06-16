@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.meetmelive.MainActivity;
@@ -40,7 +41,8 @@ import static com.example.meetmelive.model.ModelFirebase.firebaseAuth;
 public class login extends AppCompatActivity {
 
     EditText email, password;
-    Button btnRegister, btnLogin;
+    Button btnLogin;
+    TextView tvRegister;
     CallbackManager mCallbackManager;
     LoginButton loginButton;
     FirebaseAuth mAuth;
@@ -52,7 +54,7 @@ public class login extends AppCompatActivity {
 
         email = findViewById(R.id.login_activity_email);
         password = findViewById(R.id.login_activity_password);
-        btnRegister = findViewById(R.id.login_activity_register_btn);
+        tvRegister = findViewById(R.id.login_activity_text_view1);
         btnLogin = findViewById(R.id.login_activity_login_btn);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -83,7 +85,7 @@ public class login extends AppCompatActivity {
             }
         });
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(login.this, register.class));

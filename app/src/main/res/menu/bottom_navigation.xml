@@ -13,9 +13,9 @@
         android:icon="@drawable/ic_baseline_search_24"
         android:title="Search" />
     <item
-        android:id="@+id/chatsFragment"
+        android:id="@+id/usersFragment"
         android:icon="@drawable/ic_baseline_chat_24"
-        android:title="Chats" />.
+        android:title="Chats" />
     <item
         android:id="@id/Profile"
         android:icon="@drawable/ic_baseline_account_circle_24"

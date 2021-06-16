@@ -16,6 +16,9 @@ public interface UserDao {
     @Query("select * from User")
     LiveData<List<User>> getAllActiveUsers();
 
+    @Query("select * from User")
+    LiveData<List<User>> getAllRequests();
+
 //    @Query("select * from User where gender = :gender")
 //    LiveData<ArrayList<String>> getUserMatch(String gender);
 

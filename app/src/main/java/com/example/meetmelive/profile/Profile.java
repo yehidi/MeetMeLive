@@ -19,7 +19,6 @@ import androidx.navigation.Navigation;
 
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.models.SlideModel;
-import com.example.meetmelive.CalculateAge;
 import com.example.meetmelive.MyApplication;
 import com.example.meetmelive.R;
 import com.example.meetmelive.authentication.login;
@@ -50,7 +49,7 @@ public class    Profile<OnOption> extends Fragment {
     TextView dateOfBirth,city,description;
     ImageSlider imageSlider;//the pictures
     View view;
-    Button connection;
+    Button connections;
     int age;
 
     User user;
@@ -76,15 +75,23 @@ public class    Profile<OnOption> extends Fragment {
         dateOfBirth=view.findViewById(R.id.profile_age);
         city=view.findViewById(R.id.profile_city);
         description=view.findViewById(R.id.profile_aboutMe);
+        connections=view.findViewById(R.id.connectionsBtn);
 
-
+        connections.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_Profile_to_connectionsFragment);
+            }
+        });
 
         Log.d("Profile", "Username is " + User.getInstance().getUsername() +  "userId is" +firebaseuser.getUid());
 
+        if (User.getInstance().getDateOfBirth()!=null){
         String[] splitDOB = User.getInstance().getDateOfBirth().split("-");
+
         Log.d("Profile", "splitDOB is" + splitDOB);
         age = getAge(Integer.parseInt(splitDOB[2]),Integer.parseInt(splitDOB[0]),Integer.parseInt(splitDOB[1]));
-        Log.d("TAG", "AGE IS " + age);
+        Log.d("TAG", "AGE IS " + age);}
 
 
 
@@ -104,6 +111,7 @@ public class    Profile<OnOption> extends Fragment {
                 dateOfBirth.setText(String.valueOf(age));
                 city.setText(user.getCity());
                 description.setText(user.getDescription());
+                User.getInstance().setLastUpdatedLocation(user.getLastUpdatedLocation());
             }
         });
 
@@ -143,6 +151,7 @@ public class    Profile<OnOption> extends Fragment {
                 ModelFirebase.signOut();
                 LoginManager.getInstance().logOut();
                 startActivity(new Intent(getActivity(),login.class));
+                return true;
             }
             case R.id.DeleteAccount:{
                 Model.instance.deleteUser(user, new Model.DeleteUserListener() {
@@ -156,15 +165,15 @@ public class    Profile<OnOption> extends Fragment {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull @NotNull Exception e) {
-                                 Toast.makeText(MyApplication.context, "Failed To Delete Account", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MyApplication.context, "Failed To Delete Account", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
                 });
-
+                return true;
             }
             default:
-               return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
         }
     }
 

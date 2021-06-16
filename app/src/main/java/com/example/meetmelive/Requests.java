@@ -45,7 +45,7 @@ public class Requests extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_requests, container, false);
 
-        acceptBtn = view.findViewById(R.id.list_row_requests_accept);
+        acceptBtn = view.findViewById(R.id.list_row_connections_unmatch);
         declineBtn = view.findViewById(R.id.list_row_requests_decline);
 
         setUpRecyclerView();
@@ -127,6 +127,11 @@ public class Requests extends Fragment {
 //                                });
 //                    }
 //                });
+            }
+
+            @Override
+            public void onItemClick2(int position) {
+
             }
         });
 
