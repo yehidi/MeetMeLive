@@ -28,6 +28,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+import org.jetbrains.annotations.NotNull;
+
 
 public class ConnectionsFragment extends Fragment {
     private RecyclerView myFrirendsList;
@@ -167,13 +169,22 @@ public class ConnectionsFragment extends Fragment {
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
-
+                                if (task.isSuccessful()) {
+                                    db.collection("userProfileData").document(user.getEmail())
+                                            .collection("connections").document(User.getInstance().getEmail()).delete()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull @NotNull Task<Void> task) {
+                                                }
+                                            });
+                                }
                             }
                         });
                 Toast.makeText(getContext(), "Connection has been removed", Toast.LENGTH_SHORT).show();
             }
         });
-        }
+    }
+
     @Override
     public void onStart() {
         super.onStart();

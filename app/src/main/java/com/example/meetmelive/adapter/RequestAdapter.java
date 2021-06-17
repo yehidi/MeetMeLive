@@ -38,8 +38,8 @@ public class RequestAdapter extends FirestoreRecyclerAdapter<User, RequestAdapte
     }
 
     public interface OnItemClickListener {
-        void onItemClick(int position);
-        void onItemClick2(int position);
+        void acceptOnItemClick(int position);
+        void declineOnItemClick(int position);
 
     }
 
@@ -63,11 +63,11 @@ public class RequestAdapter extends FirestoreRecyclerAdapter<User, RequestAdapte
             nickname = itemView.findViewById(R.id.list_row_chats_username);
             age=itemView.findViewById(R.id.list_row_chats_age);
 
-            itemView.findViewById(R.id.list_row_connections_unmatch).setOnClickListener(new View.OnClickListener() {
+            itemView.findViewById(R.id.list_row_requests_accept).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    listener.onItemClick(position);
+                    listener.acceptOnItemClick(position);
                 }
             });
 
@@ -75,16 +75,14 @@ public class RequestAdapter extends FirestoreRecyclerAdapter<User, RequestAdapte
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
-                    listener.onItemClick2(position);
+                    listener.declineOnItemClick(position);
                 }
             });
         }
 
         @Override
         public void onClick(View v) {
-            int position = getAdapterPosition();
-            listener.onItemClick(position);
-        }
 
+        }
     }
 }
